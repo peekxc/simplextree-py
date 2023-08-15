@@ -3,23 +3,23 @@ requires = ["setuptools", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-# See https://setuptools.pypa.io/en/latest/userguide/quickstart.html for more project configuration options.
 name = "simplextree"
 dynamic = ["version"]
 readme = "README.md"
 classifiers = [
-    "Intended Audience :: Science/Research",
-    "Development Status :: 3 - Alpha",
-    "License :: OSI Approved :: Apache Software License",
-    "Programming Language :: Python :: 3",
-    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+	"Intended Audience :: Science/Research",
+	"Development Status :: 3 - Alpha",
+	"License :: OSI Approved :: Apache Software License",
+	"Programming Language :: Python :: 3"
 ]
 authors = [
-    {name = "Allen Institute for Artificial Intelligence", email = "contact@allenai.org"}
+		{ name = "Matt Piekenbrock", email = "matt.piekenbrock@gmail.com" }
 ]
 requires-python = ">=3.8"
 dependencies = [
-  # Add your own dependencies here
+	"numpy", 
+	"scipy",
+	"more_itertools"
 ]
 license = {file = "LICENSE"}
 
@@ -31,34 +31,28 @@ Changelog = "https://github.com/peekxc/simplextree-py/blob/main/CHANGELOG.md"
 
 [project.optional-dependencies]
 dev = [
-    "ruff",
-    "mypy>=1.0,<1.5",
-    "black>=23.0,<24.0",
-    "isort>=5.12,<5.13",
-    "pytest",
-    "pytest-sphinx",
-    "pytest-cov",
-    "twine>=1.11.0",
-    "build",
-    "setuptools",
-    "wheel",
-    "Sphinx>=4.3.0,<7.1.0",
-    "furo==2023.7.26",
-    "myst-parser>=1.0,<2.1",
-    "sphinx-copybutton==0.5.2",
-    "sphinx-autobuild==2021.3.14",
-    "sphinx-autodoc-typehints==1.23.3",
-    "packaging"
+	"ruff",
+	"mypy>=1.0,<1.5",
+	"black>=23.0,<24.0",
+	"isort>=5.12,<5.13",
+	"pytest",
+	"pytest-sphinx",
+	"pytest-cov",
+	"twine>=1.11.0",
+	"build",
+	"setuptools",
+	"wheel",
+	"packaging"
 ]
 
 [tool.setuptools.packages.find]
 exclude = [
-    "*.tests",
-    "*.tests.*",
-    "tests.*",
-    "tests",
-    "docs*",
-    "scripts*"
+	"*.tests",
+	"*.tests.*",
+	"tests.*",
+	"tests",
+	"docs*",
+	"scripts*"
 ]
 
 [tool.setuptools]
@@ -75,14 +69,14 @@ line-length = 100
 include = '\.pyi?$'
 exclude = '''
 (
-      __pycache__
-    | \.git
-    | \.mypy_cache
-    | \.pytest_cache
-    | \.vscode
-    | \.venv
-    | \bdist\b
-    | \bdoc\b
+			__pycache__
+		| \.git
+		| \.mypy_cache
+		| \.pytest_cache
+		| \.vscode
+		| \.venv
+		| \bdist\b
+		| \bdoc\b
 )
 '''
 
@@ -113,8 +107,8 @@ strict_optional = false
 [tool.pytest.ini_options]
 testpaths = "tests/"
 python_classes = [
-  "Test*",
-  "*Test"
+	"Test*",
+	"*Test"
 ]
 log_format = "%(asctime)s - %(levelname)s - %(name)s - %(message)s"
 log_level = "DEBUG"
