@@ -1,9 +1,6 @@
-import numbers
 import numpy as np 
 from typing import *
 from numpy.typing import ArrayLike 
-from more_itertools import spy
-from operator import itemgetter
 
 from math import comb, factorial
 # from .combinatorial import * 
@@ -47,26 +44,6 @@ def inverse_choose(x: int, k: int):
 def is_repeatable(x: Iterable) -> bool:
 	"""Checks whether _x_ is Iterable and repeateable as an Iterable (generators fail this test)."""
 	return not(iter(x) is x)
-
-def is_simplex_like(x: Any) -> bool:
-	is_collection = isinstance(x, SimplexConvertible) # is a Collection supporting __contains__, __iter__, and __len__
-	if is_collection: 
-		return is_repeatable(x) and all([isinstance(v, Integral) for v in x])
-	return False
-
-def is_complex_like(x: Any) -> bool: 
-	if isinstance(x, ComplexLike): # is iterable + Sized 
-		item, iterable = spy(x)
-		return is_simplex_like(item[0])
-	return False
-
-def is_filtration_like(x: Any) -> bool:
-	is_collection = isinstance(x, FiltrationLike) # Collection + Sequence + .index 
-	if is_collection:
-		# return is_complex_like(map(itemgetter(1), x))
-		item, iterable = spy(x)
-		return len(item[0]) == 2 and is_simplex_like(item[0][1])
-	return False
 
 def is_array_convertible(x: Any) -> bool:
 	return hasattr(x, "__array__")

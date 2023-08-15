@@ -3,26 +3,22 @@ from typing import *
 from itertools import * 
 from numbers import Integral
 from math import comb, factorial
-from .Simplex import Simplex
 import _combinatorial as comb_mod
 
 
 ## Also: https://stackoverflow.com/questions/1942328/add-a-member-variable-method-to-a-python-generator
 ## See: https://stackoverflow.com/questions/48349929/numpy-convertible-class-that-correctly-converts-to-ndarray-from-inside-a-sequenc
 class SimplexWrapper:
-  def __init__(self, g: Generator, d: int, dtype = None):
-    ## Precondition: g is a generator of SimplexConvertibles all of the same length
-    # head, self.simplices = spy(g)
+  ## Precondition: Generator contains containers all of equal length (d)
+  def __init__(self, g: Generator[Container], d: int, dtype = None):
     self.simplices = g 
-    # self.simplices = list(g)
-    # d = len(head[0])
     if d == 0:
       self.s_dtype = np.uint16 if dtype is None else dtype
     else:
       self.s_dtype = (np.uint16, d+1) if dtype is None else (dtype, d+1)
   
   def __iter__(self) -> Iterator:
-    return map(Simplex, self.simplices)
+    return map(lambda x: np.asarray(x, dtype=np.uint16)[:(self.d+1)], self.simplices)
 
   def __array__(self) -> np.ndarray:
     return np.fromiter(iter(self), dtype=self.s_dtype)

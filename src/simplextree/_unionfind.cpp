@@ -20,7 +20,7 @@ void printCC(UnionFind& uf){
   py::print("\n");
 }
 
-PYBIND11_MODULE(_union_find, m) {
+PYBIND11_MODULE(_unionfind, m) {
   py::class_<UnionFind>(m, "UnionFind")
     .def(py::init< size_t >())
     .def_readonly( "size", &UnionFind::size)
