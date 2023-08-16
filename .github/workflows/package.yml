@@ -57,6 +57,6 @@ jobs:
         maxColorRange: 100
         minColorRange: 0
         namedLogo: Pytest
-    - name: Send coverage report
-      run: |
-        coveralls --service=github
+    # - name: Send coverage report
+    #   run: |
+    #     coveralls --service=github
