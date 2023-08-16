@@ -22,8 +22,8 @@ message(compiler.get_id())
 # incdir = include_directories(join_paths(meson.source_root(), 'include'))
 # pybind11dir = include_directories(join_paths(meson.source_root(), 'extern', 'pybind11', 'include'))
 
-incdir = include_directories('.' / 'include')
-pybind11dir = include_directories('.' / 'extern' / 'pybind11' / 'include')
+incdir = include_directories('include')
+pybind11dir = include_directories('extern' / 'pybind11' / 'include')
 
 ## Install the package
 install_subdir('src' / 'simplextree', install_dir: py.get_install_dir(pure: false))
