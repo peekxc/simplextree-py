@@ -15,6 +15,9 @@ endif
 #   ['-c', 'import os; os.chdir(".."); import numpy; print(numpy.get_include())'],
 #   check : true
 # ).stdout().strip()
+# incdir = include_directories(join_paths(meson.source_root(), 'include'))
+# pybind11dir = include_directories(join_paths(meson.source_root(), 'extern', 'pybind11', 'include'))
+
 incdir = include_directories('include')
 pybind11dir = include_directories('extern/pybind11/include')
 
