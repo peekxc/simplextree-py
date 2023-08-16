@@ -23,7 +23,7 @@ class SimplexTree(SimplexTreeCpp):
 		vertices (ndarray): vertices of the complex
 	"""    
 	def __init__(self, simplices: Iterable[Collection] = None) -> None:
-		st_mod.SimplexTree.__init__(self)
+		SimplexTreeCpp.__init__(self)
 		if simplices is not None: 
 			self.insert(simplices)
 		return None

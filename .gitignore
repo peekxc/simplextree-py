@@ -1,5 +1,4 @@
 # build artifacts
-
 .eggs/
 .mypy_cache
 *.egg-info/
