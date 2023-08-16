@@ -4,9 +4,9 @@ from numbers import Integral
 from numpy.typing import ArrayLike
 
 import numpy as np 
-from . import _simplextree as st_mod
+from _simplextree import SimplexTree as SimplexTreeCpp
 
-class SimplexTree(st_mod.SimplexTree):
+class SimplexTree(SimplexTreeCpp):
 	""" 
 	SimplexTree provides lightweight wrapper around a Simplex Tree data structure: an ordered, trie-like structure whose nodes are in bijection with the faces of the complex. 
 	This class exposes a native extension module wrapping a simplex tree implemented with modern C++.
