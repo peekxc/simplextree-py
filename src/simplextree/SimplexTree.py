@@ -175,20 +175,20 @@ class SimplexTree(SimplexTreeCpp):
 		Supported traversals: 
 			- breadth-first / level order ("bfs", "levelorder") 
 			- depth-first / prefix ("dfs", "preorder")
-			- faces ("faces")
-			- cofaces ("cofaces")
-			- coface roots 
+			- faces 
+			- cofaces
+			- coface roots ("coface_roots")
 			- p-skeleton
 			- p-simplices 
-			- maximal simplices 
+			- maximal simplices ("maximal")
 			- link 
 		To select one of these options, set order to one of ["bfs", "levelorder", "dfs", "preorder"]
 
 		Parameters:
-			order : the type of traversal to do 
-			f : a function to evaluate on every simplex in the traversal. Defaults to print. 
-			sigma : simplex to start the traversal at, where applicable. Defaults to the root node (empty set)
-			p : dimension of simplices to restrict to, where applicable.  
+			order: the type of traversal of the simplex tree to execute.
+			f: a function to evaluate on every simplex in the traversal. Defaults to print. 
+			sigma: simplex to start the traversal at, where applicable. Defaults to the root node (empty set).
+			p: dimension of simplices to restrict to, where applicable. Defaults to 0. 
 		"""
 		# todo: handle kwargs
 		assert isinstance(order, str)
@@ -253,9 +253,9 @@ class SimplexTree(SimplexTreeCpp):
 			self._traverse(6, lambda s: F.append(s), [], p) # order, f, init, k
 		return F
 	
-	def faces(self, p: int = None, **kwargs) -> Iterable[Collection]:
+	def faces(self, p: int = None, sigma: Collection = [], **kwargs) -> Iterable[Collection]:
 		"""Wrapper for simplices function."""
-		return self.simplices(p)
+		return self.skeleton(p, sigma)
 	
 	def maximal(self) -> Iterable[Collection]:
 		"""Returns the maximal simplices in the complex."""
@@ -279,7 +279,7 @@ class SimplexTree(SimplexTreeCpp):
 
 		Examples:
 
-			from splex import SimplexTree 
+			from simplextree import SimplexTree 
 			from itertools import combinations 
 			st = SimplexTree(combinations(range(8), 2))
 			print(st)

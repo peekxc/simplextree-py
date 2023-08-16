@@ -1,8 +1,6 @@
 [build-system]
 build-backend = 'mesonpy'
 requires = ['meson-python', "wheel", "ninja", "pybind11", "numpy"]
-# requires = ["setuptools", "wheel", "pybind11", "numpy"]
-# build-backend = "setuptools.build_meta"
 
 [project]
 name = "simplextree"
@@ -38,7 +36,6 @@ dev = [
 	"black>=23.0,<24.0",
 	"isort>=5.12,<5.13",
 	"pytest",
-	"pytest-sphinx",
 	"pytest-cov",
 	"twine>=1.11.0",
 	"build",
@@ -64,10 +61,10 @@ include-package-data = true
 simplextree = ["py.typed"]
 
 [tool.setuptools.dynamic]
-version = {attr = "simplextree.VERSION"}
+version = { attr = "simplextree.VERSION" }
 
 [tool.black]
-line-length = 100
+line-length = 180
 include = '\.pyi?$'
 exclude = '''
 (
@@ -91,7 +88,7 @@ multi_line_output = 3
 reportPrivateImportUsage = false
 
 [tool.ruff]
-line-length = 115
+line-length = 140
 target-version = "py39"
 
 [tool.ruff.per-file-ignores]
