@@ -29,6 +29,7 @@ Repository = "https://github.com/peekxc/simplextree-py"
 Changelog = "https://github.com/peekxc/simplextree-py/blob/main/CHANGELOG.md"
 # Documentation = "https://simplextree.readthedocs.io/"
 
+
 [project.optional-dependencies]
 dev = [
 	"ruff",
@@ -43,6 +44,9 @@ dev = [
 	"wheel",
 	"packaging"
 ]
+
+[tool.meson-python.args]
+setup = ['--default-library=static']
 
 [tool.setuptools.packages.find]
 exclude = [
