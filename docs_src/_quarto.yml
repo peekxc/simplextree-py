@@ -21,10 +21,9 @@ quartodoc:
   
   sections: 
     - title: Simplex Tree
-      desc: The Simplex Tree datastructure. 
+      desc: The Simplex Tree data structure. 
       contents:
         - name: SimplexTree
-          dynamic: true
           members: 
             - faces
 
