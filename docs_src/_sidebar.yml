@@ -1,0 +1,9 @@
+website:
+  sidebar:
+  - contents:
+    - reference/index.qmd
+    - contents:
+      - reference/VERSION.qmd
+      section: SimplexTree
+    id: reference
+  - id: dummy-sidebar

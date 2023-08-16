@@ -1,0 +1,92 @@
+## Build the docs by cd'ing into docs and doing: 
+## quarto render .
+## python -m quartodoc build
+## python gen_api_custom.py
+project:
+  type: website
+  output-dir: ../docs
+  
+quartodoc: 
+  package: simplextree
+  title: API Reference    # API only 
+  dir: reference          # API only 
+  style: pkgdown          # API only
+  sidebar: _sidebar.yml 
+  
+  renderer: 
+    style: _renderer.py
+    show_signature: true
+    show_signature_annotations: true
+    display_name: name 
+  
+  sections: 
+    - title: Simplex Tree
+      desc: The Simplex Tree datastructure. 
+      contents:
+        - name: SimplexTree
+          dynamic: true
+          members: 
+            - faces
+
+
+website:
+  title: simplextree
+  search: 
+    location: sidebar
+    type: textbox
+  navbar:
+    background: light
+    right: 
+      - icon: github
+        href: https://github.com/peekxc/simplextree-py
+    pinned: false  
+    search: false       
+  sidebar:
+    style: "docked"
+    pinned: false
+    align: center 
+    search: true
+    border: true 
+    collapse-level: 2
+    contents: 
+      - text: Overview 
+        href: pages/overview.qmd
+      - section: API Reference
+        href: reference/index.qmd
+        contents:
+          - name: SimplexTree 
+            text: Simplex Tree
+            href: reference/UnionFind.UnionFind.qmd
+          - name: UnionFind 
+            text: Union Find
+            href: reference/UnionFind.UnionFind.qmd
+
+  page-navigation: true
+  reader-mode: true
+  page-footer: 
+    center: "Copyright 2023, Matthew Piekenbrock" 
+    border: true
+
+latex-auto-install: true 
+
+execute:
+  cache: true
+
+theme: 
+  light: flatly
+  dark: darkly
+
+format:
+  html: 
+    anchor-selections: true 
+    code-fold: false
+    smooth-scroll: true
+    html-math-method: katex
+    code-overflow: wrap 
+    highlight-style: printing 
+    fontsize: 14px
+    linestretch: 1.3
+    margin-top: "0px" 
+    css: static/styles.css
+# out_index: pages/index.qmd
+# sphinx-build . ./_build/html -b html

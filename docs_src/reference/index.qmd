@@ -1,0 +1,9 @@
+# API Reference
+
+## SimplexTree
+
+Functions to inspect docstrings.
+
+| | |
+| --- | --- |
+| [VERSION](VERSION.qmd#simplextree.VERSION) | str(object='') -> str |
