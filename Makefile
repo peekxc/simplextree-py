@@ -14,3 +14,9 @@ run-checks :
 build :
 	rm -rf *.egg-info/
 	python -m build
+
+.PHONY : dev-build
+dev-wheel:
+	rm -rf dist/
+	rm -rf *.egg-info/
+	
