@@ -1,4 +1,9 @@
-project('simplextree', 'cpp', default_options : ['cpp_std=c++17'])
+project(
+  'simplextree', 'cpp', 
+  license: 'Apache-2.0',
+  meson_version: '>= 0.63.0',
+  default_options : ['cpp_std=c++17']
+)
 
 py_mod = import('python')
 py = py_mod.find_installation(pure: true)

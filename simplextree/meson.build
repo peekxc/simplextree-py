@@ -2,6 +2,12 @@
 compiler = meson.get_compiler('cpp')
 message('Compiler = '+compiler.get_id())
 
+## Compiler flags
+_cpp_args = compiler.get_supported_arguments(
+  '-Wall', '-Wextra', '-Wno-unused-parameter'
+)
+add_project_arguments(_cpp_args, language: ['cpp'])
+
 ## Platform detection
 cpp_std = 'c++17'
 is_windows = host_machine.system() == 'windows'
@@ -13,6 +19,7 @@ if is_windows
   if is_mingw
     add_project_link_arguments(['-lucrt', '-static'], language: ['cpp']) # For mingw-w64, link statically against the UCRT.
     add_project_arguments('-D__USE_MINGW_ANSI_STDIO=1', language: ['cpp']) # https://github.com/rgommers/scipy/issues/118
+    add_project_arguments('-DMS_WIN64', language: ['cpp'])
   endif 
 endif   
 
