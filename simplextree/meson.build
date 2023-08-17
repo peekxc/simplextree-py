@@ -1,6 +1,6 @@
 
 ## Windows adjustments
-is_mingw = is_windows and cc.get_id() == 'gcc'
+is_mingw = is_windows and compiler.get_id() == 'gcc'
 if is_windows
   gcc_link_args = ['-lucrt', '-static'] # For mingw-w64, link statically against the UCRT.
   if is_mingw
