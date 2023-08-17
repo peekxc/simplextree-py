@@ -2,7 +2,7 @@
 
 set -e
 
-TAG=$(python -c 'from simplextree.version import VERSION; print("v" + VERSION)')
+TAG=$(python -c 'from simplextree import __version__; print("v" + __version__)')
 
 read -p "Creating new release for $TAG. Do you want to continue? [Y/n] " prompt
 
