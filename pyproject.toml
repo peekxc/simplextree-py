@@ -4,7 +4,7 @@ requires = ['meson-python', "wheel", "ninja", "pybind11", "numpy"]
 
 [project]
 name = "simplextree"
-version = '0.0.3'
+version = '0.1.0'
 readme = "README.md"
 classifiers = [
 	"Intended Audience :: Science/Research",
@@ -29,7 +29,6 @@ Repository = "https://github.com/peekxc/simplextree-py"
 Changelog = "https://github.com/peekxc/simplextree-py/blob/main/CHANGELOG.md"
 # Documentation = "https://simplextree.readthedocs.io/"
 
-
 [project.optional-dependencies]
 dev = [
 	"ruff",
@@ -47,25 +46,6 @@ dev = [
 
 [tool.meson-python.args]
 setup = ['--default-library=static']
-
-[tool.setuptools.packages.find]
-exclude = [
-	"*.tests",
-	"*.tests.*",
-	"tests.*",
-	"tests",
-	"docs*",
-	"scripts*"
-]
-
-[tool.setuptools]
-include-package-data = true
-
-[tool.setuptools.package-data]
-simplextree = ["py.typed"]
-
-[tool.setuptools.dynamic]
-version = { attr = "simplextree.VERSION" }
 
 [tool.black]
 line-length = 180
