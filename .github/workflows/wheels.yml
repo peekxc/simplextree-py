@@ -142,6 +142,8 @@ jobs:
           CIBW_MANYLINUX_X86_64_IMAGE: manylinux1
           CIBW_MANYLINUX_I686_IMAGE: manylinux1
           CIBW_TEST_SKIP: "*-macosx_arm64"
+          CIBW_TEST_REQUIRES: pytest pytest-cov coverage
+          CIBW_TEST_COMMAND: coverage run --source={package} -m pytest {package}/tests && coverage report -m
 
       - uses: actions/upload-artifact@v3
         with:
@@ -183,8 +185,8 @@ jobs:
           CIBW_SKIP: "*-musllinux_*"
           CIBW_MANYLINUX_X86_64_IMAGE: ${{ matrix.cibw_manylinux }}
           CIBW_MANYLINUX_I686_IMAGE: ${{ matrix.cibw_manylinux }}
-          CIBW_TEST_REQUIRES: pytest
-          CIBW_TEST_COMMAND: pytest {package}/tests
+          CIBW_TEST_REQUIRES: pytest pytest-cov coverage
+          CIBW_TEST_COMMAND: coverage run --source={package} -m pytest {package}/tests && coverage report -m
           
       - uses: actions/upload-artifact@v3
         with:
