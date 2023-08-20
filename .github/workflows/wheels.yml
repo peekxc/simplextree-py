@@ -62,6 +62,8 @@ jobs:
           CIBW_ARCHS_WINDOWS: ${{ matrix.cibw_arch }}
           # -Wl,-S equivalent to gcc's -Wl,--strip-debug
           LDFLAGS: "-Wl,-S"
+          CIBW_TEST_REQUIRES: pytest pytest-cov coverage
+          CIBW_TEST_COMMAND: coverage run --source={package} -m pytest {package}/tests && coverage report -m
 
       - uses: actions/upload-artifact@v3
         with:
