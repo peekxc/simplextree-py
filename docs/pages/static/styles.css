@@ -1,40 +1,17 @@
 /* css styles */
 #quarto-document-content{
-  margin-top: 0.75em;
+  margin-top: 0;
   padding-top: 0;
 }
 
-section.level1 > h1 {
-  margin-top: 0 !important; 
-}
-
-section.level3 {
-  border-style: solid;
-  border-color: #d3d3d3;
-  margin-bottom: 1em;
-  padding: 0.75em;
-}
-
-section.level3 > h3 {
-  margin-top: 0 !important;
-}
-section.level4 > strong {
-  margin-left: 0.5em;
-}
-section.level4 > h4 {
-  text-decoration: underline;
-}
 section[id^=parameters] > h3 {
   font-size: 1.2em;
   font-weight: bold;
   text-decoration: underline;
 }
 section[id^=parameters] > p {
-  margin-left: 1.5em;
+  margin-left: 2.0em;
   margin-top: 0.5em; 
-}
-section[id^=parameters] > h4 {
-  font-size: medium;
 }
 section[id^=returns] > h3 {
   font-size: 1.2em;

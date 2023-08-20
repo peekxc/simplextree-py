@@ -2,36 +2,38 @@
 format:
   html:
     code-fold: false
-# jupyter: python3
+jupyter: 
+  kernelspec:
+    display_name: simplextree
+    language: python
+    name: python3
 execute: 
   freeze: auto
-  enabled: false
+  enabled: true
 ---
 
 # Overview: Simplicial Complexes
 
-A _simplicial complex_ $S = (V, \Sigma)$ is a collection of simplices $s \in \Sigma$ satisfying: 
+A _simplicial complex_ $S$ is a pair $S = (V, \Sigma)$ where $V$ is a vertex set and $\Sigma$ a collection of _simplices_ $s \in \Sigma$ satisfying: 
 
-1. Each $v \in V$ is in $S$
+1. If $v \in V$, then $v \in S$
 2. If $\tau \subset \sigma$ and $\sigma \in S$, then $\tau \in S$
 
-Mathematically, one can think of a simplicial complex as a natural generalization of a [graph](https://en.wikipedia.org/wiki/Graph_(discrete_mathematics)): indeed, the [1-skeleton](https://en.wikipedia.org/wiki/N-skeleton) of $S$ is a graph, and thus any graph can also be represented by a simplicial complex (though the converse is not true!).
+A simplicial complex is a natural generalization of a [graph](https://en.wikipedia.org/wiki/Graph_(discrete_mathematics))---any graph can also be represented by a simplicial complex (though the converse is not true!). 
 
-As an [abstract data type](https://en.wikipedia.org/wiki/Graph_(abstract_data_type)), graph data structures are highly varied---common choices include [incidence matrices](https://en.wikipedia.org/wiki/Incidence_matrix), [adjacency matrices](https://en.wikipedia.org/wiki/Adjacency_matrix), [edge lists](https://en.wikipedia.org/wiki/Edge_list), [adjacency lists](https://en.wikipedia.org/wiki/Adjacency_list), pointer-based representations, or even [dictionary representations](https://networkx.org/documentation/stable/reference/introduction.html#turtles). 
+Like graphs, there are many ways to represent simplicial complexes in memory. One such way is to use a _simplex tree_: an ordered, trie-like structure whose nodes are in bijection with the faces of the complex. Here's a picture of a simplicial 3-complex (left) and its corresponding Simplex Tree (right):
 
-It is often the case that choosing the 'right' data structure for a computational task depends on the intended use-case: (TODO: show usages).
-To make matters more complicated, this use-case often changes throughout the development cycle of a software project---for example, dictionary-based graph representations might be great for interactive construction and manipulation, but when it faced with a compute-heavy task (e.g. any linear algebra task), one must often switch to a matrix-representations before proceeding. 
+![simplextree](static/simplextree_pic.png){.preview-image}
 
-## Towards interoperability 
+To construct the complex above with a `simplextree` package, simply give the maximal simplices: 
 
-`splex` promotes a common, _pythonic_ interface for interacting with simplicial complexes that is independent of their internal representation. 
+```{python}
+from simplextree import SimplexTree
+st = SimplexTree([[1,2,3],[2,3,4,5],[6,7,9],[7,8],[10]]) # complex form the picture
+print(st)
+```
 
-To simplify usage, this interface incorporates the use of _generics_ (inspired from [R](https://homerhanumat.github.io/r-notes/generic-function-oo.html)) and [Protocol classes](https://peps.python.org/pep-0544/) (to support [duck-typing](https://en.wikipedia.org/wiki/Duck_typing) and [structural subtyping](https://mypy.readthedocs.io/en/stable/protocols.html)). 
-
-See the design philosophy (todo) for more details. 
-
-## Data structures 
-
-Out-of-the-box, `splex` comes with three distinct data structures for representing simplicial complexes:
-as [sets of simplices](reference/complexes.SetComplex.SetComplex), as (structured) [arrays of integers](reference/complexes.RankComplex.RankComplex), and as [integer-valued tries](reference/complexes.SimplexTree.SimplexTree). See the [complexes overview]() page for more details. 
-
+To look at the tree structure, use `print_tree` (see also: `print_cousins`)
+```{python}
+st.print_tree()
+```

@@ -4,11 +4,11 @@ from griffe.docstrings import dataclasses as ds
 from plum import dispatch
 from tabulate import tabulate
 from typing import *
-from griffe.expressions import ExprName, Expr
+from griffe.expressions import Name, Expression
 from quartodoc.renderers import *
 from quartodoc.ast import ExampleCode, ExampleText
 
-_UNHANDLED = []
+Name, Expression = Name, Expression
 
 class Renderer(MdRenderer):
   style = "markdown_numpy"
@@ -17,6 +17,7 @@ class Renderer(MdRenderer):
 
   def __init__(self, *args, **kwargs):
     super().__init__()
+    self._UNHANDLED = []
 
   # def _fetch_object_dispname(self, el: "dc.Alias | dc.Object"):
   #   if self.display_name == "parent":
@@ -27,7 +28,7 @@ class Renderer(MdRenderer):
   # Keep admonition at the top here ----
   @dispatch
   def render(self, el: ds.DocstringSectionAdmonition) -> str:
-    _UNHANDLED.append(el)
+    self._UNHANDLED.append(el)
     return "UNHANDLED ADMONITION"
 
 
@@ -39,7 +40,7 @@ class Renderer(MdRenderer):
       d = ds_param.as_dict()
       pn, pa, pd = [d.get(k) for k in ("name", "annotation", "description")]
       sec_md = f"**{pn}** : "
-      if isinstance(pa, ExprName) or isinstance(pa, Expr):
+      if isinstance(pa, Name) or isinstance(pa, Expression):
         sec_md += f"<span class='type_annotation'> {pa.full}, </span>"
       else: 
         sec_md += "" if pa is None or len(str(pa)) == 0 else str(pa)+", "
@@ -50,7 +51,9 @@ class Renderer(MdRenderer):
 
   # @dispatch
   # def render(self, el: dc.Parameters):
-  #   return super(Renderer, self).render(el)
+  #   print(el)
+  #   return "RENDER PARAMETERS"
+    # return super(Renderer, self).render(el)
 
   # @dispatch
   # def render(self, el: dc.Parameter):
@@ -64,7 +67,7 @@ class Renderer(MdRenderer):
       d = ds_param.as_dict()
       pn, pa, pd = [d.get(k) for k in ("name", "annotation", "description")]
       sec_md = f"**{pn}** : "
-      if isinstance(pa, ExprName) or isinstance(pa, Expr):
+      if isinstance(pa, Name) or isinstance(pa, Expression):
         sec_md += f"<span class='type_annotation'> {pa.full}, </span>"
       else: 
         sec_md += "" if pa is None or len(str(pa)) == 0 else str(pa)+", "
@@ -72,30 +75,30 @@ class Renderer(MdRenderer):
       params_str.append(sec_md)
     return "\n\n".join(params_str)
 
-    @dispatch
-    def render(self, el: dc.Parameter):
-      splats = {dc.ParameterKind.var_keyword, dc.ParameterKind.var_positional}
-      has_default = el.default and el.kind not in splats
+  # @dispatch
+  # def render(self, el: dc.Parameter):
+  #   splats = {dc.ParameterKind.var_keyword, dc.ParameterKind.var_positional}
+  #   has_default = el.default and el.kind not in splats
 
-      if el.kind == dc.ParameterKind.var_keyword:
-          glob = "**"
-      elif el.kind == dc.ParameterKind.var_positional:
-          glob = "*"
-      else:
-          glob = ""
+  #   if el.kind == dc.ParameterKind.var_keyword:
+  #       glob = "**"
+  #   elif el.kind == dc.ParameterKind.var_positional:
+  #       glob = "*"
+  #   else:
+  #       glob = ""
 
-      annotation = self.render_annotation(el.annotation)
-      if self.show_signature_annotations:
-          if annotation and has_default:
-              res = f"{glob}{el.name}: {el.annotation} = {el.default}"
-          elif annotation:
-              res = f"{glob}{el.name}: {el.annotation}"
-      elif has_default:
-          res = f"{glob}{el.name}={el.default}"
-      else:
-          res = f"{glob}{el.name}"
+  #   annotation = self.render_annotation(el.annotation)
+  #   if self.show_signature_annotations:
+  #       if annotation and has_default:
+  #           res = f"{glob}{el.name}: {el.annotation} = {el.default}"
+  #       elif annotation:
+  #           res = f"{glob}{el.name}: {el.annotation}"
+  #   elif has_default:
+  #       res = f"{glob}{el.name}={el.default}"
+  #   else:
+  #       res = f"{glob}{el.name}"
 
-      return sanitize(res)
+  #   return res
 
   # ## This shouldn't be triggered 
   # @dispatch
@@ -106,9 +109,11 @@ class Renderer(MdRenderer):
   # --- Attributes
   @dispatch
   def render(self, el: ds.DocstringAttribute) -> str :
-    _UNHANDLED.append(el)
-    d = ds_attr.as_dict()
-    pn, pa, pd = [d.get(k) for k in ("name", "annotation", "description")]
+    self._UNHANDLED.append(el)
+    for ds_attr in el.value:
+      d = ds_attr.as_dict()
+      pn, pa, pd = [d.get(k) for k in ("name", "annotation", "description")]
+      print(pn)
     # return [pn, self._render_annotation(pa), pd]
     return "UNHANDLED ATTRIBUTE" 
 

@@ -9,7 +9,7 @@ project:
 quartodoc: 
   package: simplextree
   title: API Reference    # API only 
-  dir: reference          # API only 
+  dir: pages/reference    # API only 
   style: pkgdown          # API only
   sidebar: _sidebar.yml 
   
@@ -19,14 +19,14 @@ quartodoc:
     show_signature_annotations: true
     display_name: name 
   
+  ## NOTE: THIS IS NOT THE SIDEBAR 
   sections: 
-    - title: Simplex Tree
-      desc: The Simplex Tree data structure. 
-      contents:
-        - name: SimplexTree
-          members: 
-            - faces
-
+    - title: Simplex Tree 
+      contents: 
+        - SimplexTree.SimplexTree
+    - title: Union Find
+      contents: 
+        - UnionFind.UnionFind
 
 website:
   title: simplextree
@@ -55,7 +55,7 @@ website:
         contents:
           - name: SimplexTree 
             text: Simplex Tree
-            href: reference/UnionFind.UnionFind.qmd
+            href: reference/SimplexTree.SimplexTree.qmd
           - name: UnionFind 
             text: Union Find
             href: reference/UnionFind.UnionFind.qmd
@@ -76,7 +76,9 @@ theme:
   dark: darkly
 
 format:
-  html: 
+  html:
+    toc: true # for scrollspy! 
+    toc-expand: 3
     anchor-selections: true 
     code-fold: false
     smooth-scroll: true
@@ -84,8 +86,8 @@ format:
     code-overflow: wrap 
     highlight-style: printing 
     fontsize: 14px
-    linestretch: 1.3
+    linestretch: 1.2
     margin-top: "0px" 
-    css: static/styles.css
+    css: /static/styles.css
 # out_index: pages/index.qmd
 # sphinx-build . ./_build/html -b html

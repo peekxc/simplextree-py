@@ -1,0 +1,5 @@
+# UnionFind.UnionFind { #simplextree.UnionFind.UnionFind }
+
+`UnionFind.UnionFind(n)`
+
+Union Find data structure

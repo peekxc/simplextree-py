@@ -7,23 +7,31 @@ from _renderer import Renderer as NumpyRenderer
 ## Configure builder 
 cfg = yaml.safe_load(open("_quarto.yml", "r"))
 builder = Builder.from_quarto_config(cfg)
-# builder.renderer = NumpyRenderer()
+builder.renderer = NumpyRenderer()
+
+## Preview the section layout
+preview(builder.layout)
 
 # builder.renderer = MdRenderer(show_signature=True, show_signature_annotations=True, display_name="name")
 # builder.renderer.display_name = 'name'
 # builder.renderer.show_signature_annotations = True 
 
-## Blueprint + collect  using google style parsing 
-trans = BlueprintTransformer(parser="google")
-bp = trans.visit(builder.layout)
-pages, items = collect(bp, builder.dir)
+blueprint = BlueprintTransformer(parser="google").visit(builder.layout)
+pages, items = collect(blueprint, builder.dir)
 
-builder.layout.sections[0].package = 'simplextree'
+## Preview with 
+# preview(pages)
 
 ## Write the doc pages + the index  
 builder.write_doc_pages(pages, "*")
-builder.write_index(bp)
-# builder.write_sidebar(bp)
+builder.write_index(blueprint)
+builder.write_sidebar(blueprint)
+
+
+## Settle unhandled with: builder.renderer._UNHANDLED[0]
+
+
+
 
 # ## Simplex Tree
 # preview(builder.layout.sections[0])
