@@ -211,7 +211,7 @@ jobs:
         
       - name: Install Wheel
         run: |
-          pip install simplextree-py/dist/*.whl
+          pip install *.whl
 
       - name: Run Unit Tests
         run: |
