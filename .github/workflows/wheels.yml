@@ -143,7 +143,7 @@ jobs:
           name: wheels
           path: ./dist/*.whl
 
-build_linux_wheels:
+  build_linux_wheels:
     name: Build ${{ matrix.cibw_python }} ${{ matrix.cibw_arch }} wheels on ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
     env:
