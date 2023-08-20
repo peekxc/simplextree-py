@@ -190,6 +190,7 @@ jobs:
           path: ./dist/*.whl
 
   test_wheels:
+    needs: ["build_linux_wheels"]
     runs-on: ubuntu-latest 
     steps:
       - name: Checkout repo 
