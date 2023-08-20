@@ -205,10 +205,13 @@ jobs:
         name: Setup Python
         with:
           python-version: "3.9"
-
+      
+      - name: List directory 
+        run: ls -l 
+        
       - name: Install Wheel
         run: |
-          pip install dist/*.whl
+          pip install simplextree-py/dist/*.whl
 
       - name: Run Unit Tests
         run: |
