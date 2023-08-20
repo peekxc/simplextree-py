@@ -63,6 +63,11 @@ jobs:
           # -Wl,-S equivalent to gcc's -Wl,--strip-debug
           LDFLAGS: "-Wl,-S"
 
+      - uses: actions/upload-artifact@v3
+        with:
+          name: wheels
+          path: ./dist/*.whl
+
   build_macos_wheels:
     name: Build ${{ matrix.cibw_python }} ${{ matrix.cibw_arch }} wheels on ${{ matrix.os }}
     runs-on: ${{ matrix.os }}
@@ -183,6 +188,35 @@ jobs:
         with:
           name: wheels
           path: ./dist/*.whl
+
+  test_wheels:
+    runs-on: ubuntu-latest 
+    steps:
+      - name: Checkout repo 
+        uses: actions/checkout@v3
+
+      - name: Download Wheel Artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: wheels
+
+      - uses: actions/setup-python@v4
+        name: Setup Python
+        with:
+          python-version: "3.9"
+
+      - name: Install Wheel
+        run: |
+          pip install dist/*.whl
+
+      - name: Run Unit Tests
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install pytest pytest-cov coverage-badge coveralls
+          pip install --verbose .
+          python -m pytest tests/ --cov=simplextree
+          coverage run --source=./simplextree -m pytest tests/ --benchmark-skip
+          coverage report -m
 
   make_sdist:
     name: Make SDist
