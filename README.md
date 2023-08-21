@@ -1,14 +1,14 @@
 # simplextree
 
-`simplextree` is an Python package aimed at simplifying computation for general [simplicial complexes](https://en.wikipedia.org/wiki/Simplicial_complex) of any dimension. This package facilitates this by providing PyBind11 bindings to _Simplex Tree_ data structure implemented in modern C++. As the underlying library is [header-only](https://en.wikipedia.org/wiki/Header-only), it may be specified as dependency for use with [extension modules](https://docs.python.org/3/extending/extending.html) used by other Python packages.
+`simplextree` is an Python package that simplifies computation for general [simplicial complexes](https://en.wikipedia.org/wiki/Simplicial_complex) of any dimension by providing [pybind11](https://github.com/pybind/pybind11) bindings to a _Simplex Tree_ data structure implemented in modern C++. As the underlying library is [header-only](https://en.wikipedia.org/wiki/Header-only), it may be specified as dependency for use with [extension modules](https://docs.python.org/3/extending/extending.html) used by other Python packages.
 
 The _Simplex Tree_ was originally introduced in the following paper:
 
 > Boissonnat, Jean-Daniel, and Clément Maria. "The simplex tree: An efficient data structure for general simplicial complexes." Algorithmica 70.3 (2014): 406-427.
 
-A _Simplex Tree_ is an ordered, trie-like structure whose nodes are in bijection with the faces of the complex. Here's a picture of a simplicial 3-complex (left) and its corresponding Simplex Tree (right):
+A _Simplex Tree_ is an ordered, [trie](https://en.wikipedia.org/wiki/Trie)-like structure whose nodes are in bijection with the faces of the complex. Here's a picture of a simplicial 3-complex (left) and its corresponding Simplex Tree (right):
 
-![simplex tree picture](./docs/pages/static/simplextree.png)
+![simplex tree picture](./docs/pages/static/simplextree_pic.png)
 
 ## Install 
 
@@ -37,7 +37,7 @@ st.remove([[6]])
 st.find([[6], [0,1]])
 # array([False,  True])
 
-## Various subsets of simplices can be collected as simple lists-of-lists
+## Collections of simplices are returned as simple lists-of-lists
 print(st.simplices())
 # [[0],[1],[2],[4],[5], [0,1],[0,2],[1,2],[1,4],[1,5],[4,5],[0,1,2]])
 
