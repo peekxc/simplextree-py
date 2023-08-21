@@ -37,3 +37,5 @@ To look at the tree structure, use `print_tree` (see also: `print_cousins`)
 ```{python}
 st.print_tree()
 ```
+
+
