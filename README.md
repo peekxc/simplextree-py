@@ -1,6 +1,6 @@
 # simplextree
 
-`simplextree` is an Python package that simplifies computation for general [simplicial complexes](https://en.wikipedia.org/wiki/Simplicial_complex) of any dimension by providing [pybind11](https://github.com/pybind/pybind11) bindings to a _Simplex Tree_ data structure implemented in modern C++. The underlying library is [header-only](https://en.wikipedia.org/wiki/Header-only) and may be included as a dependency by [extension modules](https://docs.python.org/3/extending/extending.html) in other Python packages.
+`simplextree` is an Python package that simplifies computation for general [simplicial complexes](https://en.wikipedia.org/wiki/Simplicial_complex) of any dimension by providing [pybind11](https://github.com/pybind/pybind11) bindings to a _Simplex Tree_ data structure implemented in modern C++17. 
 
 A _Simplex Tree_ is an ordered, [trie](https://en.wikipedia.org/wiki/Trie)-like structure whose nodes are in bijection with the faces of the complex. Here's a picture of a simplicial 3-complex (left) and its corresponding Simplex Tree (right):
 
@@ -10,16 +10,19 @@ The _Simplex Tree_ was originally introduced in the following paper:
 
 > Boissonnat, Jean-Daniel, and Clément Maria. "The simplex tree: An efficient data structure for general simplicial complexes." Algorithmica 70.3 (2014): 406-427.
 
+The `SimplexTree` class exported by the package includes support for many tree operations, e.g. insertions, removals, expansions, collapses, star/link enumerations, and other traversals. 
+
 ## Install 
 
-The easiest way to install the package is to use from the platform-specific wheels on [pypi](https://pypi.org/project/simplextree/). 
+The easiest way to install the package is via the platform-specific [wheels](https://pythonwheels.com/) on [pypi](https://pypi.org/project/simplextree/). 
 
 ```bash 
 python -m pip install simplextree 
 ```
 
-You can also install the package by downloading the appropriate wheel or sdist from the [releases](https://github.com/peekxc/simplextree-py/releases/). 
-For building from source, see [Building & Developing](#building--developing).
+You can also `pip install` the package manually by downloading the appropriate wheel (or sdist) from the [releases](https://github.com/peekxc/simplextree-py/releases/). 
+
+For installation instructions for developers looking to extend the package, see [Building & Developing](#building--developing). 
 
 ## Quickstart
 
@@ -112,3 +115,8 @@ python -m pip install --no-build-isolation --editable .
 
 Unit testing is handled with [pytest](https://docs.pytest.org/en/7.4.x/). See the [gh-workflows](https://github.com/peekxc/simplextree-py/actions) for platform-specific configuration. 
 
+## Native Extensions 
+
+The underlying C++ library is [header-only](https://en.wikipedia.org/wiki/Header-only) and may be included as a dependency by [extension modules](https://docs.python.org/3/extending/extending.html) in other Python packages.
+
+Thus, to modify or extending the complex in C++, it is sufficient to add the package as a build-time dependency and append the include directory to the compilation target.

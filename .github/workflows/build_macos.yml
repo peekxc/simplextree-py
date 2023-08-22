@@ -1,0 +1,44 @@
+name: Build Linux package
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build_linux:      
+    name: ${{ matrix.os }} - Python ${{ matrix.python-version }}
+    runs-on: ${{ matrix.os }}
+    env:
+      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: ["macos-latest"] 
+        python-version: ["3.7", "3.8", "3.9", "3.10", "3.11"]
+    steps:
+    - name: Checkout 
+      uses: actions/checkout@v3
+      with: 
+        submodules: true
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v4
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        python -m pip install pytest pytest-cov coverage-badge coveralls pytest-benchmark
+        pip install --verbose .
+    - name: Test with pytest
+      run: |
+        python -m pytest tests/ --cov=simplextree --benchmark-skip
+        coverage run --source=./simplextree -m pytest tests/ --benchmark-skip
+        coverage json -o tests/test_results.json
+        coverage report -m
+    - if: matrix.os == 'ubuntu-latest'
+      run: |
+        COV_RESULT=$(cat tests/test_results.json)
+        COV_PERCENT=$(echo $COV_RESULT | python3 -c 'import json,sys;obj=json.load(sys.stdin);print(obj["totals"]["percent_covered_display"])')
+        echo "COV_PERCENT=$COV_PERCENT" >> $GITHUB_ENV
