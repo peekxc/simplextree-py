@@ -4,7 +4,7 @@ requires = ['meson-python', "wheel", "ninja", "pybind11", "numpy"]
 
 [project]
 name = "simplextree"
-version = '0.1.0'
+version = '0.1.1'
 readme = "README.md"
 classifiers = [
 	"Intended Audience :: Science/Research",
