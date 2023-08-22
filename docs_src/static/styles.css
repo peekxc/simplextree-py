@@ -2,6 +2,7 @@
 #quarto-document-content{
   margin-top: 0.75em;
   padding-top: 0;
+  line-height: 1.2 !important;
 }
 
 section.level1 > h1 {

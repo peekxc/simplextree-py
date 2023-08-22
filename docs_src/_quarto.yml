@@ -90,7 +90,7 @@ format:
     code-overflow: wrap 
     highlight-style: printing 
     fontsize: 14px
-    linestretch: 1.2
+    linestretch: 1.4
     margin-top: "0px" 
     css: /static/styles.css
     # monobackgroundcolor: "#d3d3d357"
