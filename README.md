@@ -1,10 +1,8 @@
 # simplextree
-[![Tests](https://github.com/peekxc/simplextree-py/actions/workflows/package.yml/badge.svg)](https://github.com/peekxc/splex/actions/workflows/package.yml)
 [![coverage_badge](https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/peekxc/ef42349965f40edf4232737026690c5f/raw/coverage_info.json)](https://coveralls.io/github/peekxc/simplextree-py)
-[![python_badge](https://img.shields.io/badge/python-3.9%20%7C%203.10%20%7C%203.11-blue)](https://github.com/peekxc/splex/actions/workflows/python-package.yml)
-[![coverage_badge](https://img.shields.io/github/actions/workflow/status/peekxc/simplextree-py/build-macos.yml?logo=apple&logoColor=white)](https://github.com/peekxc/splex/actions/workflows/build-macos.yml)
-[![coverage_badge](https://img.shields.io/github/actions/workflow/status/peekxc/simplextree-py/build-windows.yml?logo=windows&logoColor=white)](https://github.com/peekxc/splex/actions/workflows/build-windows.yml)
-[![coverage_badge](https://img.shields.io/github/actions/workflow/status/peekxc/simplextree-py/build-linux.yml?logo=linux&logoColor=white)](https://github.com/peekxc/splex/actions/workflows/build-linux.yml)
+[![build_macos](https://img.shields.io/github/actions/workflow/status/peekxc/simplextree-py/build_macos.yml?logo=apple&logoColor=white)](https://github.com/peekxc/splex/actions/workflows/build-macos.yml)
+[![build_windows](https://img.shields.io/github/actions/workflow/status/peekxc/simplextree-py/build_windows.yml?logo=windows&logoColor=white)](https://github.com/peekxc/splex/actions/workflows/build-windows.yml)
+[![build_linux](https://img.shields.io/github/actions/workflow/status/peekxc/simplextree-py/build_linux.yml?logo=linux&logoColor=white)](https://github.com/peekxc/splex/actions/workflows/build-linux.yml)
 
 `simplextree` is an Python package that simplifies computation for general [simplicial complexes](https://en.wikipedia.org/wiki/Simplicial_complex) of any dimension by providing [pybind11](https://github.com/pybind/pybind11) bindings to a _Simplex Tree_ data structure implemented in modern C++17. 
 

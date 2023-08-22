@@ -12,9 +12,9 @@ message('Python path =' + py.path())
 message('Numpy version =' + run_command(py, ['-c', 'import numpy; print(numpy.__version__)'], check: true).stdout().strip())
 
 ## Check the python version
-if py.language_version().version_compare('< 3.8')
-  error('Invalid Python version, only >= 3.8 is supported.')
-endif
+# if py.language_version().version_compare('< 3.8')
+#   error('Invalid Python version, only >= 3.8 is supported.')
+# endif
 
 ## Header includes
 inc_pybind11 = include_directories('extern' / 'pybind11' / 'include')
