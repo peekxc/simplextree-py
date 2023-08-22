@@ -6,6 +6,9 @@ project:
   type: website
   output-dir: ../docs
   
+metadata-files:
+  - _sidebar.yml
+
 quartodoc: 
   package: simplextree
   title: API Reference    # API only 
@@ -89,9 +92,9 @@ format:
     html-math-method: katex
     code-overflow: wrap 
     highlight-style: printing 
-    fontsize: 14px
-    linestretch: 1.4
-    margin-top: "0px" 
+    # fontsize: 14px
+    # linestretch: 1.6
+    margin-top: "4px" 
     css: /static/styles.css
     # monobackgroundcolor: "#d3d3d357"
 # out_index: pages/index.qmd

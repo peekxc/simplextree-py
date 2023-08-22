@@ -19,7 +19,7 @@ preview(builder.layout)
 blueprint = BlueprintTransformer(parser="google").visit(builder.layout)
 pages, items = collect(blueprint, builder.dir)
 
-## Preview with 
+## Tree preview 
 # preview(pages)
 
 ## Write the doc pages + the index  

@@ -2,7 +2,7 @@
 #quarto-document-content{
   margin-top: 0.75em;
   padding-top: 0;
-  line-height: 1.2 !important;
+  line-height: 1.4 !important;
 }
 
 section.level1 > h1 {
@@ -56,3 +56,17 @@ section[id^=returns] > p {
   font-style: italic;
 }
 
+#quarto-header .nav-link {
+  font-weight: bold;
+  font-size: larger;
+}
+
+.cell-output {
+  border-left: 4px solid #ccc;
+  margin: 0;
+  padding: 0 1em;
+  color: #666;
+}
+.cell-output p {
+  margin: 0; /* Reset paragraph margin inside the blockquote */
+}

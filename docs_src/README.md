@@ -1,6 +1,9 @@
+
+Reference documentation is built using the internal API of quartodoc. 
+
 Build the docs with:
 
-> python gen_api.py & quarto render 
+> rm pages/reference/* & python gen_api.py & quarto render 
 
 Optionally preview with: 
 
