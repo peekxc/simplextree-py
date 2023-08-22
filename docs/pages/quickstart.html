@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>simplextree.simplextree</title>
+<title>quickstart</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -30,8 +64,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../reference/UnionFind.UnionFind.html" rel="next">
-<link href="../reference/index.html" rel="prev">
+<link href="../pages/overview.html" rel="next">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -124,7 +157,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../reference/index.html">API Reference</a></li><li class="breadcrumb-item"><a href="../reference/SimplexTree.SimplexTree.html">Simplex Tree</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../pages/quickstart.html">Quick start</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -146,7 +179,7 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../pages/quickstart.html" class="sidebar-item-text sidebar-link">
+  <a href="../pages/quickstart.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Quick start</span></a>
   </div>
 </li>
@@ -167,7 +200,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../reference/SimplexTree.SimplexTree.html" class="sidebar-item-text sidebar-link active">
+  <a href="../reference/SimplexTree.SimplexTree.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Simplex Tree</span></a>
   </div>
 </li>
@@ -185,294 +218,134 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="3">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#simplextree.SimplexTree.SimplexTree" id="toc-simplextree.SimplexTree.SimplexTree" class="nav-link active" data-scroll-target="#simplextree.SimplexTree.SimplexTree">SimplexTree.SimplexTree</a>
-  <ul class="collapse">
-  <li><a href="#methods" id="toc-methods" class="nav-link" data-scroll-target="#methods">Methods</a>
-  <ul class="collapse">
-  <li><a href="#simplextree.SimplexTree.SimplexTree.adjacent" id="toc-simplextree.SimplexTree.SimplexTree.adjacent" class="nav-link" data-scroll-target="#simplextree.SimplexTree.SimplexTree.adjacent">adjacent</a></li>
-  <li><a href="#simplextree.SimplexTree.SimplexTree.card" id="toc-simplextree.SimplexTree.SimplexTree.card" class="nav-link" data-scroll-target="#simplextree.SimplexTree.SimplexTree.card">card</a></li>
-  <li><a href="#simplextree.SimplexTree.SimplexTree.coface_roots" id="toc-simplextree.SimplexTree.SimplexTree.coface_roots" class="nav-link" data-scroll-target="#simplextree.SimplexTree.SimplexTree.coface_roots">coface_roots</a></li>
-  <li><a href="#simplextree.SimplexTree.SimplexTree.cofaces" id="toc-simplextree.SimplexTree.SimplexTree.cofaces" class="nav-link" data-scroll-target="#simplextree.SimplexTree.SimplexTree.cofaces">cofaces</a></li>
-  <li><a href="#simplextree.SimplexTree.SimplexTree.collapse" id="toc-simplextree.SimplexTree.SimplexTree.collapse" class="nav-link" data-scroll-target="#simplextree.SimplexTree.SimplexTree.collapse">collapse</a></li>
-  <li><a href="#simplextree.SimplexTree.SimplexTree.degree" id="toc-simplextree.SimplexTree.SimplexTree.degree" class="nav-link" data-scroll-target="#simplextree.SimplexTree.SimplexTree.degree">degree</a></li>
-  <li><a href="#simplextree.SimplexTree.SimplexTree.expand" id="toc-simplextree.SimplexTree.SimplexTree.expand" class="nav-link" data-scroll-target="#simplextree.SimplexTree.SimplexTree.expand">expand</a></li>
-  <li><a href="#simplextree.SimplexTree.SimplexTree.faces" id="toc-simplextree.SimplexTree.SimplexTree.faces" class="nav-link" data-scroll-target="#simplextree.SimplexTree.SimplexTree.faces">faces</a></li>
-  <li><a href="#simplextree.SimplexTree.SimplexTree.find" id="toc-simplextree.SimplexTree.SimplexTree.find" class="nav-link" data-scroll-target="#simplextree.SimplexTree.SimplexTree.find">find</a></li>
-  <li><a href="#simplextree.SimplexTree.SimplexTree.insert" id="toc-simplextree.SimplexTree.SimplexTree.insert" class="nav-link" data-scroll-target="#simplextree.SimplexTree.SimplexTree.insert">insert</a></li>
-  <li><a href="#simplextree.SimplexTree.SimplexTree.link" id="toc-simplextree.SimplexTree.SimplexTree.link" class="nav-link" data-scroll-target="#simplextree.SimplexTree.SimplexTree.link">link</a></li>
-  <li><a href="#simplextree.SimplexTree.SimplexTree.maximal" id="toc-simplextree.SimplexTree.SimplexTree.maximal" class="nav-link" data-scroll-target="#simplextree.SimplexTree.SimplexTree.maximal">maximal</a></li>
-  <li><a href="#simplextree.SimplexTree.SimplexTree.remove" id="toc-simplextree.SimplexTree.SimplexTree.remove" class="nav-link" data-scroll-target="#simplextree.SimplexTree.SimplexTree.remove">remove</a></li>
-  <li><a href="#simplextree.SimplexTree.SimplexTree.simplices" id="toc-simplextree.SimplexTree.SimplexTree.simplices" class="nav-link" data-scroll-target="#simplextree.SimplexTree.SimplexTree.simplices">simplices</a></li>
-  <li><a href="#simplextree.SimplexTree.SimplexTree.skeleton" id="toc-simplextree.SimplexTree.SimplexTree.skeleton" class="nav-link" data-scroll-target="#simplextree.SimplexTree.SimplexTree.skeleton">skeleton</a></li>
-  <li><a href="#simplextree.SimplexTree.SimplexTree.traverse" id="toc-simplextree.SimplexTree.SimplexTree.traverse" class="nav-link" data-scroll-target="#simplextree.SimplexTree.SimplexTree.traverse">traverse</a></li>
-  <li><a href="#simplextree.SimplexTree.SimplexTree.vertex_collapse" id="toc-simplextree.SimplexTree.SimplexTree.vertex_collapse" class="nav-link" data-scroll-target="#simplextree.SimplexTree.SimplexTree.vertex_collapse">vertex_collapse</a></li>
-  </ul></li>
-  </ul></li>
-  </ul>
-</nav>
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Quick Start</h1>
+</div>
 
 
-<section id="simplextree.SimplexTree.SimplexTree" class="level1">
-<h1>SimplexTree.SimplexTree</h1>
-<p><code>SimplexTree.SimplexTree(self, simplices=None)</code></p>
-<p>SimplexTree provides lightweight wrapper around a Simplex Tree data structure: an ordered, trie-like structure whose nodes are in bijection with the faces of the complex. This class exposes a native extension module wrapping a simplex tree implemented with modern C++.</p>
-<p>The Simplex Tree was originally introduced in the paper &gt; Boissonnat, Jean-Daniel, and Clément Maria. “The simplex tree: An efficient data structure for general simplicial complexes.” Algorithmica 70.3 (2014): 406-427.</p>
-<p>Attributes: n_simplices (ndarray): number of simplices dimension (int): maximal dimension of the complex id_policy (str): policy for generating new vertex ids</p>
-<p>Attributes: Properties: vertices (ndarray): vertices of the complex</p>
-<section id="methods" class="level2">
-<h2 class="anchored" data-anchor-id="methods">Methods</h2>
-<table class="table">
-<thead>
-<tr class="header">
-<th>Name</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><a href="#simplextree.SimplexTree.SimplexTree.adjacent">adjacent</a></td>
-<td>Checks for adjacencies between simplices.</td>
-</tr>
-<tr class="even">
-<td><a href="#simplextree.SimplexTree.SimplexTree.card">card</a></td>
-<td>Returns the cardinality of various skeleta of the complex.</td>
-</tr>
-<tr class="odd">
-<td><a href="#simplextree.SimplexTree.SimplexTree.coface_roots">coface_roots</a></td>
-<td>Returns the simplex ‘roots’ of a given simplex whose subtrees generate its cofaces.</td>
-</tr>
-<tr class="even">
-<td><a href="#simplextree.SimplexTree.SimplexTree.cofaces">cofaces</a></td>
-<td>Returns the p-cofaces of a given simplex.</td>
-</tr>
-<tr class="odd">
-<td><a href="#simplextree.SimplexTree.SimplexTree.collapse">collapse</a></td>
-<td>Performs an elementary collapse on two given simplices.</td>
-</tr>
-<tr class="even">
-<td><a href="#simplextree.SimplexTree.SimplexTree.degree">degree</a></td>
-<td>Computes the degree of select vertices in the trie.</td>
-</tr>
-<tr class="odd">
-<td><a href="#simplextree.SimplexTree.SimplexTree.expand">expand</a></td>
-<td>Performs a k-expansion of the complex.</td>
-</tr>
-<tr class="even">
-<td><a href="#simplextree.SimplexTree.SimplexTree.faces">faces</a></td>
-<td>Wrapper for simplices function.</td>
-</tr>
-<tr class="odd">
-<td><a href="#simplextree.SimplexTree.SimplexTree.find">find</a></td>
-<td>Finds whether simplices exist in Simplex Tree.</td>
-</tr>
-<tr class="even">
-<td><a href="#simplextree.SimplexTree.SimplexTree.insert">insert</a></td>
-<td>Inserts simplices into the Simplex Tree.</td>
-</tr>
-<tr class="odd">
-<td><a href="#simplextree.SimplexTree.SimplexTree.link">link</a></td>
-<td>Returns all simplices in the link of a given simplex.</td>
-</tr>
-<tr class="even">
-<td><a href="#simplextree.SimplexTree.SimplexTree.maximal">maximal</a></td>
-<td>Returns the maximal simplices in the complex.</td>
-</tr>
-<tr class="odd">
-<td><a href="#simplextree.SimplexTree.SimplexTree.remove">remove</a></td>
-<td>Removes simplices into the Simplex Tree.</td>
-</tr>
-<tr class="even">
-<td><a href="#simplextree.SimplexTree.SimplexTree.simplices">simplices</a></td>
-<td>Returns the p-simplices in the complex.</td>
-</tr>
-<tr class="odd">
-<td><a href="#simplextree.SimplexTree.SimplexTree.skeleton">skeleton</a></td>
-<td>Returns the simplices in the p-skeleton of the complex.</td>
-</tr>
-<tr class="even">
-<td><a href="#simplextree.SimplexTree.SimplexTree.traverse">traverse</a></td>
-<td>Traverses the simplex tree in the specified order, calling ‘f’ on each simplex encountered.</td>
-</tr>
-<tr class="odd">
-<td><a href="#simplextree.SimplexTree.SimplexTree.vertex_collapse">vertex_collapse</a></td>
-<td>Maps a pair of vertices into a single vertex.</td>
-</tr>
-</tbody>
-</table>
-<section id="simplextree.SimplexTree.SimplexTree.adjacent" class="level3">
-<h3 class="anchored" data-anchor-id="simplextree.SimplexTree.SimplexTree.adjacent">adjacent</h3>
-<p><code>SimplexTree.SimplexTree.adjacent(self, simplices)</code></p>
-<p>Checks for adjacencies between simplices.</p>
-</section>
-<section id="simplextree.SimplexTree.SimplexTree.card" class="level3">
-<h3 class="anchored" data-anchor-id="simplextree.SimplexTree.SimplexTree.card">card</h3>
-<p><code>SimplexTree.SimplexTree.card(self, p=None)</code></p>
-<p>Returns the cardinality of various skeleta of the complex.</p>
-</section>
-<section id="simplextree.SimplexTree.SimplexTree.coface_roots" class="level3">
-<h3 class="anchored" data-anchor-id="simplextree.SimplexTree.SimplexTree.coface_roots">coface_roots</h3>
-<p><code>SimplexTree.SimplexTree.coface_roots(self, sigma=\[\])</code></p>
-<p>Returns the simplex ‘roots’ of a given simplex whose subtrees generate its cofaces.</p>
-</section>
-<section id="simplextree.SimplexTree.SimplexTree.cofaces" class="level3">
-<h3 class="anchored" data-anchor-id="simplextree.SimplexTree.SimplexTree.cofaces">cofaces</h3>
-<p><code>SimplexTree.SimplexTree.cofaces(self, sigma=\[\])</code></p>
-<p>Returns the p-cofaces of a given simplex.</p>
-<p>Parameters: p : coface dimension to restrict to sigma : the simplex to obtain cofaces of</p>
-<p>Returns: list: the p-cofaces of sigma</p>
-</section>
-<section id="simplextree.SimplexTree.SimplexTree.collapse" class="level3">
-<h3 class="anchored" data-anchor-id="simplextree.SimplexTree.SimplexTree.collapse">collapse</h3>
-<p><code>SimplexTree.SimplexTree.collapse(self, tau, sigma)</code></p>
-<p>Performs an elementary collapse on two given simplices.</p>
-<p>Checks whether its possible to collapse <span class="math inline">\sigma</span> through <span class="math inline">\tau</span>, and if so, both simplices are removed. A simplex <span class="math inline">\sigma</span> is said to be collapsible through one of its faces <span class="math inline">\tau</span> if <span class="math inline">\sigma</span> is the only coface of <span class="math inline">\tau</span> (excluding <span class="math inline">\tau</span> itself).</p>
-<p>Parameters: sigma : maximal simplex to collapse tau : face of sigma to collapse</p>
-<p>Returns: bool: whether the pair was collapsed</p>
-<p>Examples:</p>
-<pre><code>    from splex import SimplexTree 
-    st = SimplexTree([[0,1,2]])
-    print(st)
 
-    st.collapse([1,2], [0,1,2])
+<div class="quarto-title-meta">
 
-    print(st)</code></pre>
-</section>
-<section id="simplextree.SimplexTree.SimplexTree.degree" class="level3">
-<h3 class="anchored" data-anchor-id="simplextree.SimplexTree.SimplexTree.degree">degree</h3>
-<p><code>SimplexTree.SimplexTree.degree(self, vertices=None)</code></p>
-<p>Computes the degree of select vertices in the trie.</p>
-<p>Parameters: vertices (ArrayLike): Retrieves vertex degrees If no vertices are specified, all degrees are computed. Non-existing vertices by default have degree 0.</p>
-<p>Returns: list: degree of each vertex id given in ‘vertices’</p>
-</section>
-<section id="simplextree.SimplexTree.SimplexTree.expand" class="level3">
-<h3 class="anchored" data-anchor-id="simplextree.SimplexTree.SimplexTree.expand">expand</h3>
-<p><code>SimplexTree.SimplexTree.expand(self, k)</code></p>
-<p>Performs a k-expansion of the complex.</p>
-<p>This function is particularly useful for expanding clique complexes beyond their 1-skeleton.</p>
-<p>Parameters: k : maximum dimension to expand to.</p>
-<p>Examples:</p>
-<pre><code>    from simplextree import SimplexTree 
-    from itertools import combinations 
-    st = SimplexTree(combinations(range(8), 2))
-    print(st)
     
-    st.expand(k=2)
-    print(st)</code></pre>
-</section>
-<section id="simplextree.SimplexTree.SimplexTree.faces" class="level3">
-<h3 class="anchored" data-anchor-id="simplextree.SimplexTree.SimplexTree.faces">faces</h3>
-<p><code>SimplexTree.SimplexTree.faces(self, p=None, sigma=\[\], **kwargs)</code></p>
-<p>Wrapper for simplices function.</p>
-</section>
-<section id="simplextree.SimplexTree.SimplexTree.find" class="level3">
-<h3 class="anchored" data-anchor-id="simplextree.SimplexTree.SimplexTree.find">find</h3>
-<p><code>SimplexTree.SimplexTree.find(self, simplices)</code></p>
-<p>Finds whether simplices exist in Simplex Tree.</p>
-<p>Parameters: simplices: Iterable of simplices to insert (each of which are SimplexLike)</p>
-<p>Returns: found (ndarray) : boolean array indicating whether each simplex was found in the complex</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
+  
+    
+  </div>
+  
+
+</header>
+
+<p>You can construct a <code>SimplexTree</code> by supplying simplices. Any collection of integer-valued <code>Iterable</code>’s will do, e.g.&nbsp;a list of lists:</p>
+<div class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1" data-caption="The SimplexTree class provides light wrapper around the extension module"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> simplextree <span class="im">import</span> SimplexTree </span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>st <span class="op">=</span> SimplexTree([[<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>], [<span class="dv">0</span>,<span class="dv">1</span>], [<span class="dv">4</span>,<span class="dv">5</span>]]) </span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(st) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Simplex Tree with (5, 4, 1) (0, 1, 2)-simplices</code></pre>
 </div>
 </div>
-<div class="callout-body-container callout-body">
-<pre><code>    If the iterable is an 2-dim np.ndarray, then the p-simplex to find is given by each contiguous p+1 stride.
-    Otherwise, each element of the iterable to casted to a Simplex and then searched for in the tree. </code></pre>
+<p>Batch insertion, removal, and membership queries are supported</p>
+<div class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>st.insert([[<span class="dv">1</span>,<span class="dv">4</span>], [<span class="dv">1</span>,<span class="dv">5</span>], [<span class="dv">6</span>]])</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(st)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Simplex Tree with (6, 6, 1) (0, 1, 2)-simplices</code></pre>
 </div>
 </div>
-</section>
-<section id="simplextree.SimplexTree.SimplexTree.insert" class="level3">
-<h3 class="anchored" data-anchor-id="simplextree.SimplexTree.SimplexTree.insert">insert</h3>
-<p><code>SimplexTree.SimplexTree.insert(self, simplices)</code></p>
-<p>Inserts simplices into the Simplex Tree.</p>
-<p>By definition, inserting a simplex also inserts all of its faces. If the simplex already exists in the complex, the tree is not modified.</p>
-<p>Parameters: simplices: Iterable of simplices to insert (each of which are SimplexLike)</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
+<div class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>st.remove([[<span class="dv">6</span>]])</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(st)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Simplex Tree with (5, 6, 1) (0, 1, 2)-simplices</code></pre>
 </div>
 </div>
-<div class="callout-body-container callout-body">
-<pre><code>    If the iterable is an 2-dim np.ndarray, then a p-simplex is inserted along each contiguous p+1 stride.
-    Otherwise, each element of the iterable to casted to a Simplex and then inserted into the tree. </code></pre>
+<div class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(st.find([[<span class="dv">6</span>], [<span class="dv">0</span>,<span class="dv">1</span>]]))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[False  True]</code></pre>
 </div>
 </div>
-</section>
-<section id="simplextree.SimplexTree.SimplexTree.link" class="level3">
-<h3 class="anchored" data-anchor-id="simplextree.SimplexTree.SimplexTree.link">link</h3>
-<p><code>SimplexTree.SimplexTree.link(self, sigma=\[\])</code></p>
-<p>Returns all simplices in the link of a given simplex.</p>
-</section>
-<section id="simplextree.SimplexTree.SimplexTree.maximal" class="level3">
-<h3 class="anchored" data-anchor-id="simplextree.SimplexTree.SimplexTree.maximal">maximal</h3>
-<p><code>SimplexTree.SimplexTree.maximal(self)</code></p>
-<p>Returns the maximal simplices in the complex.</p>
-</section>
-<section id="simplextree.SimplexTree.SimplexTree.remove" class="level3">
-<h3 class="anchored" data-anchor-id="simplextree.SimplexTree.SimplexTree.remove">remove</h3>
-<p><code>SimplexTree.SimplexTree.remove(self, simplices)</code></p>
-<p>Removes simplices into the Simplex Tree.</p>
-<p>By definition, removing a face also removes all of its cofaces. If the simplex does not exist in the complex, the tree is not modified.</p>
-<p>Parameters: simplices: Iterable of simplices to insert (each of which are SimplexLike).</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
+<p>Collections of simplices are returned as simple lists-of-lists:</p>
+<div class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(st.simplices())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[0], [1], [2], [4], [5], [0, 1], [0, 2], [1, 2], [1, 4], [1, 5], [4, 5], [0, 1, 2]]</code></pre>
 </div>
 </div>
-<div class="callout-body-container callout-body">
-<pre><code>    If the iterable is an 2-dim np.ndarray, then a p-simplex is removed along each contiguous p+1 stride.
-    Otherwise, each element of the iterable to casted to a Simplex and then removed from the tree. </code></pre>
+<p>Various parameters can be given to restrict a given subset to certain subsets or orders:</p>
+<div class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(st.simplices(p<span class="op">=</span><span class="dv">1</span>)) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[[0, 1], [0, 2], [1, 2], [1, 4], [1, 5], [4, 5]]</code></pre>
 </div>
 </div>
-<p>Examples: st = SimplexTree([range(3)]) print(st) st.remove([[0,1]]) print(st)</p>
-</section>
-<section id="simplextree.SimplexTree.SimplexTree.simplices" class="level3">
-<h3 class="anchored" data-anchor-id="simplextree.SimplexTree.SimplexTree.simplices">simplices</h3>
-<p><code>SimplexTree.SimplexTree.simplices(self, p=None)</code></p>
-<p>Returns the p-simplices in the complex.</p>
-</section>
-<section id="simplextree.SimplexTree.SimplexTree.skeleton" class="level3">
-<h3 class="anchored" data-anchor-id="simplextree.SimplexTree.SimplexTree.skeleton">skeleton</h3>
-<p><code>SimplexTree.SimplexTree.skeleton(self, p=None, sigma=\[\])</code></p>
-<p>Returns the simplices in the p-skeleton of the complex.</p>
-</section>
-<section id="simplextree.SimplexTree.SimplexTree.traverse" class="level3">
-<h3 class="anchored" data-anchor-id="simplextree.SimplexTree.SimplexTree.traverse">traverse</h3>
-<p><code>SimplexTree.SimplexTree.traverse(self, order='preorder', f=print, sigma=\[\], p=0)</code></p>
-<p>Traverses the simplex tree in the specified order, calling ‘f’ on each simplex encountered.</p>
-<p>Supported traversals: - breadth-first / level order (“bfs”, “levelorder”) - depth-first / prefix (“dfs”, “preorder”) - faces - cofaces - coface roots (“coface_roots”) - p-skeleton - p-simplices - maximal simplices (“maximal”) - link To select one of these options, set order to one of [“bfs”, “levelorder”, “dfs”, “preorder”]</p>
-<p>Parameters: order: the type of traversal of the simplex tree to execute. f: a function to evaluate on every simplex in the traversal. Defaults to print. sigma: simplex to start the traversal at, where applicable. Defaults to the root node (empty set). p: dimension of simplices to restrict to, where applicable. Defaults to 0.</p>
-</section>
-<section id="simplextree.SimplexTree.SimplexTree.vertex_collapse" class="level3">
-<h3 class="anchored" data-anchor-id="simplextree.SimplexTree.SimplexTree.vertex_collapse">vertex_collapse</h3>
-<p><code>SimplexTree.SimplexTree.vertex_collapse(self, u, v, w)</code></p>
-<p>Maps a pair of vertices into a single vertex.</p>
-<p>Parameters: u (int): the first vertex in the free pair. v (int): the second vertex in the free pair. w (int): the target vertex to collapse to.</p>
+<p>Familiar Pythonic <a href="https://docs.python.org/3/library/collections.abc.html#collections-abstract-base-classes">Collection semantics</a> are supported, including __contains__, __iter__ support, and __len__:</p>
+<div class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>([<span class="dv">0</span>,<span class="dv">1</span>,<span class="dv">2</span>] <span class="kw">in</span> st)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>([<span class="bu">len</span>(simplex) <span class="cf">for</span> simplex <span class="kw">in</span> st])</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="bu">len</span>(st))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>True
+[1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 3]
+12</code></pre>
+</div>
+</div>
+<p>The cofaces of any simplex can be listed with <code>cofaces</code>:</p>
+<div class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Cofaces([1]): "</span> <span class="op">+</span> <span class="bu">str</span>(st.cofaces([<span class="dv">1</span>])))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Cofaces([1]): [[1], [1, 2], [1, 4], [1, 5], [0, 1], [0, 1, 2]]</code></pre>
+</div>
+</div>
+<p>The maximal simplices can be listed with <code>maximal</code>:</p>
+<div class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Maximal: "</span> <span class="op">+</span> <span class="bu">str</span>(st.maximal()))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Maximal: [[0, 1, 2], [1, 4], [1, 5], [4, 5]]</code></pre>
+</div>
+</div>
+<p>Basic properties are also available as attributes</p>
+<div class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>st.n_simplices, st.dimension, st.vertices, st.connected_components</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="10">
+<pre><code>(array([5, 6, 1], dtype=uint64), 2, [0, 1, 2, 4, 5], [1, 1, 1, 1, 1])</code></pre>
+</div>
+</div>
+<p>Interoperability with numpy is provided whenever possible</p>
+<div class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np </span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="bu">all</span>(np.<span class="bu">all</span>(st.triangles <span class="op">==</span> np.array(st.simplices(p<span class="op">=</span><span class="dv">2</span>)), axis<span class="op">=</span><span class="dv">0</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="11">
+<pre><code>True</code></pre>
+</div>
+</div>
+<p>Other complex-wide operations are supported, like <span class="math inline">k</span>-expansions</p>
+<div class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>st.insert([[<span class="dv">1</span>,<span class="dv">4</span>]]) </span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>st.expand(<span class="dv">2</span>)       </span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(st)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Simplex Tree with (5, 6, 2) (0, 1, 2)-simplices</code></pre>
+</div>
+</div>
+<p>The trie-structure can also be inspected on the python side:</p>
+<div class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>st.print_tree()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>0 (h = 2): .( 1 2 )..( 2 )
+1 (h = 2): .( 2 4 5 )..( 5 )
+2 (h = 0): 
+4 (h = 1): .( 5 )
+5 (h = 0): </code></pre>
+</div>
+</div>
 
 
-</section>
-</section>
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -825,13 +698,10 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../reference/index.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">API Reference</span>
-      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../reference/UnionFind.UnionFind.html" class="pagination-link">
-        <span class="nav-page-text">Union Find</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../pages/overview.html" class="pagination-link">
+        <span class="nav-page-text">Overview</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

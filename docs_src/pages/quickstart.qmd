@@ -1,0 +1,100 @@
+---
+format:
+  html:
+    code-fold: false
+jupyter: python3
+execute: 
+  freeze: auto
+  enabled: true
+draft: true
+---
+
+## Quick Start 
+
+You can construct a `SimplexTree` by supplying simplices. Any collection of integer-valued `Iterable`'s will do, e.g. a list of lists: 
+```{python}
+#| echo: true
+#| lst-cap: The SimplexTree class provides light wrapper around the extension module
+#| output: true
+#| code-summary: SimplexTree constructor
+from simplextree import SimplexTree 
+st = SimplexTree([[0,1,2], [0,1], [4,5]]) 
+print(st) 
+```
+
+Batch insertion, removal, and membership queries are supported
+
+```{python}
+#| echo: true
+#| output: true
+#| code-summary: Batch operations
+st.insert([[1,4], [1,5], [6]])
+print(st)
+```
+
+```{python}
+st.remove([[6]])
+print(st)
+```
+
+```{python}
+print(st.find([[6], [0,1]]))
+```
+
+Collections of simplices are returned as simple lists-of-lists:
+```{python}
+#| echo: true
+#| output: true
+#| code-summary: Complex collections 
+print(st.simplices())
+```
+
+Various parameters can be given to restrict a given subset to certain subsets or orders: 
+```{python}
+#| echo: true
+#| output: true
+print(st.simplices(p=1)) 
+```
+
+Familiar Pythonic [Collection semantics](https://docs.python.org/3/library/collections.abc.html#collections-abstract-base-classes) are supported, including \_\_contains\_\_, \_\_iter\_\_ support, and \_\_len\_\_:
+```{python}
+#| echo: true
+#| output: true
+print([0,1,2] in st)
+print([len(simplex) for simplex in st])
+print(len(st))
+```
+
+The cofaces of any simplex can be listed with `cofaces`:
+
+```{python}
+print("Cofaces([1]): " + str(st.cofaces([1])))
+```
+
+The maximal simplices can be listed with `maximal`:
+```{python}
+print("Maximal: " + str(st.maximal()))
+```
+
+Basic properties are also available as attributes 
+```{python}
+st.n_simplices, st.dimension, st.vertices, st.connected_components
+```
+
+Interoperability with numpy is provided whenever possible
+```{python}
+import numpy as np 
+all(np.all(st.triangles == np.array(st.simplices(p=2)), axis=0))
+```
+
+Other complex-wide operations are supported, like $k$-expansions 
+```{python}
+st.insert([[1,4]]) 
+st.expand(2)       
+print(st)
+```
+
+The trie-structure can also be inspected on the python side:
+```{python}
+st.print_tree()
+```

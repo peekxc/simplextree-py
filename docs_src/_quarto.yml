@@ -29,11 +29,13 @@ quartodoc:
         - UnionFind.UnionFind
 
 website:
-  title: simplextree
   search: 
     location: sidebar
     type: textbox
   navbar:
+    left: 
+      - text: simplextree
+        href: "pages/index.html"
     background: light
     right: 
       - icon: github
@@ -48,6 +50,8 @@ website:
     border: true 
     collapse-level: 2
     contents: 
+      - text: Quick start 
+        href: pages/quickstart.qmd
       - text: Overview 
         href: pages/overview.qmd
       - section: API Reference
@@ -89,5 +93,6 @@ format:
     linestretch: 1.2
     margin-top: "0px" 
     css: /static/styles.css
+    # monobackgroundcolor: "#d3d3d357"
 # out_index: pages/index.qmd
 # sphinx-build . ./_build/html -b html

@@ -12,7 +12,7 @@ execute:
   enabled: true
 ---
 
-# Overview: Simplicial Complexes
+# Overview of the `simplextree` package
 
 A _simplicial complex_ $S$ is a pair $S = (V, \Sigma)$ where $V$ is a vertex set and $\Sigma$ a collection of _simplices_ $s \in \Sigma$ satisfying: 
 
@@ -21,9 +21,9 @@ A _simplicial complex_ $S$ is a pair $S = (V, \Sigma)$ where $V$ is a vertex set
 
 A simplicial complex is a natural generalization of a [graph](https://en.wikipedia.org/wiki/Graph_(discrete_mathematics))---any graph can also be represented by a simplicial complex (though the converse is not true!). 
 
-Like graphs, there are many ways to represent simplicial complexes in memory. One such way is to use a _simplex tree_: an ordered, trie-like structure whose nodes are in bijection with the faces of the complex. Here's a picture of a simplicial 3-complex (left) and its corresponding Simplex Tree (right):
+Like graphs, there are many ways to represent simplicial complexes in memory. One such way is to use a _Simplex Tree_: an ordered, [trie](https://en.wikipedia.org/wiki/Trie)-like structure whose nodes are in bijection with the faces of the complex. Here's a picture of a simplicial 3-complex (left) and its corresponding Simplex Tree (right):
 
-![simplextree](static/simplextree_pic.png){.preview-image}
+![Picture taken from Boissonnat et al: "The simplex tree: An efficient data structure for general simplicial complexes"](./static/simplextree_pic.png){.preview-image}
 
 To construct the complex above with a `simplextree` package, simply give the maximal simplices: 
 
@@ -38,4 +38,9 @@ To look at the tree structure, use `print_tree` (see also: `print_cousins`)
 st.print_tree()
 ```
 
+To maintain fast coface lookup and enumeration, extra links are added between nodes at the same level, which are shown by the dash-dotted lines in the figure above (only for the nodes with the label $5$). To view these links with the `SimplexTree` class, use `print_cousins()`:
+```{python}
+st.print_cousins()
+```
 
+<!-- Various subsets of the complex can be parameterized by a starting simplex.  -->

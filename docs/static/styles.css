@@ -46,7 +46,12 @@ section[id^=returns] > p {
   margin-top: 0.5em; 
 }
 
+.sourceCode {
+  background-color: #d3d3d357;
+}
+
 .type_annotation {
   color:#9753b8;
   font-style: italic;
 }
+

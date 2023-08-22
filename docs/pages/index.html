@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>simplextree – index</title>
+<title>index</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -73,15 +107,16 @@ ul.task-list li input[type="checkbox"] {
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container">
-    <a class="navbar-brand" href="../index.html">
-    <span class="navbar-title">simplextree</span>
-    </a>
-  </div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="../pages/index.html" rel="" target="" aria-current="page">
+ <span class="menu-text">simplextree</span></a>
+  </li>  
+</ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item compact">
     <a class="nav-link" href="https://github.com/peekxc/simplextree-py" rel="" target=""><i class="bi bi-github" role="img">
@@ -105,7 +140,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Installation</li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">simplextree</li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -125,6 +160,12 @@ ul.task-list li input[type="checkbox"] {
         </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../pages/quickstart.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Quick start</span></a>
+  </div>
+</li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../pages/overview.html" class="sidebar-item-text sidebar-link">
@@ -160,14 +201,22 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active" data-toc-expanded="3">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#install" id="toc-install" class="nav-link active" data-scroll-target="#install">Install</a></li>
+  <li><a href="#building-developing" id="toc-building-developing" class="nav-link" data-scroll-target="#building-developing">Building &amp; Developing</a></li>
+  <li><a href="#native-extensions" id="toc-native-extensions" class="nav-link" data-scroll-target="#native-extensions">Native Extensions</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Installation</h1>
+<h1 class="title">simplextree</h1>
 </div>
 
 
@@ -182,22 +231,42 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<p><a href="https://github.com/peekxc/splex/actions/workflows/package.yml"><img src="https://github.com/peekxc/splex/actions/workflows/package.yml/badge.svg" class="img-fluid" alt="Tests"></a> <a href="https://coveralls.io/github/peekxc/splex"><img src="https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/peekxc/ef42349965f40edf4232737026690c5f/raw/coverage_info.json" class="img-fluid" alt="coverage_badge"></a> <a href="https://github.com/peekxc/splex/actions/workflows/python-package.yml"><img src="https://img.shields.io/badge/python-3.9%20%7C%203.10%20%7C%203.11-blue" class="img-fluid" alt="python_badge"></a> <a href="https://github.com/peekxc/splex/actions/workflows/build-macos.yml"><img src="https://img.shields.io/github/actions/workflow/status/peekxc/simplextree-py/build-macos.yml?logo=apple&amp;logoColor=white" class="img-fluid" alt="coverage_badge"></a> <a href="https://github.com/peekxc/splex/actions/workflows/build-windows.yml"><img src="https://img.shields.io/github/actions/workflow/status/peekxc/simplextree-py/build-windows.yml?logo=windows&amp;logoColor=white" class="img-fluid" alt="coverage_badge"></a> <a href="https://github.com/peekxc/splex/actions/workflows/build-linux.yml"><img src="https://img.shields.io/github/actions/workflow/status/peekxc/simplextree-py/build-linux.yml?logo=linux&amp;logoColor=white" class="img-fluid" alt="coverage_badge"></a></p>
-<p><code>simplextree</code> is a Python package aimed at simplifying computation for general simplicial complexes of any dimension. This package facilitates this aim by providing bindings to a Simplex Tree data structure implemented using modern C++ and exported an <a href="https://docs.python.org/3/extending/extending.html">extension module</a>. <!-- The underlying library implementation also exports a C++ header, which can be specified as a dependency and used in other packages. --></p>
-<p>The Simplex Tree was originally introduced in the following paper:</p>
+<p><a href="https://coveralls.io/github/peekxc/simplextree-py"><img src="https://img.shields.io/endpoint?url=https://gist.githubusercontent.com/peekxc/ef42349965f40edf4232737026690c5f/raw/coverage_info.json" class="img-fluid" alt="coverage_badge"></a> <a href="https://github.com/peekxc/simplextree-py/actions/workflows/build-macos.yml"><img src="https://img.shields.io/github/actions/workflow/status/peekxc/simplextree-py/build_macos.yml?logo=apple&amp;logoColor=white" class="img-fluid" alt="build_macos"></a> <a href="https://github.com/peekxc/simplextree-py/actions/workflows/build-windows.yml"><img src="https://img.shields.io/github/actions/workflow/status/peekxc/simplextree-py/build_windows.yml?logo=windows&amp;logoColor=white" class="img-fluid" alt="build_windows"></a> <a href="https://github.com/peekxc/simplextree-py/actions/workflows/build-linux.yml"><img src="https://img.shields.io/github/actions/workflow/status/peekxc/simplextree-py/build_linux.yml?logo=linux&amp;logoColor=white" class="img-fluid" alt="build_linux"></a></p>
+<p><code>simplextree</code> is an Python package that simplifies computation for general <a href="https://en.wikipedia.org/wiki/Simplicial_complex">simplicial complexes</a> of any dimension by providing <a href="https://github.com/pybind/pybind11">pybind11</a> bindings to a <em>Simplex Tree</em> data structure implemented in modern C++17.</p>
+<p>A <em>Simplex Tree</em> is an ordered, <a href="https://en.wikipedia.org/wiki/Trie">trie</a>-like structure whose nodes are in bijection with the faces of the complex. Here’s a picture of a simplicial 3-complex (left) and its corresponding Simplex Tree (right):</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./static/simplextree_pic.png" class="preview-image img-fluid figure-img"></p>
+<figcaption class="figure-caption">Picture taken from Boissonnat et al: “The simplex tree: An efficient data structure for general simplicial complexes”</figcaption>
+</figure>
+</div>
+<p>The <em>Simplex Tree</em> was originally introduced in the following paper:</p>
 <blockquote class="blockquote">
 <p>Boissonnat, Jean-Daniel, and Clément Maria. “The simplex tree: An efficient data structure for general simplicial complexes.” Algorithmica 70.3 (2014): 406-427.</p>
 </blockquote>
-<p>A Simplex Tree is an ordered, trie-like structure whose nodes are in bijection with the faces of the complex. Here’s a picture (taken from the paper) of a simplicial 3-complex (left) and its corresponding Simplex Tree (right):</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="static/simplextree_pic.png" class="preview-image img-fluid figure-img"></p>
-<figcaption class="figure-caption">simplextree</figcaption>
-</figure>
-</div>
-<p>TODO</p>
+<p>The <code>SimplexTree</code> class exported by the package includes support for many tree operations, e.g.&nbsp;insertions, removals, expansions, collapses, star/link enumerations, and other traversals.</p>
+<section id="install" class="level2">
+<h2 class="anchored" data-anchor-id="install">Install</h2>
+<p>The easiest way to install the package is via the platform-specific <a href="https://pythonwheels.com/">wheels</a> on <a href="https://pypi.org/project/simplextree/">pypi</a>.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> pip install simplextree </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>You can also <code>pip install</code> the package manually by downloading the appropriate wheel (or sdist) from the <a href="https://github.com/peekxc/simplextree-py/releases/">releases</a>.</p>
+<p>For installation instructions for developers looking to extend the package, see <a href="#building--developing">Building &amp; Developing</a>.</p>
+</section>
+<section id="building-developing" class="level2">
+<h2 class="anchored" data-anchor-id="building-developing">Building &amp; Developing</h2>
+<p>If you would like to build the package yourself for development reasons, a typical workflow is to install the <a href="https://pip.pypa.io/en/stable/reference/build-system/pyproject-toml/#build-time-dependencies">build-time dependencies</a> first:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> pip install meson-python ninja pybind11 numpy</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Then, build and install the package in <a href="https://peps.python.org/pep-0660/">editable mode</a> (see also <a href="https://meson-python.readthedocs.io/en/latest/how-to-guides/editable-installs.html">meson-python notes</a>), optionally without build isolation for speed:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> pip install <span class="at">--no-build-isolation</span> <span class="at">--editable</span> .</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Unit testing is handled with <a href="https://docs.pytest.org/en/7.4.x/">pytest</a>. See the <a href="https://github.com/peekxc/simplextree-py/actions">gh-workflows</a> for platform-specific configuration.</p>
+</section>
+<section id="native-extensions" class="level2">
+<h2 class="anchored" data-anchor-id="native-extensions">Native Extensions</h2>
+<p>The underlying C++ library is <a href="https://en.wikipedia.org/wiki/Header-only">header-only</a> and may be included as a dependency by <a href="https://docs.python.org/3/extending/extending.html">extension modules</a> in other Python packages.</p>
+<p>Thus, to modify or extending the complex in C++, it is sufficient to add the package as a build-time dependency and append the include directory to the compilation target.</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
