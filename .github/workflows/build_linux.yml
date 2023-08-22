@@ -7,7 +7,7 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build_linux:      
+  build_linux:
     name: ${{ matrix.os }} - Python ${{ matrix.python-version }}
     runs-on: ${{ matrix.os }}
     env:
@@ -55,6 +55,6 @@ jobs:
         maxColorRange: 100
         minColorRange: 0
         namedLogo: Pytest
-  - name: Send coverage report
-    run: |
-      coveralls --service=github
+    - name: Send coverage report
+      run: |
+        coveralls --service=github
