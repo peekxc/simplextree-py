@@ -38,7 +38,7 @@ website:
   navbar:
     left: 
       - text: simplextree
-        href: "pages/index.html"
+        href: pages/index.html
     background: light
     right: 
       - icon: github
@@ -58,14 +58,14 @@ website:
       - text: Overview 
         href: pages/overview.qmd
       - section: API Reference
-        href: reference/index.qmd
+        href: pages/reference/index.qmd
         contents:
           - name: SimplexTree 
             text: Simplex Tree
-            href: reference/SimplexTree.SimplexTree.qmd
+            href: pages/reference/SimplexTree.SimplexTree.qmd
           - name: UnionFind 
             text: Union Find
-            href: reference/UnionFind.UnionFind.qmd
+            href: pages/reference/UnionFind.UnionFind.qmd
 
   page-navigation: true
   reader-mode: true

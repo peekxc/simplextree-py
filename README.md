@@ -8,7 +8,7 @@
 
 A *Simplex Tree* is an ordered, [trie](https://en.wikipedia.org/wiki/Trie)-like structure whose nodes are in bijection with the faces of the complex. Here's a picture of a simplicial 3-complex (left) and its corresponding Simplex Tree (right):
 
-![simplex tree picture](./docs/pages/static/simplextree_pic.png)
+![simplex tree picture](./docs/static/simplextree.png)
 
 The *Simplex Tree* was originally introduced in the following paper:
 

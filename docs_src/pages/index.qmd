@@ -18,7 +18,7 @@ execute:
 
 A _Simplex Tree_ is an ordered, [trie](https://en.wikipedia.org/wiki/Trie)-like structure whose nodes are in bijection with the faces of the complex. Here's a picture of a simplicial 3-complex (left) and its corresponding Simplex Tree (right):
 
-![Picture taken from Boissonnat et al: "The simplex tree: An efficient data structure for general simplicial complexes"](./static/simplextree_pic.png){.preview-image}
+![Picture taken from Boissonnat et al: "The simplex tree: An efficient data structure for general simplicial complexes"](../static/simplextree.png){.preview-image}
 
 The _Simplex Tree_ was originally introduced in the following paper:
 

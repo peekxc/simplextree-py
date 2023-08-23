@@ -23,7 +23,7 @@ A simplicial complex is a natural generalization of a [graph](https://en.wikiped
 
 Like graphs, there are many ways to represent simplicial complexes in memory. One such way is to use a _Simplex Tree_: an ordered, [trie](https://en.wikipedia.org/wiki/Trie)-like structure whose nodes are in bijection with the faces of the complex. Here's a picture of a simplicial 3-complex (left) and its corresponding Simplex Tree (right):
 
-![Picture taken from Boissonnat et al: "The simplex tree: An efficient data structure for general simplicial complexes"](./static/simplextree_pic.png){.preview-image}
+![Picture taken from Boissonnat et al: "The simplex tree: An efficient data structure for general simplicial complexes"](../static/simplextree.png){.preview-image}
 
 To construct the complex above with a `simplextree` package, simply give the maximal simplices: 
 
