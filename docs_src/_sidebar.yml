@@ -6,7 +6,7 @@ website:
       - pages/reference/SimplexTree.SimplexTree.qmd
       section: Simplex Tree
     - contents:
-      - pages/reference/UnionFind.UnionFind.qmd
+      - pages/reference/UnionFind.UnionFind.qmd 
       section: Union Find
     id: pages/reference
   - id: dummy-sidebar

@@ -9,19 +9,26 @@ _cpp_args = compiler.get_supported_arguments(
 add_project_arguments(_cpp_args, language: ['cpp'])
 
 ## Platform detection
-cpp_std = 'c++17'
 is_windows = host_machine.system() == 'windows'
 
 ## Windows adjustments
 is_mingw = is_windows and compiler.get_id() == 'gcc'
-if is_windows 
-  cpp_std = 'c++11'
-  if is_mingw
-    add_project_link_arguments(['-lucrt', '-static'], language: ['cpp']) # For mingw-w64, link statically against the UCRT.
-    add_project_arguments('-D__USE_MINGW_ANSI_STDIO=1', language: ['cpp']) # https://github.com/rgommers/scipy/issues/118
-    add_project_arguments('-DMS_WIN64', language: ['cpp'])
-  endif 
+if is_windows and is_mingw
+  add_project_link_arguments(['-lucrt', '-static'], language: ['cpp']) # For mingw-w64, link statically against the UCRT.
+  add_project_arguments('-D__USE_MINGW_ANSI_STDIO=1', language: ['cpp']) # https://github.com/rgommers/scipy/issues/118
+  add_project_arguments('-DMS_WIN64', language: ['cpp'])
 endif   
+
+## Set C++ version 
+cpp_std_args = ['cpp_std=c++17']
+if is_windows
+  cpp_std_args = ['cpp_std=c++11']
+endif 
+# if is_windows
+#   cpp_std_args = ['-std=c++17']
+# else
+#   cpp_std_args = ['/std:c++11']
+# endif 
 
 ## Extension modules
 py.extension_module(
@@ -29,14 +36,16 @@ py.extension_module(
   '_simplextree.cpp',
   install: true,
   include_directories: [inc_local, incdir_numpy, inc_pybind11], 
-  cpp_args: ['-std=' + cpp_std]
+  override_options: cpp_std_args
+  # cpp_args: [cpp_std_args]
 )
 py.extension_module(
   '_unionfind',
   '_unionfind.cpp',
   install: true,
   include_directories: [inc_local, incdir_numpy, inc_pybind11], 
-  cpp_args: ['-std=' + cpp_std]
+  override_options: cpp_std_args
+  # cpp_args: [cpp_std_args]
 )
 
 python_sources = [
