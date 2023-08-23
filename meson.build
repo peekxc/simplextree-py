@@ -2,7 +2,11 @@ project(
   'simplextree', 'cpp', 
   license: 'Apache-2.0',
   meson_version: '>= 0.64.0',
-  default_options : ['cpp_std=c++17']
+  default_options : [
+    'buildtype=debugoptimized', 
+    'cpp_std=c++17', 
+    'warning_level=2'
+  ]
 )
 
 py_mod = import('python')

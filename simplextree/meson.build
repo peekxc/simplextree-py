@@ -4,7 +4,12 @@ message('Compiler = '+compiler.get_id())
 
 ## Compiler flags
 _cpp_args = compiler.get_supported_arguments(
-  '-Wall', '-Wextra', '-Wno-unused-parameter', '-Wno-reserved-identifier', '/Wc++11-extensions'
+  '-Wno-unused-parameter', 
+  '-Wno-reserved-identifier', 
+  '/Wc++11-extensions',
+  '-Wno-c++98-compat-pedantic', 
+  '-Wno-old-style-cast', 
+  '-Wno-c++98-compat'
 )
 add_project_arguments(_cpp_args, language: ['cpp'])
 message('Compiler args:')
@@ -22,9 +27,9 @@ if is_windows and is_mingw
 endif   
 
 ## Set C++ version 
-cpp_std_args = ['cpp_std=c++17']
+override_args = ['cpp_std=c++17']
 if is_windows
-  cpp_std_args = ['cpp_std=c++11']
+  override_args = ['cpp_std=c++14']
 endif 
 # if is_windows
 #   cpp_std_args = ['-std=c++17']
@@ -39,7 +44,7 @@ py.extension_module(
   install: true,
   include_directories: [inc_local, incdir_numpy, inc_pybind11], 
   cpp_args: _cpp_args,
-  override_options: cpp_std_args
+  override_options: override_args
 )
 py.extension_module(
   '_unionfind',
@@ -47,13 +52,24 @@ py.extension_module(
   install: true,
   include_directories: [inc_local, incdir_numpy, inc_pybind11], 
   cpp_args: _cpp_args,
-  override_options: cpp_std_args
+  override_options: override_args
 )
+## Shouldn't add C++20 to the list, make a new package first
+# py.extension_module(
+#   '_combinatorial',
+#   '_combinatorial.cpp',
+#   install: true,
+#   include_directories: [inc_local, incdir_numpy, inc_pybind11], 
+#   cpp_args: _cpp_args,
+#   override_options: override_args
+# )
 
 python_sources = [
   '__init__.py',
   'SimplexTree.py', 
-  'UnionFind.py'
+  'UnionFind.py', 
+  'combinatorial.py', 
+  'predicates.py'
 ]
 
 ## Print install directory
