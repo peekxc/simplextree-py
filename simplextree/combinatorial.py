@@ -2,9 +2,9 @@ import numpy as np
 from typing import * 
 from itertools import * 
 from numbers import Integral
-from math import comb, factorial
+from math import floor, ceil, comb, factorial
 # import _combinatorial as comb_mod
-from more_itertools import collapse, spy
+from more_itertools import collapse, spy, first_true
 
 ## On the naming convention:
 ## SimplexWrapper is a 
@@ -150,26 +150,39 @@ def inverse_choose(x: int, k: int):
 
   https://math.stackexchange.com/questions/103377/how-to-reverse-the-n-choose-k-formula
   """
-  assert k >= 1, "k must be >= 1" 
+  assert k >= 1 and x >= 0, "k must be >= 1" 
   if k == 1: return(x)
   if k == 2:
-    rng = np.array(list(range(int(np.floor(np.sqrt(2*x))), int(np.ceil(np.sqrt(2*x)+2) + 1))))
-    final_n = rng[np.nonzero(np.array([comb(n, 2) for n in rng]) == x)[0].item()]
+    rng = np.arange(np.floor(np.sqrt(2*x)), np.ceil(np.sqrt(2*x)+2) + 1, dtype=np.uint64)
+    final_n = rng[np.searchsorted((rng * (rng - 1) / 2), x)]
+    if comb(final_n, 2) == x:
+      return final_n
+    raise ValueError(f"Failed to invert C(n,{k}) = {x}")
+    # return int(rng[x == (rng * (rng - 1) / 2)])
   else:
     # From: https://math.stackexchange.com/questions/103377/how-to-reverse-the-n-choose-k-formula
     if x < 10**7:
       lb = (factorial(k)*x)**(1/k)
-      potential_n = np.array(list(range(int(np.floor(lb)), int(np.ceil(lb+k)+1))))
-      idx = np.nonzero(np.array([comb(n, k) for n in potential_n]) == x)[0].item()
-      final_n = potential_n[idx]
+      potential_n = range(floor(lb), ceil(lb+k)+1)
+      comb_cand = [comb(n, k) for n in potential_n]
+      if x in comb_cand:
+        return potential_n[comb_cand.index(x)]
     else:
       lb = np.floor((4**k)/(2*k + 1))
       C, n = factorial(k)*x, 1
       while n**k < C: n = n*2
-      m = (np.nonzero( np.array(list(range(1, n+1)))**k >= C )[0])[0].item()
-      potential_n = np.array(list(range(int(np.max([m, 2*k])), int(m+k+1))))
+      m = first_true((c**k for c in range(1, n+1)), pred=lambda c: c**k >= C)
+      potential_n = range(min([m, 2*k]), m+k+1)
       if len(potential_n) == 0: 
         raise ValueError(f"Failed to invert C(n,{k}) = {x}")
-      ind = np.nonzero(np.array([comb(n, k) for n in potential_n]) == x)[0].item()
-      final_n = potential_n[ind]
-  return(final_n)
+      final_n = first_true(potential_n, default = -1, pred = lambda n: comb(n,k) == x)
+      if final_n != -1:
+        return final_n
+      else: 
+        from scipy.optimize import minimize_scalar
+        binom_loss = lambda n: np.abs(comb(int(n), k) - x)
+        res = minimize_scalar(binom_loss, bounds=(comb(2*k, k), x))
+        n1, n2 = int(np.floor(res.x)), int(np.ceil(res.x))
+        if comb(n1,k) == x: return n1 
+        if comb(n2,k) == x: return n2 
+        raise ValueError(f"Failed to invert C(n,{k}) = {x}")

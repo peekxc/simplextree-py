@@ -47,6 +47,8 @@ def test_inverse():
     assert inverse_choose(x, 2) == n
   for n, x in zip(N, map(comb3, N)):
     assert inverse_choose(x, 3) == n
+  assert inverse_choose(comb(12501, 15), 15) == 12501
+
 
 def test_rank2():
   N = 25
