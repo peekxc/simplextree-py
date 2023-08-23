@@ -62,10 +62,10 @@ website:
         contents:
           - name: SimplexTree 
             text: Simplex Tree
-            href: pages/reference/SimplexTree.SimplexTree.qmd
+            href: pages/reference/SimplexTree.qmd
           - name: UnionFind 
             text: Union Find
-            href: pages/reference/UnionFind.UnionFind.qmd
+            href: pages/reference/UnionFind.qmd
 
   page-navigation: true
   reader-mode: true

@@ -59,7 +59,7 @@ class Renderer(MdRenderer):
   # def render(self, el: dc.Parameter):
   #   return super(Renderer, self).render(el)
 
-  # # returns ----
+  # Returns ----
   @dispatch
   def render(self, el: Union[ds.DocstringSectionReturns, ds.DocstringSectionRaises]) -> str:
     params_str = []

@@ -3,10 +3,10 @@ website:
   - contents:
     - pages/reference/index.qmd
     - contents:
-      - pages/reference/SimplexTree.SimplexTree.qmd
+      - pages/reference/SimplexTree.qmd
       section: Simplex Tree
     - contents:
-      - pages/reference/UnionFind.UnionFind.qmd
+      - pages/reference/UnionFind.qmd
       section: Union Find
     id: pages/reference
   - id: dummy-sidebar

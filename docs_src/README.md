@@ -1,7 +1,9 @@
 
 Reference documentation is built using the internal API of quartodoc. 
 
-Build the docs with:
+First, install `simplextree` into the current environment---NOT IN EDITABLE MODE (griffe limitation)
+
+Then, relative to the `docs_src` directory, build the docs with:
 
 > rm pages/reference/* & python gen_api.py & quarto render 
 

@@ -12,15 +12,19 @@ class SimplexTree(SimplexTreeCpp):
 	This class exposes a native extension module wrapping a simplex tree implemented with modern C++.
 
 	The Simplex Tree was originally introduced in the paper:
-		> Boissonnat, Jean-Daniel, and Clément Maria. "The simplex tree: An efficient data structure for general simplicial complexes." Algorithmica 70.3 (2014): 406-427.
+	> Boissonnat, Jean-Daniel, and Clément Maria. "The simplex tree: An efficient data structure for general simplicial complexes." Algorithmica 70.3 (2014): 406-427.
 
 	Attributes:
 		n_simplices (ndarray): number of simplices 
 		dimension (int): maximal dimension of the complex
 		id_policy (str): policy for generating new vertex ids 
 
-	Attributes: Properties:
-		vertices (ndarray): vertices of the complex
+	Attributes: Properties
+		vertices (ndarray): 0-simplices in the complex.
+		edges (ndarray): 1-simplices in the complex.
+		triangles (ndarray): 2-simplices in the complex.
+		quads (ndarray): 3-simplices in the complex.
+		connected_components (ndarray): connected component ids.
 	"""    
 	def __init__(self, simplices: Iterable[Collection] = None) -> None:
 		SimplexTreeCpp.__init__(self)
@@ -41,6 +45,12 @@ class SimplexTree(SimplexTreeCpp):
 		 	If the iterable is an 2-dim np.ndarray, then a p-simplex is inserted along each contiguous p+1 stride.
 			Otherwise, each element of the iterable to casted to a Simplex and then inserted into the tree. 
 		:::
+
+		Examples:
+			st = SimplexTree([range(3)])
+			print(st)
+			st.insert([[0,1]])
+			print(st)
 		"""
 		if isinstance(simplices, np.ndarray):
 			simplices = np.sort(simplices, axis=1).astype(np.uint16)
@@ -79,7 +89,7 @@ class SimplexTree(SimplexTreeCpp):
 		else: 
 			raise ValueError("Invalid type given")
 
-	def find(self, simplices: Iterable[Collection]):
+	def find(self, simplices: Iterable[Collection]) -> np.ndarray:
 		"""
 		Finds whether simplices exist in Simplex Tree. 
 		
@@ -87,7 +97,7 @@ class SimplexTree(SimplexTreeCpp):
 			simplices: Iterable of simplices to insert (each of which are SimplexLike)
 
 		Returns:
-			found (ndarray) : boolean array indicating whether each simplex was found in the complex
+			found: boolean array indicating whether each simplex was found in the complex
 
 		::: {.callout-note}
 		 	If the iterable is an 2-dim np.ndarray, then the p-simplex to find is given by each contiguous p+1 stride.
@@ -226,7 +236,7 @@ class SimplexTree(SimplexTreeCpp):
 		self._traverse(3, lambda s: F.append(s), sigma, 0) # order, f, init, k
 		return F
 	
-	def coface_roots(self, sigma: Collection = []) -> Iterable[Collection]:
+	def coface_roots(self, sigma: Collection = []) -> list[Collection]:
 		"""Returns the roots whose subtrees span the cofaces of `sigma`.
 
 		Note that `sigma` itself is included in the set of its cofaces. 
@@ -235,7 +245,7 @@ class SimplexTree(SimplexTreeCpp):
 			sigma: the simplex to obtain cofaces of. Defaults to the empty set (root node).
 
 		Returns:
-			coface roots: the coface roots of `sigma`
+			coface_roots: the coface roots of `sigma`.
 		"""
 		F = []
 		self._traverse(4, lambda s: F.append(s), sigma, 0) # order, f, init, k
@@ -298,12 +308,10 @@ class SimplexTree(SimplexTreeCpp):
 			st = SimplexTree(combinations(range(8), 2))
 			print(st)
 			
-			## Expand only triangles containing 2 as a vertex
-			st.expand(k=2, lambda s: 2 in s) 
+			st.expand(k=2, lambda s: 2 in s)  # Expand only triangles containing 2 as a vertex
 			print(st)
 
-			## Expand all 2-cliques
-			st.expand(k=2)
+			st.expand(k=2) # Expand all 2-cliques
 			print(st)
 		"""
 		assert int(k) >= 0, f"Invalid expansion dimension k={k} given"
