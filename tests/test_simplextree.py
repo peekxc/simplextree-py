@@ -125,6 +125,15 @@ def test_expand():
   assert st.insert([simplex]) is None 
   assert all(st.n_simplices == np.array([5,10,10,5,1]))
   assert st.dimension == 4
+  st = SimplexTree()
+  st.insert([[0,1], [0,2], [1,2], [4,5], [1,4], [1,5]])
+  to_expand = []
+  st.expand(2, lambda s: to_expand.append(s) is not None)
+  assert [0,1,2] in to_expand and [1,4,5] in to_expand
+  assert list(st.n_simplices) == [5,6]
+  st.expand(3, lambda s: True)
+  assert list(st.n_simplices) == [5,6,2]
+
 
 
   # t order, py::function f, simplex_t init = simplex_t(), const size_t k = 0

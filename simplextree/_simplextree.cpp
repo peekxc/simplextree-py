@@ -521,6 +521,7 @@ void traverse_(SimplexTree& stree, const size_t order, py::function f, simplex_t
 void expansion_f(SimplexTree& st, const size_t k, py::function f){
   const auto do_expand = [&](node_ptr parent, idx_t depth, idx_t label){
     simplex_t si = st.full_simplex(parent);
+    si.push_back(label);
     py::object do_expand_ = f(py::cast(si));
     bool do_expand = do_expand_.cast< bool >();
     if (do_expand){

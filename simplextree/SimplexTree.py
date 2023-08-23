@@ -278,18 +278,19 @@ class SimplexTree(SimplexTreeCpp):
 		return F
 
 	def link(self, sigma: Collection = []) -> Iterable[Collection]:
-		"""Returns all simplices in the link of a given simplex."""
+		"""Returns the simplices in the link of `sigma`."""
 		F = []
 		self._traverse(8, lambda s: F.append(s), sigma, 0)
 		return F
 
-	def expand(self, k: int) -> None:
+	def expand(self, k: int, f: Callable[[Collection], bool] = None) -> None:
 		"""Performs a k-expansion of the complex.
 
 		This function is particularly useful for expanding clique complexes beyond their 1-skeleton. 
 		
 		Parameters:
-			k : maximum dimension to expand to. 
+			k: maximum dimension to expand to. 
+			f: boolean predicate which returns whether a simplex should added to the complex (and further expanded). 
 
 		Examples:
 			from simplextree import SimplexTree 
@@ -297,11 +298,20 @@ class SimplexTree(SimplexTreeCpp):
 			st = SimplexTree(combinations(range(8), 2))
 			print(st)
 			
+			## Expand only triangles containing 2 as a vertex
+			st.expand(k=2, lambda s: 2 in s) 
+			print(st)
+
+			## Expand all 2-cliques
 			st.expand(k=2)
 			print(st)
 		"""
 		assert int(k) >= 0, f"Invalid expansion dimension k={k} given"
-		self._expand(int(k))
+		if f is None:
+			self._expand(int(k))
+		else:
+			assert isinstance(f([]), bool), "Supplied callable must be boolean-valued"
+			self._expand_f(int(k), f)
 
 	def __repr__(self) -> str:
 		if len(self.n_simplices) == 0:
@@ -317,8 +327,15 @@ class SimplexTree(SimplexTreeCpp):
 	def __len__(self) -> int:
 		return int(sum(self.n_simplices))
 
-	def card(self, p: int = None):
-		"""Returns the cardinality of various skeleta of the complex."""
+	def card(self, p: int = None) -> Union[int, tuple]:
+		"""Returns the cardinality of various skeleta of the complex.
+		
+		Parameters:
+			p: dimension parameter. Defaults to None.
+		
+		Returns:
+			cardinalities: if p is an integer, the number of p-simplices in the complex. Otherwise a tuple indicating the number of simplices of all dimensions.
+		"""
 		if p is None: 
 			return tuple(self.n_simplices)
 		else: 
