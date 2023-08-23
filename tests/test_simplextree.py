@@ -31,11 +31,14 @@ def test_SimplexTree():
   assert all(np.all(st.edges == np.array(st.simplices(p=1)), axis=0))
   assert all(np.all(st.triangles == np.array(st.simplices(p=2)), axis=0))
   assert all(st.degree() == np.array([2,4,2,2,2]))
+  assert all(st.degree() == st.degree(st.vertices))
   assert st.print_tree() is None
   assert st.print_cousins() is None
   assert all(st.find([[0],[1],[3],[1,2]]) == np.array([True, True, False, True]))
   assert st.coface_roots([1,2]) == [(1,2),(0,1,2)]
   assert st.simplices() == [f for f in st]
+  assert st.card() == (5,6,2)
+  assert tuple(st.card(d) for d in range(st.dimension+1)) == st.card()
 
 def test_insert():
   st = SimplexTree()
