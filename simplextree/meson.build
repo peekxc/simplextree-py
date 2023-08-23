@@ -4,9 +4,11 @@ message('Compiler = '+compiler.get_id())
 
 ## Compiler flags
 _cpp_args = compiler.get_supported_arguments(
-  '-Wall', '-Wextra', '-Wno-unused-parameter'
+  '-Wall', '-Wextra', '-Wno-unused-parameter', '-Wno-reserved-identifier', '/Wc++11-extensions'
 )
 add_project_arguments(_cpp_args, language: ['cpp'])
+message('Compiler args:')
+message(_cpp_args)
 
 ## Platform detection
 is_windows = host_machine.system() == 'windows'
@@ -36,16 +38,16 @@ py.extension_module(
   '_simplextree.cpp',
   install: true,
   include_directories: [inc_local, incdir_numpy, inc_pybind11], 
+  cpp_args: _cpp_args,
   override_options: cpp_std_args
-  # cpp_args: [cpp_std_args]
 )
 py.extension_module(
   '_unionfind',
   '_unionfind.cpp',
   install: true,
   include_directories: [inc_local, incdir_numpy, inc_pybind11], 
+  cpp_args: _cpp_args,
   override_options: cpp_std_args
-  # cpp_args: [cpp_std_args]
 )
 
 python_sources = [
