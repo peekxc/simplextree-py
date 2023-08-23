@@ -7,12 +7,12 @@ import numpy as np
 from _simplextree import SimplexTree as SimplexTreeCpp
 
 class SimplexTree(SimplexTreeCpp):
-	""" 
-	SimplexTree provides lightweight wrapper around a Simplex Tree data structure: an ordered, trie-like structure whose nodes are in bijection with the faces of the complex. 
+	"""SimplexTree provides lightweight wrapper around a Simplex Tree data structure.
+
 	This class exposes a native extension module wrapping a simplex tree implemented with modern C++.
 
-	The Simplex Tree was originally introduced in the paper
-	> Boissonnat, Jean-Daniel, and Clément Maria. "The simplex tree: An efficient data structure for general simplicial complexes." Algorithmica 70.3 (2014): 406-427.
+	The Simplex Tree was originally introduced in the paper:
+		> Boissonnat, Jean-Daniel, and Clément Maria. "The simplex tree: An efficient data structure for general simplicial complexes." Algorithmica 70.3 (2014): 406-427.
 
 	Attributes:
 		n_simplices (ndarray): number of simplices 
@@ -52,14 +52,12 @@ class SimplexTree(SimplexTreeCpp):
 			raise ValueError("Invalid type given")
 
 	def remove(self, simplices: Iterable[Collection]):
-		"""
-		Removes simplices into the Simplex Tree. 
+		"""Removes simplices into the Simplex Tree. 
 
 		By definition, removing a face also removes all of its cofaces. If the simplex does not exist in the complex, the tree is not modified. 
 
 		Parameters:
-			simplices: 
-				Iterable of simplices to insert (each of which are SimplexLike).		
+			simplices: Iterable of simplices to insert (each of which are SimplexLike).		
 		
 		::: {.callout-note}
 		 	If the iterable is an 2-dim np.ndarray, then a p-simplex is removed along each contiguous p+1 stride.
@@ -109,18 +107,18 @@ class SimplexTree(SimplexTreeCpp):
 		"""Checks for adjacencies between simplices."""
 		return self._adjacent(list(map(lambda x: np.asarray(x, dtype=np.uint16), simplices)))
 
-	def collapse(self, tau: Collection, sigma: Collection) -> None:
+	def collapse(self, tau: Collection, sigma: Collection) -> bool:
 		"""Performs an elementary collapse on two given simplices. 
 
 		Checks whether its possible to collapse $\\sigma$ through $\\tau$, and if so, both simplices are removed. 
 		A simplex $\\sigma$ is said to be collapsible through one of its faces $\\tau$ if $\\sigma$ is the only coface of $\\tau$ (excluding $\\tau$ itself). 
 		
 		Parameters:
-			sigma : maximal simplex to collapse
-			tau : face of sigma to collapse 
+			sigma: maximal simplex to collapse
+			tau: face of sigma to collapse 
 
 		Returns:
-			bool: whether the pair was collapsed
+			collapsed (bool): whether the pair was collapsed
 
 		Examples:
 
@@ -136,17 +134,20 @@ class SimplexTree(SimplexTreeCpp):
 		success = self._collapse(tau, sigma) 
 		return success 
 
-	def vertex_collapse(self, u: int, v: int, w: int):
+	def vertex_collapse(self, u: int, v: int, w: int) -> bool:
 		"""Maps a pair of vertices into a single vertex. 
 		
 		Parameters:
 			u (int): the first vertex in the free pair.
 			v (int): the second vertex in the free pair. 
 			w (int): the target vertex to collapse to.
+		
+		Returns:
+			collapsed: whether the collapse was performed.
 		"""
 		u,v,w = int(u), int(v), int(w)
 		assert all([isinstance(e, Integral) for e in [u,v,w]]), f"Unknown vertex types given; must be integral"
-		self._vertex_collapse(u,v,w)
+		return self._vertex_collapse(u,v,w)
 
 	def degree(self, vertices: Optional[ArrayLike] = None) -> Union[ArrayLike, int]:
 		"""Computes the degree of select vertices in the trie.
@@ -156,7 +157,7 @@ class SimplexTree(SimplexTreeCpp):
 				If no vertices are specified, all degrees are computed. Non-existing vertices by default have degree 0. 
 		
 		Returns:
-			list: degree of each vertex id given in 'vertices'
+			degrees: degree of each vertex id given in 'vertices'.
 		"""
 		if vertices is None: 
 			return self._degree_default()
@@ -170,19 +171,12 @@ class SimplexTree(SimplexTreeCpp):
 	# PREORDER = 0, LEVEL_ORDER = 1, FACES = 2, COFACES = 3, COFACE_ROOTS = 4, 
 	# K_SKELETON = 5, K_SIMPLICES = 6, MAXIMAL = 7, LINK = 8
 	def traverse(self, order: str = "preorder", f: Callable = print, sigma: Collection = [], p: int = 0) -> None:
-		"""Traverses the simplex tree in the specified order, calling 'f' on each simplex encountered.
+		"""Traverses the simplex tree in the specified order, calling `f` on each simplex encountered.
 
-		Supported traversals: 
-			- breadth-first / level order ("bfs", "levelorder") 
-			- depth-first / prefix ("dfs", "preorder")
-			- faces 
-			- cofaces
-			- coface roots ("coface_roots")
-			- p-skeleton
-			- p-simplices 
-			- maximal simplices ("maximal")
-			- link 
-		To select one of these options, set order to one of ["bfs", "levelorder", "dfs", "preorder"]
+		Supported traversals include breadth-first / level order ("bfs", "levelorder"), depth-first / prefix ("dfs", "preorder").
+		faces, cofaces, coface roots ("coface_roots"), p-skeleton, p-simplices, maximal simplices ("maximal"), and link. 
+		
+		Where applicable, each traversal begins its traversal `sigma`, which defaults to the empty set (root node). 
 
 		Parameters:
 			order: the type of traversal of the simplex tree to execute.
@@ -216,14 +210,15 @@ class SimplexTree(SimplexTreeCpp):
 		self._traverse(order, lambda s: f(s), sigma, p) # order, f, init, k
 
 	def cofaces(self, sigma: Collection = []) -> list[Collection]:
-		"""Returns the p-cofaces of a given simplex.
+		"""Returns the cofaces of `sigma`.
 
+		Note, by definition, `sigma` itself is considered as a coface.
+		
 		Parameters:
-			p : coface dimension to restrict to 
-			sigma : the simplex to obtain cofaces of
+			sigma: the simplex to obtain cofaces of.
 
 		Returns:
-			list: the p-cofaces of sigma
+			cofaces: the cofaces of `sigma`.
 		"""
 		if sigma == [] or len(sigma) == 0:
 			return self.simplices()
@@ -232,13 +227,32 @@ class SimplexTree(SimplexTreeCpp):
 		return F
 	
 	def coface_roots(self, sigma: Collection = []) -> Iterable[Collection]:
-		"""Returns the simplex 'roots' of a given simplex whose subtrees generate its cofaces."""
+		"""Returns the roots whose subtrees span the cofaces of `sigma`.
+
+		Note that `sigma` itself is included in the set of its cofaces. 
+
+		Parameters:
+			sigma: the simplex to obtain cofaces of. Defaults to the empty set (root node).
+
+		Returns:
+			coface roots: the coface roots of `sigma`
+		"""
 		F = []
 		self._traverse(4, lambda s: F.append(s), sigma, 0) # order, f, init, k
 		return F
 
 	def skeleton(self, p: int = None, sigma: Collection = []) -> Iterable[Collection]:
-		"""Returns the simplices in the p-skeleton of the complex."""
+		"""Returns the simplices in the p-skeleton of `sigma`.
+		
+		Note that, when dim(`sigma`) <= `p`, `sigma` is included in the skeleton. 
+
+		Parameters:
+			p: the dimension of the skeleton.
+			sigma: the simplex to obtain cofaces of. Defaults to the empty set (root node).
+
+		Returns:
+			list: the simplices in the p-skeleton of `sigma`.
+		"""
 		F = []
 		self._traverse(5, lambda s: F.append(s), sigma, p)
 		return F 
@@ -278,7 +292,6 @@ class SimplexTree(SimplexTreeCpp):
 			k : maximum dimension to expand to. 
 
 		Examples:
-
 			from simplextree import SimplexTree 
 			from itertools import combinations 
 			st = SimplexTree(combinations(range(8), 2))

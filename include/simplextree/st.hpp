@@ -152,7 +152,7 @@ inline void SimplexTree::record_new_simplexes(const idx_t k, const int n){
   if (k >= 32){ std::invalid_argument("Invalid dimension to record."); }
   n_simplexes[k] += n; 
   auto first_zero = std::find(n_simplexes.begin(), n_simplexes.end(), 0);
-  tree_max_depth = std::distance(n_simplexes.begin(), first_zero);
+  tree_max_depth = std::distance(n_simplexes.begin(), first_zero); // don't remove!
   // if (n_simplexes.size() < k+1){ n_simplexes.resize(k+1); }
   // n_simplexes.at(k) += n;
   // while(n_simplexes.back() == 0 && n_simplexes.size() > 0){ n_simplexes.resize(n_simplexes.size() - 1); }
@@ -436,7 +436,7 @@ inline void SimplexTree::print_simplex(OutputStream& os, node_ptr cn, bool newli
 	if (newline){ os << std::endl; }
 }
 
-// Performs an expansion of order k, reconstructing the k-skeleton flag complex via an in-depth expansion of the 1-skeleton.
+// Performs the default expansion of order k, reconstructing the k-skeleton flag complex via an in-depth expansion of the 1-skeleton.
 inline void SimplexTree::expansion(const idx_t k){
   expansion_f(k, [this](node_ptr parent, idx_t depth, idx_t label){
     std::array< idx_t, 1 > int_label = { label };
@@ -444,6 +444,7 @@ inline void SimplexTree::expansion(const idx_t k){
   });
 }
 
+// Global expansion operation: calls expand_f on all children of the root node
 template < typename Lambda >
 inline void SimplexTree::expansion_f(const idx_t k, Lambda&& f){
   for (auto& cn: node_children(root)){ 
@@ -453,8 +454,8 @@ inline void SimplexTree::expansion_f(const idx_t k, Lambda&& f){
   }
 }
 
-// Expand operation checks A \cap N^+(vj) \neq \emptyset
-// If they have a non-empty intersection, then the intersection is added as a child to the head node. 
+// Local expand operation checks A \cap N^+(vj) \neq \emptyset
+// If they have a non-empty intersection, then the intersection is added as a child to the head node and expand is recursivey called. 
 template < typename Lambda >
 inline void SimplexTree::expand_f(node_set_t& c_set, const idx_t k, size_t depth, Lambda&& f){
   if (k == 0 || c_set.empty()){ return; }
@@ -482,7 +483,7 @@ inline void SimplexTree::expand_f(node_set_t& c_set, const idx_t k, size_t depth
         less_np_label()
       );
     
-      // Insert and recursively expand 
+      // Recursively call expand 
       if (intersection.size() > 0){
         for (auto& int_node: intersection){
           auto face = find_by_id(cn->children, int_node->label);
@@ -603,6 +604,8 @@ inline bool SimplexTree::vertex_collapse(idx_t v1, idx_t v2, idx_t v3){
 // f is defined as: 
 // f(x) = { (1) w if x in { u, v }, (2) x o.w. }
 inline bool SimplexTree::vertex_collapse(node_ptr vp1, node_ptr vp2, node_ptr vt){
+  if (vp1 == nullptr || vp2 == nullptr || vt == nullptr){ return false; }
+
 	// Lambda to do the mapping
 	vector< simplex_t > to_insert; 
 	const auto map_collapse = [&to_insert, vt](simplex_t si, node_ptr vp){

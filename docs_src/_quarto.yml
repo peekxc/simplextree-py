@@ -26,10 +26,10 @@ quartodoc:
   sections: 
     - title: Simplex Tree 
       contents: 
-        - SimplexTree.SimplexTree
+        - SimplexTree
     - title: Union Find
       contents: 
-        - UnionFind.UnionFind
+        - UnionFind
 
 website:
   search: 

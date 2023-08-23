@@ -8,3 +8,7 @@ Build the docs with:
 Optionally preview with: 
 
 > quarto preview
+
+or, for fast preview without the re-render, use [http-server](https://github.com/http-party/http-server): 
+
+> http-server ../docs

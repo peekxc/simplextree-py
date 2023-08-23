@@ -428,7 +428,9 @@ void traverse_(SimplexTree& stree, const size_t order, py::function f, simplex_t
   node_ptr base = init.size() == 0 ? stree.root.get() : stree.find(init);
   // py::print("Starting from root?", init.size() == 0 ? "Y" : "N", ", k=",k);
   const auto apply_f = [&f](node_ptr cn, idx_t depth, simplex_t s){
-    f(py::cast(s));
+    // f(py::cast(s));
+    py::tuple s_tup = py::make_tuple(s);
+    f(s_tup);
     return true; 
   };
   switch(order){
@@ -515,14 +517,19 @@ void traverse_(SimplexTree& stree, const size_t order, py::function f, simplex_t
 
 
 
-// Expands st conditionally based on f
-// void expansion_f(SimplexTree& st, const size_t k, py::function f){
-//   const auto do_expand = [&](node_ptr np, auto depth, auto label){
-//     // get simplex
-//     return true; 
-//   };
-//   st.expansion_f(k, f);
-// }
+// Conditional k-expansion based on boolean-valued function f
+void expansion_f(SimplexTree& st, const size_t k, py::function f){
+  const auto do_expand = [&](node_ptr parent, idx_t depth, idx_t label){
+    simplex_t si = st.full_simplex(parent);
+    py::object do_expand_ = f(py::cast(si));
+    bool do_expand = do_expand_.cast< bool >();
+    if (do_expand){
+      std::array< idx_t, 1 > int_label = { label };
+      st.insert_it(begin(int_label), end(int_label), parent, depth);
+    }
+  };
+  st.expansion_f(k, do_expand);
+}
 
 
 // pip install --no-deps --no-build-isolation --editable .
@@ -557,6 +564,7 @@ PYBIND11_MODULE(_simplextree, m) {
     .def( "generate_ids", &SimplexTree::generate_ids)
     .def( "_reindex", &SimplexTree::reindex)
     .def( "_expand", &SimplexTree::expansion )
+    .def( "_expand_f", &expansion_f )
     .def( "_vertex_collapse", (bool (SimplexTree::*)(idx_t, idx_t, idx_t))(&SimplexTree::vertex_collapse))
     .def( "_contract", &SimplexTree::contract)
     .def( "is_tree", &SimplexTree::is_tree)
