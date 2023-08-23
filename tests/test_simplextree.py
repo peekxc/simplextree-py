@@ -15,17 +15,17 @@ def test_SimplexTree():
   assert repr(st) == '< Empty simplex tree >'
   st.insert([[0,1,2], [0,1], [4,5], [1,4], [1,5]])
   assert all(st.n_simplices == np.array([5,6,1]))
-  assert sorted(st.simplices()) == sorted(list([[0],[1],[2],[4],[5], [0,1],[0,2],[1,2],[1,4],[1,5],[4,5],[0,1,2]]))
-  assert sorted(st.skeleton(1)) == sorted(list([[0],[1],[2],[4],[5], [0,1],[0,2],[1,2],[1,4],[1,5],[4,5]]))
-  assert sorted(st.simplices(p=1)) == sorted(list([[0,1],[0,2],[1,2],[1,4],[1,5],[4,5]]))
+  assert st.simplices() == [(0,),(1,),(2,),(4,),(5,),(0,1),(0,2),(1,2),(1,4),(1,5),(4,5),(0,1,2)]
+  assert sorted(st.skeleton(1)) == sorted([(0,), (0, 1), (0, 2), (1,), (1, 2), (1, 4), (1, 5), (2,), (4,), (4, 5), (5,)])
+  assert st.simplices(p=1) == [(0,1),(0,2),(1,2),(1,4),(1,5),(4,5)]
   assert [0,1,2] in st
   assert [1,2,3] not in st
   assert repr(st) == 'Simplex Tree with (5, 6, 1) (0, 1, 2)-simplices'
   assert st.expand(2) is None
-  assert sorted(st.simplices(2)) == sorted([[0,1,2], [1,4,5]])
-  assert sorted(st.cofaces([1])) == sorted(list([[1],[0,1],[1,2],[1,4],[1,5],[0,1,2],[1,4,5]]))
-  assert sorted(st.maximal()) == sorted([[0,1,2], [1,4,5]])
-  assert sorted(st.connected_components) == [1,1,1,1,1]
+  assert st.simplices(2) == [(0,1,2), (1,4,5)]
+  assert st.cofaces([1]) == [(1,), (1, 2), (1, 4), (1, 4, 5), (1, 5), (0, 1), (0, 1, 2)]
+  assert st.maximal() == [(0, 1, 2), (1, 4, 5)]
+  assert st.connected_components == [1,1,1,1,1]
   assert st.vertices == [0,1,2,4,5]
   assert st.dimension == 2
   assert all(np.all(st.edges == np.array(st.simplices(p=1)), axis=0))
@@ -34,7 +34,7 @@ def test_SimplexTree():
   assert st.print_tree() is None
   assert st.print_cousins() is None
   assert all(st.find([[0],[1],[3],[1,2]]) == np.array([True, True, False, True]))
-  assert sorted(st.coface_roots([1,2])) == sorted([[1,2],[0,1,2]])
+  assert st.coface_roots([1,2]) == [(1,2),(0,1,2)]
   assert st.simplices() == [f for f in st]
 
 def test_insert():
@@ -51,7 +51,7 @@ def test_remove():
   assert st.dimension == 3
   assert tuple(st.n_simplices) == (5, 9, 7, 2)
   st = SimplexTree([[0,1,2,3,4]])
-  st.remove([[0,1,2]])
+  st.remove([(0,1,2)])
   assert all(st.n_simplices == np.array([5,10,9,3]))
   assert all(st.find([[0,1], [1,2], [0,1,2]]) == np.array([True, True, False]))
 
@@ -67,33 +67,33 @@ def test_traversals():
   from io import StringIO
   sio = StringIO()
   st.traverse("dfs", lambda s: print(s, file=sio))    
-  assert sio.getvalue().replace("\n", " ").strip() == '[0] [0, 1] [0, 1, 2] [0, 2] [1] [1, 2] [2]'
+  assert sio.getvalue().replace("\n", " ").strip() == '(0,) (0, 1) (0, 1, 2) (0, 2) (1,) (1, 2) (2,)'
   sio.close()
   sio = StringIO()
   st.traverse("bfs", lambda s: print(s, file=sio))    
-  assert sio.getvalue().replace("\n", " ").strip() == '[0] [1] [2] [0, 1] [0, 2] [1, 2] [0, 1, 2]'
+  assert sio.getvalue().replace("\n", " ").strip() == '(0,) (1,) (2,) (0, 1) (0, 2) (1, 2) (0, 1, 2)'
   sio.close()
   sio = StringIO()
   st.traverse("p-skeleton", lambda s: print(s, file=sio), p = 1)    
-  assert sio.getvalue().replace("\n", " ").strip() == '[0] [0, 1] [0, 2] [1] [1, 2] [2]'
+  assert sio.getvalue().replace("\n", " ").strip() == '(0,) (0, 1) (0, 2) (1,) (1, 2) (2,)'
   sio.close()
   sio = StringIO()
   st.traverse("p-simplices", lambda s: print(s, file=sio), p = 1)   
-  assert sio.getvalue().replace("\n", " ").strip() == '[0, 1] [0, 2] [1, 2]'
+  assert sio.getvalue().replace("\n", " ").strip() == '(0, 1) (0, 2) (1, 2)'
   sio.close()
   sio = StringIO()
   st.traverse("cofaces", lambda s: print(s, file=sio), sigma=[0])
-  assert sio.getvalue().replace("\n", " ").strip() == '[0] [0, 1] [0, 1, 2] [0, 2]'
+  assert sio.getvalue().replace("\n", " ").strip() == '(0,) (0, 1) (0, 1, 2) (0, 2)'
   sio.close()
   st = SimplexTree([[0,1,2], [3,4,5], [5,6], [6,7], [5,7], [5,6,7],[8]])
   sio = StringIO()
   st.traverse("maximal", lambda s: print(s, file=sio))
-  assert sio.getvalue().replace("\n", " ").strip() == '[0, 1, 2] [3, 4, 5] [5, 6, 7] [8]'
+  assert sio.getvalue().replace("\n", " ").strip() == '(0, 1, 2) (3, 4, 5) (5, 6, 7) (8,)'
   sio.close()
   st = SimplexTree([[0,1,2], [3,4,5], [5,6], [6,7], [5,7], [5,6,7],[8]])
   sio = StringIO()
   st.traverse("coface_roots", lambda s: print(s, file=sio), sigma=[1,2])
-  assert sio.getvalue().replace("\n", " ").strip() == '[1, 2] [0, 1, 2]'
+  assert sio.getvalue().replace("\n", " ").strip() == '(1, 2) (0, 1, 2)'
   sio.close()
 
 def test_link():

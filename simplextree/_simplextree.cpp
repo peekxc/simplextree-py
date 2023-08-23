@@ -427,10 +427,9 @@ using param_pack = typename std::tuple< SimplexTree*, node_ptr, TRAVERSAL_TYPE >
 void traverse_(SimplexTree& stree, const size_t order, py::function f, simplex_t init = simplex_t(), const size_t k = 0){
   node_ptr base = init.size() == 0 ? stree.root.get() : stree.find(init);
   // py::print("Starting from root?", init.size() == 0 ? "Y" : "N", ", k=",k);
-  const auto apply_f = [&f](node_ptr cn, idx_t depth, simplex_t s){
+  const auto apply_f = [&f](node_ptr cn, idx_t depth, const simplex_t s){
     // f(py::cast(s));
-    py::tuple s_tup = py::make_tuple(s);
-    f(s_tup);
+    f(py::tuple(py::cast(s)));
     return true; 
   };
   switch(order){
