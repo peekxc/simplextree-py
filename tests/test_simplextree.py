@@ -39,6 +39,8 @@ def test_SimplexTree():
   assert st.simplices() == [f for f in st]
   assert st.card() == (5,6,2)
   assert tuple(st.card(d) for d in range(st.dimension+1)) == st.card()
+  assert st.reindex() is None
+  assert st.vertices == [0,1,2,3,4] 
 
 def test_insert():
   st = SimplexTree()
