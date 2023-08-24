@@ -1,0 +1,6 @@
+* linguist-vendored
+docs/* linguist-documentation
+*.py linguist-vendored=false
+*.cpp linguist-vendored=false
+*.h linguist-vendored=false
+*.build linguist-vendored=false
