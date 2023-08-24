@@ -33,6 +33,43 @@ builder.write_doc_pages(pages, "*")
 builder.write_index(blueprint)
 builder.write_sidebar(blueprint)
 
+## Look at the insert function
+insert_obj = pages[0].contents[0].members[9]
+preview(insert_obj)
+
+import quarto
+from griffe.docstrings.dataclasses import DocstringSectionExamples
+
+for ds_section in insert_obj.obj.docstring.parsed:
+  if type(ds_section) == DocstringSectionExamples:
+    for i, example_sec in enumerate(ds_section):
+      ## Extract text as-is
+      ds_txt_kind, ex_text = example_sec.value[0]    
+
+      ## Option (1): put all the text within an executable cell
+      quarto_cells = '```{python}\n' + ex_text + '```' 
+
+      ## Option (2): split the text using some delimiter to separate outputs, e.g. two newlines 
+      as_exec_cell = lambda text: '```{python}\n' + text + '\n```'
+      quarto_cells = ''.join([as_exec_cell(example) for example in ex_text.split("\n\n")])
+
+      ## Re-assign the text
+      ds_section[i].value[1] = quarto_cells            
+
+func_path = insert_obj.anchor.split('.')
+# 'from ' + '.'.join(func_path[:-1]) + ' import ' + func_path[-1]
+# builder.package
+
+# import os 
+# import tempfile
+# tmp_file, filename = tempfile.mkstemp()
+# with open("temp_file.py", "w+") as tmp_file: 
+#   tmp_file.write(ex_text)
+#   os.write(tmp_file, ex_text.encode('utf-8'))
+# os.close(tmp_file)
+
+# quarto.render("temp_file.qmd", output_format="html", output_file=, execute=True)
+
 
 # items[9].obj.docstring.parsed
 # preview(builder.renderer._UNHANDLED[0])

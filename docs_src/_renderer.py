@@ -128,9 +128,10 @@ class Renderer(MdRenderer):
     return tabulate(rows, header, tablefmt="github")
 
   ## examples ----
-  # @dispatch
-  # def render(self, el: ds.DocstringSectionExamples) -> str:
-  #   return super(Renderer, self).render(el)
+  @dispatch
+  def render(self, el: ds.DocstringSectionExamples) -> str:
+    self._UNHANDLED.append(el) ## todo 
+    return super(Renderer, self).render(el)
   
   # @dispatch
   # def render(self, el: ExampleText) -> str:

@@ -47,9 +47,16 @@ class SimplexTree(SimplexTreeCpp):
 		:::
 
 		Examples:
+			```{python}
+			from simplextree import SimplexTree
 			st = SimplexTree([range(3)])
 			print(st)
+			```
+			```{python}
 			st.insert([[0,1]])
+			print(st)
+			```
+
 			print(st)
 		"""
 		if isinstance(simplices, np.ndarray):

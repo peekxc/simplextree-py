@@ -1,0 +1,11 @@
+{
+  "hash": "6e267f377c48c2b9f00595999bcece8e",
+  "result": {
+    "markdown": "---\nformat:\n  html:\n    code-fold: false\nexecute:\n  freeze: auto\n  enabled: true\n---\n\n::: {.cell execution_count=1}\n``` {.python .cell-code}\nfrom simplextree import SimplexTree\nst = SimplexTree([range(3)])\nprint(st)\nst.insert([[0,1]])\nprint(st)\n```\n\n::: {.cell-output .cell-output-stdout}\n```\nSimplex Tree with (3, 3, 1) (0, 1, 2)-simplices\nSimplex Tree with (3, 3, 1) (0, 1, 2)-simplices\n```\n:::\n:::\n\n\n",
+    "supporting": [
+      "temp_file_files"
+    ],
+    "filters": [],
+    "includes": {}
+  }
+}

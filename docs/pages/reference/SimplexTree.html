@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -189,9 +223,7 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#simplextree.SimplexTree" id="toc-simplextree.SimplexTree" class="nav-link active" data-scroll-target="#simplextree.SimplexTree">SimplexTree</a>
-  <ul class="collapse">
-  <li><a href="#attributes" id="toc-attributes" class="nav-link" data-scroll-target="#attributes">Attributes</a></li>
+  <li><a href="#attributes" id="toc-attributes" class="nav-link active" data-scroll-target="#attributes">Attributes</a></li>
   <li><a href="#properties" id="toc-properties" class="nav-link" data-scroll-target="#properties">Properties</a></li>
   <li><a href="#methods" id="toc-methods" class="nav-link" data-scroll-target="#methods">Methods</a>
   <ul class="collapse">
@@ -213,17 +245,29 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#simplextree.SimplexTree.traverse" id="toc-simplextree.SimplexTree.traverse" class="nav-link" data-scroll-target="#simplextree.SimplexTree.traverse">traverse</a></li>
   <li><a href="#simplextree.SimplexTree.vertex_collapse" id="toc-simplextree.SimplexTree.vertex_collapse" class="nav-link" data-scroll-target="#simplextree.SimplexTree.vertex_collapse">vertex_collapse</a></li>
   </ul></li>
-  </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">SimplexTree</h1>
+</div>
 
 
-<section id="simplextree.SimplexTree" class="level1">
-<h1>SimplexTree</h1>
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
 <p><code>SimplexTree(self, simplices=None)</code></p>
 <p>SimplexTree provides lightweight wrapper around a Simplex Tree data structure.</p>
 <p>This class exposes a native extension module wrapping a simplex tree implemented with modern C++.</p>
@@ -578,7 +622,21 @@ Note
 </section>
 <section id="examples-2" class="level4">
 <h4 class="anchored" data-anchor-id="examples-2">Examples</h4>
-<p>st = SimplexTree([range(3)]) print(st) st.insert([[0,1]]) print(st)</p>
+<div class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> simplextree <span class="im">import</span> SimplexTree</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>st <span class="op">=</span> SimplexTree([<span class="bu">range</span>(<span class="dv">3</span>)])</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(st)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Simplex Tree with (3, 3, 1) (0, 1, 2)-simplices</code></pre>
+</div>
+</div>
+<div class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>st.insert([[<span class="dv">0</span>,<span class="dv">1</span>]])</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(st)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Simplex Tree with (3, 3, 1) (0, 1, 2)-simplices</code></pre>
+</div>
+</div>
 </section>
 </section>
 <section id="simplextree.SimplexTree.link" class="level3">
@@ -704,7 +762,6 @@ whether the collapse was performed.
 </p>
 
 
-</section>
 </section>
 </section>
 </section>
