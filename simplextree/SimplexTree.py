@@ -328,6 +328,13 @@ class SimplexTree(SimplexTreeCpp):
 			assert isinstance(f([]), bool), "Supplied callable must be boolean-valued"
 			self._expand_f(int(k), f)
 
+	def reindex(self, labels: Sequence = None) -> None:
+		"""Reindexes the vertex labels of the complex."""
+		if len(self.n_simplices) == 0: return
+		labels = list(range(self.n_simplices[0])) if labels is None else list(labels)
+		assert len(labels) == self.n_simplices[0]
+		self._reindex(labels)
+		
 	def __repr__(self) -> str:
 		if len(self.n_simplices) == 0:
 			return "< Empty simplex tree >"
