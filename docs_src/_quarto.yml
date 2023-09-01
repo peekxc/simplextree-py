@@ -72,6 +72,8 @@ website:
   page-footer: 
     center: "Copyright 2023, Matthew Piekenbrock" 
     border: true
+  body-footer: |
+    <script data-goatcounter="https://peekxc.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 
 latex-auto-install: true 
 
