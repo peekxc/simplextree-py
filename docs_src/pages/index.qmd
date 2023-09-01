@@ -60,5 +60,3 @@ The underlying C++ library is [header-only](https://en.wikipedia.org/wiki/Header
 
 Thus, to modify or extending the complex in C++, it is sufficient to add the package as a build-time dependency and append the include directory to the compilation target.
 
-<script data-goatcounter="https://peekxc.goatcounter.com/count"
-        async src="//gc.zgo.at/count.js"></script>
