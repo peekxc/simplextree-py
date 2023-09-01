@@ -239,6 +239,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#simplextree.SimplexTree.insert" id="toc-simplextree.SimplexTree.insert" class="nav-link" data-scroll-target="#simplextree.SimplexTree.insert">insert</a></li>
   <li><a href="#simplextree.SimplexTree.link" id="toc-simplextree.SimplexTree.link" class="nav-link" data-scroll-target="#simplextree.SimplexTree.link">link</a></li>
   <li><a href="#simplextree.SimplexTree.maximal" id="toc-simplextree.SimplexTree.maximal" class="nav-link" data-scroll-target="#simplextree.SimplexTree.maximal">maximal</a></li>
+  <li><a href="#simplextree.SimplexTree.reindex" id="toc-simplextree.SimplexTree.reindex" class="nav-link" data-scroll-target="#simplextree.SimplexTree.reindex">reindex</a></li>
   <li><a href="#simplextree.SimplexTree.remove" id="toc-simplextree.SimplexTree.remove" class="nav-link" data-scroll-target="#simplextree.SimplexTree.remove">remove</a></li>
   <li><a href="#simplextree.SimplexTree.simplices" id="toc-simplextree.SimplexTree.simplices" class="nav-link" data-scroll-target="#simplextree.SimplexTree.simplices">simplices</a></li>
   <li><a href="#simplextree.SimplexTree.skeleton" id="toc-simplextree.SimplexTree.skeleton" class="nav-link" data-scroll-target="#simplextree.SimplexTree.skeleton">skeleton</a></li>
@@ -399,22 +400,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td>Returns the maximal simplices in the complex.</td>
 </tr>
 <tr class="odd">
+<td><a href="#simplextree.SimplexTree.reindex">reindex</a></td>
+<td>Reindexes the vertex labels of the complex.</td>
+</tr>
+<tr class="even">
 <td><a href="#simplextree.SimplexTree.remove">remove</a></td>
 <td>Removes simplices into the Simplex Tree.</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><a href="#simplextree.SimplexTree.simplices">simplices</a></td>
 <td>Returns the p-simplices in the complex.</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><a href="#simplextree.SimplexTree.skeleton">skeleton</a></td>
 <td>Returns the simplices in the p-skeleton of <code>sigma</code>.</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td><a href="#simplextree.SimplexTree.traverse">traverse</a></td>
 <td>Traverses the simplex tree in the specified order, calling <code>f</code> on each simplex encountered.</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td><a href="#simplextree.SimplexTree.vertex_collapse">vertex_collapse</a></td>
 <td>Maps a pair of vertices into a single vertex.</td>
 </tr>
@@ -622,7 +627,7 @@ Note
 </section>
 <section id="examples-2" class="level4">
 <h4 class="anchored" data-anchor-id="examples-2">Examples</h4>
-<div class="cell" data-execution_count="1">
+<div class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> simplextree <span class="im">import</span> SimplexTree</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>st <span class="op">=</span> SimplexTree([<span class="bu">range</span>(<span class="dv">3</span>)])</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(st)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -630,13 +635,14 @@ Note
 <pre><code>Simplex Tree with (3, 3, 1) (0, 1, 2)-simplices</code></pre>
 </div>
 </div>
-<div class="cell" data-execution_count="2">
+<div class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>st.insert([[<span class="dv">0</span>,<span class="dv">1</span>]])</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(st)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Simplex Tree with (3, 3, 1) (0, 1, 2)-simplices</code></pre>
 </div>
 </div>
+<p>print(st)</p>
 </section>
 </section>
 <section id="simplextree.SimplexTree.link" class="level3">
@@ -648,6 +654,11 @@ Note
 <h3 class="anchored" data-anchor-id="simplextree.SimplexTree.maximal">maximal</h3>
 <p><code>SimplexTree.maximal(self)</code></p>
 <p>Returns the maximal simplices in the complex.</p>
+</section>
+<section id="simplextree.SimplexTree.reindex" class="level3">
+<h3 class="anchored" data-anchor-id="simplextree.SimplexTree.reindex">reindex</h3>
+<p><code>SimplexTree.reindex(self, labels=None)</code></p>
+<p>Reindexes the vertex labels of the complex.</p>
 </section>
 <section id="simplextree.SimplexTree.remove" class="level3">
 <h3 class="anchored" data-anchor-id="simplextree.SimplexTree.remove">remove</h3>

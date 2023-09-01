@@ -1,0 +1,13 @@
+# API Reference
+
+## Simplex Tree
+
+| | |
+| --- | --- |
+| [SimplexTree](SimplexTree.qmd#simplextree.SimplexTree) | SimplexTree provides lightweight wrapper around a Simplex Tree data structure. |
+
+## Union Find
+
+| | |
+| --- | --- |
+| [UnionFind](UnionFind.qmd#simplextree.UnionFind) | Union Find data structure |

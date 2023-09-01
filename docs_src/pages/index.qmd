@@ -59,3 +59,6 @@ Unit testing is handled with [pytest](https://docs.pytest.org/en/7.4.x/). See th
 The underlying C++ library is [header-only](https://en.wikipedia.org/wiki/Header-only) and may be included as a dependency by [extension modules](https://docs.python.org/3/extending/extending.html) in other Python packages.
 
 Thus, to modify or extending the complex in C++, it is sufficient to add the package as a build-time dependency and append the include directory to the compilation target.
+
+<script data-goatcounter="https://peekxc.goatcounter.com/count"
+        async src="//gc.zgo.at/count.js"></script>
