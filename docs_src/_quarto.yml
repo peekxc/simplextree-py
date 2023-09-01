@@ -97,5 +97,5 @@ format:
     margin-top: "4px" 
     css: /static/styles.css
     # monobackgroundcolor: "#d3d3d357"
-# out_index: pages/index.qmd
+out_index: pages/index.qmd
 # sphinx-build . ./_build/html -b html
