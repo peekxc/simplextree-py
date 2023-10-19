@@ -286,6 +286,8 @@ class SimplexTree(SimplexTreeCpp):
 	
 	def faces(self, p: int = None, sigma: Collection = [], **kwargs) -> Iterable[Collection]:
 		"""Wrapper for simplices function."""
+		if p is None and sigma == []:
+			return self.simplices()
 		return self.skeleton(p, sigma)
 	
 	def maximal(self) -> Iterable[Collection]:
