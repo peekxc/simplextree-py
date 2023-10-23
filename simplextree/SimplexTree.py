@@ -284,11 +284,10 @@ class SimplexTree(SimplexTreeCpp):
 			self._traverse(6, lambda s: F.append(s), [], p) # order, f, init, k
 		return F
 	
+	## TODO: fix to incoporate actual faces traversal
 	def faces(self, p: int = None, sigma: Collection = [], **kwargs) -> Iterable[Collection]:
 		"""Wrapper for simplices function."""
-		if p is None and sigma == []:
-			return self.simplices()
-		return self.skeleton(p, sigma)
+		return self.simplices(p=p)
 	
 	def maximal(self) -> Iterable[Collection]:
 		"""Returns the maximal simplices in the complex."""
