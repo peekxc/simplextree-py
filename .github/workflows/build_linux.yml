@@ -46,7 +46,7 @@ jobs:
         echo "COV_PERCENT=$COV_PERCENT" >> $GITHUB_ENV
     - if: matrix.os == 'ubuntu-latest'  
       name: Create coverage badge
-      uses: schneegans/dynamic-badges-action@v1.6.0
+      uses: schneegans/dynamic-badges-action@v1.7.0
       with:
         auth: ${{ secrets.GIST_SECRET }}
         gistID: ef42349965f40edf4232737026690c5f
