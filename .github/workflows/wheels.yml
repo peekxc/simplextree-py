@@ -23,7 +23,7 @@ jobs:
           fetch-depth: 0
           submodules: true 
 
-      - uses: actions/setup-python@v4
+      - uses: actions/setup-python@v5
         name: Install Python
         with:
           python-version: "3.9"
@@ -86,7 +86,7 @@ jobs:
           fetch-depth: 0
           submodules: true
 
-      - uses: actions/setup-python@v4
+      - uses: actions/setup-python@v5
         name: Install Python
         with:
           python-version: "3.9"
@@ -168,7 +168,7 @@ jobs:
         with:
           submodules: true
 
-      - uses: actions/setup-python@v4
+      - uses: actions/setup-python@v5
         name: Install Python
         with:
           python-version: "3.9"
@@ -203,7 +203,7 @@ jobs:
       with:
         submodules: true 
     
-    - uses: actions/setup-python@v4
+    - uses: actions/setup-python@v5
       name: Install Python
       with:
         python-version: "3.9"
