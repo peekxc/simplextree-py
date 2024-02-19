@@ -116,6 +116,11 @@ def test_properties():
   assert np.allclose(st.quads, np.empty(shape=(0,4)))
   assert np.allclose(st.connected_components, [1,1,1])
 
+def test_degenerate():
+  st = SimplexTree([[0,1,2], [0,1], [4,5], [1,4], [1,5]])
+  assert len(st.simplices(0)) == 5
+  assert len(st.simplices(-1)) == 0
+
 def test_expand():
   from itertools import combinations
   st = SimplexTree()

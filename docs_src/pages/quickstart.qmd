@@ -17,7 +17,7 @@ You can construct a `SimplexTree` by supplying simplices. Any collection of inte
 #| lst-cap: The SimplexTree class provides light wrapper around the extension module
 #| output: true
 #| code-summary: SimplexTree constructor
-from simplextree import SimplexTree 
+from simplextree import SimplexTree
 st = SimplexTree([[0,1,2], [0,1], [4,5]]) 
 print(st) 
 ```
@@ -94,7 +94,22 @@ st.expand(2)
 print(st)
 ```
 
-The trie-structure can also be inspected on the python side:
+The trie-structure can also be inspected on the python side with `print_tree`:
 ```{python}
 st.print_tree()
 ```
+
+Yet another way is to _traverse_ the complex in a depth-first manner (prefix-order), printing every simplex as it appears in the traversal:
+```{python}
+st.traverse("dfs", f=print)
+```
+
+Several traversal orderings are provided, e.g. breadth-first could be used as well (level-order):
+
+```{python}
+st.traverse("bfs", f=print)
+```
+
+In fact, most operations on the Simplex tree are actually _implemented_ using traversals. For example, 
+
+st.traverse("maximal", f=print)
