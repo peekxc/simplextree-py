@@ -3,6 +3,7 @@
 
 #include "simplextree.h"
 
+#include <iostream>
 
 // --------- Begin C++ only API --------- 
 // These functions are only available through the included header, and thus can only be accessed 
@@ -630,16 +631,36 @@ inline bool SimplexTree::vertex_collapse(node_ptr vp1, node_ptr vp2, node_ptr vt
 inline bool SimplexTree::collapse(node_ptr tau, node_ptr sigma){
   if (tau == nullptr || sigma == nullptr){ return false; }
 	auto tau_cofaces = st::cofaces< false >(this, tau);
-	bool sigma_only_coface = true; 
-	traverse(tau_cofaces, [&tau, &sigma, &sigma_only_coface](node_ptr coface, idx_t depth){
+	
+  // To satisfy the precondition that tau is a face of sigma, rather than face-checking, we simply enumerate 
+  // tau's cofaces as required by the collapse anyways, stopping early if we encounter any coface not equal to sigma or tau. 
+  bool sigma_only_coface = true; 
+  int n_coface = 0;
+	traverse(tau_cofaces, [&tau, &sigma, &sigma_only_coface, &n_coface](node_ptr coface, idx_t depth){
 		sigma_only_coface &= (coface == tau) || (coface == sigma);
+    ++n_coface;
 		return(sigma_only_coface); 
 	});
-	if (sigma_only_coface){
-		remove_leaf(sigma->parent, sigma->label);
-  	remove_leaf(tau->parent, tau->label);
-		return(true);
-	}
+
+  // If both conditions here pass, then 
+	if (sigma_only_coface && n_coface == 2){
+    remove_leaf(sigma->parent, sigma->label);
+    if (tau){ 
+      remove_leaf(tau->parent, tau->label);
+    }
+    return(true);
+  }
+    // "either the node representing tau in the simplex tree is a leaf (and so is the node representing sigma)"
+		// if (tau->children.empty()){
+    //   std::cout << "Condition 1" << std::endl; 
+    //   remove_leaf(sigma->parent, sigma->label);
+    //   remove_leaf(tau->parent, tau->label);
+    //   return(true);
+    // } else {
+    // // "...or tau has the node representing sigma as its unique child."
+    //   remove_subtree()
+    // }
+	// }
 	return(false);
 }
 

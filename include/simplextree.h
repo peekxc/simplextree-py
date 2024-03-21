@@ -140,6 +140,7 @@ struct SimplexTree {
 	
 	// Removes node ptr from cousin map
 	void remove_cousin(node_ptr cn, const idx_t depth){
+    if (cn == nullptr){ return; }
 	  if (depth_index(depth) >= level_map.size()){ return; }
 	  auto& depth_map = level_map[depth_index(depth)];
 	  auto cousin_it = depth_map.find(cn->label);
