@@ -1,5 +1,5 @@
 from __future__ import annotations
-from typing import *
+from typing import Iterable, Collection
 from numbers import Integral
 from numpy.typing import ArrayLike
 
@@ -127,30 +127,30 @@ class SimplexTree(SimplexTreeCpp):
         """Checks for adjacencies between simplices."""
         return self._adjacent(list(map(lambda x: np.asarray(x, dtype=np.uint16), simplices)))
 
-    def collapse(self, tau: Collection, sigma: Collection) -> bool:
+    def collapse(self, sigma: Collection, tau: Collection) -> bool:
         """Performs an elementary collapse on two given simplices. 
 
 		Checks whether its possible to collapse $\\sigma$ through $\\tau$, and if so, both simplices are removed. 
 		A simplex $\\sigma$ is said to be collapsible through one of its faces $\\tau$ if $\\sigma$ is the only coface of $\\tau$ (excluding $\\tau$ itself). 
 		
 		Parameters:
-			sigma: maximal simplex to collapse
-			tau: face of sigma to collapse 
+            sigma: maximal simplex to collapse
+            tau: face of sigma to collapse 
 
 		Returns:
 			collapsed (bool): whether the pair was collapsed
 
 		Examples:
 
-			from splex import SimplexTree 
+			from simplextree import SimplexTree 
 			st = SimplexTree([[0,1,2]])
 			print(st)
 
-			st.collapse([1,2], [0,1,2])
-
+			st.collapse([0,1,2], [1,2])
 			print(st)
 		"""
-        # assert tau in boundary(sigma), f"Simplex {tau} is not in the boundary of simplex {sigma}"
+        if len(sigma) != (len(tau) + 1): # , f"Simplex {tau} not in the boundary of simplex {sigma}"
+            return False
         success = self._collapse(tau, sigma)
         return success
 
@@ -166,8 +166,7 @@ class SimplexTree(SimplexTreeCpp):
 			collapsed: whether the collapse was performed.
 		"""
         u, v, w = int(u), int(v), int(w)
-        assert all([isinstance(e, Integral) for e in [u, v, w]
-                    ]), f"Unknown vertex types given; must be integral"
+        assert all([isinstance(e, Integral) for e in [u, v, w]]), f"Unknown vertex types given; must be integral"
         return self._vertex_collapse(u, v, w)
 
     def degree(self, vertices: Optional[ArrayLike] = None) -> Union[ArrayLike, int]:
@@ -364,6 +363,9 @@ class SimplexTree(SimplexTreeCpp):
     def __len__(self) -> int:
         return int(sum(self.n_simplices))
 
+    def dim(self, p:int = None) -> int:
+        return len(self.n_simplices) - 1
+    
     def card(self, p: int = None) -> Union[int, tuple]:
         """Returns the cardinality of various skeleta of the complex.
 		

@@ -144,6 +144,18 @@ def test_expand():
   st.expand(3, lambda s: True)
   assert list(st.n_simplices) == [5,6,2]
 
+def test_free_pair_collapse():
+  from simplextree import SimplexTree
+  PrincipalFaces = [[0,1],[0,3],[1,2],[1,4],[2,5],[4,7],[5,8],[7,8]]
+  st = SimplexTree(PrincipalFaces)
+  assert st.collapse(sigma=[0,1], tau=[0]) == False, "Collapse should fail"
+  assert st.card() == (8,8), "Not supposed to collapse maximal simplices if tau has more than one coface"
+  st.insert([[8,9]])
+  assert len(st.cofaces([9])) == 2, "This should be a free pair"
+  assert st.collapse([9], [8,9]) == False
+  assert st.collapse([8,9], [9]) == True
+  assert st.collapse([8,9], [9]) == False
+  assert st.card() == (8,8)
 
 
   # t order, py::function f, simplex_t init = simplex_t(), const size_t k = 0
