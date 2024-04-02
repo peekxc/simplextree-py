@@ -684,7 +684,8 @@ inline vector< idx_t > SimplexTree::connected_components() const{
 }
 
 // Edge contraction 
-inline void SimplexTree::contract(vector< idx_t > edge){
+inline bool SimplexTree::contract(vector< idx_t > edge){
+  if (edge.size() != 2){ return false; }
   vector< simplex_t > to_remove;
   vector< simplex_t > to_insert; 
   traverse(st::preorder< true >(this, root.get()), [this, edge, &to_remove, &to_insert](node_ptr np, idx_t depth, simplex_t sigma){
@@ -707,11 +708,14 @@ inline void SimplexTree::contract(vector< idx_t > edge){
     return true; 
   });
   
-  // for (auto& edge: to_remove){ print_simplex(std::cout, edge, true); }
-  
   // Remove the simplices containing vb
-	for (auto& edge: to_remove){ remove(find(edge)); }
-	for (auto& edge: to_insert){ insert(edge); }
+  if (to_remove.size() > 0 || to_insert.size() > 0){
+    for (auto& edge: to_remove){ remove(find(edge)); }
+	  for (auto& edge: to_insert){ insert(edge); }
+    return true; 
+  } else {
+    return false;
+  }
 }
 
 template < typename Lambda > // Assume lambda is boolean return 

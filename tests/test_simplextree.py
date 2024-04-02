@@ -157,7 +157,17 @@ def test_free_pair_collapse():
   assert st.collapse([8,9], [9]) == False
   assert st.card() == (8,8)
 
+def test_contract():
+  from simplextree import SimplexTree
+  st = SimplexTree([[0,1,2]]) 
+  assert st.contract([0,2]), "Contraction failed"
+  assert st.simplices() == [(0,), (1,), (0,1)]
 
+  ## Test picture from surface simplification 
+  st = SimplexTree([[1,3,5], [1,5,6], [1,2,3], [1,2,4], [1,6,7], [1,4,7], [2,3,8], [2,4,10], [2,8,9], [2,9,10]]) 
+  assert st.contract([1,2]), "Contraction failed"
+  assert st.simplices(2) == [(1, 3, 5),(1, 3, 8), (1, 4, 7), (1, 4, 10), (1, 5, 6), (1, 6, 7), (1, 8, 9), (1, 9, 10)]
+  assert not([2] in st), "Vertex in contraction not removed"
   # t order, py::function f, simplex_t init = simplex_t(), const size_t k = 0
   # stree._traverse(0, lambda s: print(Simplex(s)), [], 0)
   # stree._traverse(1, lambda s: print(s), [], 0)

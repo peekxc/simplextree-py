@@ -217,7 +217,7 @@ struct SimplexTree {
   auto collapse(node_ptr, node_ptr) -> bool;
   auto vertex_collapse(idx_t, idx_t, idx_t) -> bool;
   auto vertex_collapse(node_ptr, node_ptr, node_ptr) -> bool;
-  auto contract(simplex_t) -> void;
+  auto contract(simplex_t) -> bool;
 
   auto expansion(const idx_t k) -> void;
   

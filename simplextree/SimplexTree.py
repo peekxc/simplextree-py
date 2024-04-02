@@ -1,5 +1,5 @@
 from __future__ import annotations
-from typing import Iterable, Collection
+from typing import Iterable, Collection, Optional, Union, Callable, Iterator, Sequence
 from numbers import Integral
 from numpy.typing import ArrayLike
 
@@ -65,8 +65,7 @@ class SimplexTree(SimplexTreeCpp):
             assert simplices.ndim in [1, 2], "dimensions should be 1 or 2"
             self._insert(simplices)
         elif isinstance(simplices, Iterable):
-            self._insert_list(
-                list(map(lambda x: np.asarray(x, dtype=np.uint16), simplices)))
+            self._insert_list(list(map(lambda x: np.asarray(x, dtype=np.uint16), simplices)))
         else:
             raise ValueError("Invalid type given")
 
@@ -94,8 +93,7 @@ class SimplexTree(SimplexTreeCpp):
             assert simplices.ndim in [1, 2], "dimensions should be 1 or 2"
             self._remove(simplices)
         elif isinstance(simplices, Iterable):
-            self._remove_list(
-                list(map(lambda x: np.asarray(x, dtype=np.uint16), simplices)))
+            self._remove_list(list(map(lambda x: np.asarray(x, dtype=np.uint16), simplices)))
         else:
             raise ValueError("Invalid type given")
 
@@ -152,6 +150,34 @@ class SimplexTree(SimplexTreeCpp):
         if len(sigma) != (len(tau) + 1): # , f"Simplex {tau} not in the boundary of simplex {sigma}"
             return False
         success = self._collapse(tau, sigma)
+        return success
+
+    def contract(self, edge: Collection) -> None:
+        """Performs an edge contraction. 
+
+		This function performs an edge contraction: given an edge $(va, vb)$, vertex $vb$ is said to *contract*
+        to $va$ if $vb$ is removed from the complex and the link of $va$ is augmented with the link of $vb$. 
+
+        Note here `edge` is **not** sorted like other simplex inputs: the second vertex is always contracted to the first, and this operation is not symmetric. 
+
+		Parameters:
+            edge: edge to contract
+
+		Examples:
+
+			from simplextree import SimplexTree 
+			st = SimplexTree([[0,1,2]]) 
+            st.print()
+            # 0 1 2 0 0 1 0
+            #       1 2 2 1
+            #             2
+            st.contract([0,2])
+            # True
+            st.print()
+            # 0 1 0
+            #     1
+		"""
+        success = self._contract(edge)
         return success
 
     def vertex_collapse(self, u: int, v: int, w: int) -> bool:
