@@ -28,7 +28,7 @@ The easiest way to install the package is via the platform-specific [wheels](htt
 python -m pip install simplextree 
 ```
 
-You can also `pip install` the package manually by downloading the appropriate wheel (or sdist) from the [releases](https://github.com/peekxc/simplextree-py/releases/).
+You can also install the package manually by downloading the appropriate wheel (or sdist) from the [releases](https://github.com/peekxc/simplextree-py/releases/).
 
 For installation instructions for developers looking to extend the package, see [Building & Developing](#building--developing).
 
