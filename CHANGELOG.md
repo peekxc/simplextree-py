@@ -6,6 +6,8 @@ This project loosely adheres to [semantic versioning](https://semver.org/spec/v2
 
 ## Unreleased [v0.1.3] - 2024-07-16
 
+## [v0.1.3](https://github.com/peekxc/simplextree-py/releases/tag/v0.1.3) - 2024-07-16
+
 ## [v0.1.1](https://github.com/peekxc/simplextree-py/releases/tag/v0.1.1) - 2024-07-16
 
 - Added ability to change the default simplex output type via the `s_type` Callable
