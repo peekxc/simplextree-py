@@ -7,8 +7,9 @@ This project loosely adheres to [semantic versioning](https://semver.org/spec/v2
 ## Unreleased [v0.1.2]
 
 - Exported underlying `st.reindex()` function to allow node relabeling
-- Added ability to chaneg the default simplex output type via the `s_type` Callable
+- Added ability to change the default simplex output type via the `s_type` Callable
 - Re-added vertex/edge contraction to the API
+- Minor performance improvement across the board by switching to vector-based node children 
 
 ## [v0.1.1](https://github.com/peekxc/simplextree-py/releases/tag/v0.1.1) - 2023-08-20
 
