@@ -1,9 +1,5 @@
-## Message the C++ compiler location for debugging
-compiler = meson.get_compiler('cpp')
-message('Compiler = '+compiler.get_id())
-
 ## Compiler flags
-_cpp_args = compiler.get_supported_arguments(
+_cpp_args += compiler.get_supported_arguments(
   '-Wno-unused-parameter', 
   '-Wno-reserved-identifier', 
   '/Wc++11-extensions',
@@ -36,6 +32,9 @@ endif
 # else
 #   cpp_std_args = ['/std:c++11']
 # endif 
+
+message('C++ version arguments: ')
+message(override_args)
 
 ## Extension modules
 py.extension_module(

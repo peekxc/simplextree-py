@@ -74,7 +74,8 @@ struct SimplexTree {
 	struct less_ptr {
     bool operator() (const node_uptr& lhs, const node_uptr& rhs) const { return (*lhs) < (*rhs); }
   };
-	using node_set_t = set< node_uptr, less_ptr >;
+	// using node_set_t = set< node_uptr, less_ptr >;
+  using node_set_t = vector< node_uptr >;
   using simplex_t = vector< idx_t >; 
   using cousin_map_t = std::map< idx_t, vector< node_ptr > >;
   using difference_type = std::ptrdiff_t;
@@ -217,7 +218,7 @@ struct SimplexTree {
   auto collapse(node_ptr, node_ptr) -> bool;
   auto vertex_collapse(idx_t, idx_t, idx_t) -> bool;
   auto vertex_collapse(node_ptr, node_ptr, node_ptr) -> bool;
-  auto contract(simplex_t) -> void;
+  auto contract(simplex_t) -> bool;
 
   auto expansion(const idx_t k) -> void;
   
@@ -225,7 +226,7 @@ struct SimplexTree {
   auto expansion_f(const idx_t, Lambda&&) -> void;
   
   template < typename Lambda >
-  auto expand_f(node_set_t&, const idx_t, size_t, Lambda&&) -> void;
+  auto expand_f(node_set_t&, const idx_t, size_t, Lambda&&, SmallVector< node_ptr >&, SmallVector< node_ptr >&) -> void;
   
   template < typename Lambda > 
 	void traverse_up(node_ptr, const size_t, Lambda&&) const noexcept;

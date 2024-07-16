@@ -1,5 +1,5 @@
 from __future__ import annotations
-from typing import Iterable, Collection
+from typing import Iterable, Collection, Optional, Union, Callable, Iterator, Sequence
 from numbers import Integral
 from numpy.typing import ArrayLike
 
@@ -27,10 +27,11 @@ class SimplexTree(SimplexTreeCpp):
 		connected_components (ndarray): connected component ids.
 	"""
 
-    def __init__(self, simplices: Iterable[Collection] = None) -> None:
+    def __init__(self, simplices: Iterable[Collection] = None, s_type: Callable = tuple) -> None:
         SimplexTreeCpp.__init__(self)
         if simplices is not None:
             self.insert(simplices)
+        self.s_type = s_type 
         return None
 
     def insert(self, simplices: Iterable[Collection]) -> None:
@@ -57,16 +58,13 @@ class SimplexTree(SimplexTreeCpp):
 			st.insert([[0,1]])
 			print(st)
 			```
-
-			print(st)
 		"""
         if isinstance(simplices, np.ndarray):
             simplices = np.sort(simplices, axis=1).astype(np.uint16)
             assert simplices.ndim in [1, 2], "dimensions should be 1 or 2"
             self._insert(simplices)
         elif isinstance(simplices, Iterable):
-            self._insert_list(
-                list(map(lambda x: np.asarray(x, dtype=np.uint16), simplices)))
+            self._insert_list(list(map(lambda x: np.asarray(x, dtype=np.uint16), simplices)))
         else:
             raise ValueError("Invalid type given")
 
@@ -94,8 +92,7 @@ class SimplexTree(SimplexTreeCpp):
             assert simplices.ndim in [1, 2], "dimensions should be 1 or 2"
             self._remove(simplices)
         elif isinstance(simplices, Iterable):
-            self._remove_list(
-                list(map(lambda x: np.asarray(x, dtype=np.uint16), simplices)))
+            self._remove_list(list(map(lambda x: np.asarray(x, dtype=np.uint16), simplices)))
         else:
             raise ValueError("Invalid type given")
 
@@ -152,6 +149,41 @@ class SimplexTree(SimplexTreeCpp):
         if len(sigma) != (len(tau) + 1): # , f"Simplex {tau} not in the boundary of simplex {sigma}"
             return False
         success = self._collapse(tau, sigma)
+        return success
+
+    def contract(self, pair: Collection) -> None:
+        """Performs an pair contraction. 
+
+		This function performs an pair contraction: given a pair of vertices $(va, vb)$, vertex $vb$ is said to *contract*
+        to $va$ if $vb$ is removed from the complex and the link of $va$ is augmented with the link of $vb$. 
+
+        Some notes about `pair` are in order: 
+            - `pair` is **not** sorted like other simplex inputs
+            - The second vertex is always contracted to the first
+            - `pair` need not be an existing simplex (edge) in the complex 
+            - Contraction is not symmetric. 
+
+		Parameters:
+            edge: edge to contract
+		
+        Returns:
+			contracted (bool): whether the pair was contracted
+
+		Examples:
+
+			from simplextree import SimplexTree 
+			st = SimplexTree([[0,1,2]]) 
+            st.print()
+            # 0 1 2 0 0 1 0
+            #       1 2 2 1
+            #             2
+            st.contract([0,2])
+            # True
+            st.print()
+            # 0 1 0
+            #     1
+		"""
+        success = self._contract(pair)
         return success
 
     def vertex_collapse(self, u: int, v: int, w: int) -> bool:
@@ -232,6 +264,7 @@ class SimplexTree(SimplexTreeCpp):
         else:
             raise ValueError(f"Unknown order '{order}' specified")
         assert isinstance(int(p),int), f"Invalid argument type '{type(p)}', must be integral"
+        sigma = [] if sigma is None else sigma
         if p >= 0:
             self._traverse(order, lambda s: f(s), sigma, p)  # order, f, init, k
 
@@ -249,7 +282,7 @@ class SimplexTree(SimplexTreeCpp):
         if sigma == [] or len(sigma) == 0:
             return self.simplices()
         F = []
-        self._traverse(3, lambda s: F.append(s), sigma, 0)  # order, f, init, k
+        self._traverse(3, lambda s: F.append(self.s_type(s)), sigma, 0)  # order, f, init, k
         return F
 
     def coface_roots(self, sigma: Collection = []) -> list[Collection]:
@@ -264,7 +297,7 @@ class SimplexTree(SimplexTreeCpp):
 			coface_roots: the coface roots of `sigma`.
 		"""
         F = []
-        self._traverse(4, lambda s: F.append(s), sigma, 0)  # order, f, init, k
+        self._traverse(4, lambda s: F.append(self.s_type(s)), sigma, 0)  # order, f, init, k
         return F
 
     def skeleton(self, p: int = None, sigma: Collection = []) -> Iterable[Collection]:
@@ -279,21 +312,22 @@ class SimplexTree(SimplexTreeCpp):
 		Returns:
 			list: the simplices in the p-skeleton of `sigma`.
 		"""
+        p = self.dim() if p is None else p
         assert isinstance(int(p),int), f"Invalid argument type '{type(p)}', must be integral"
         F = []
         if p >= 0: 
-            self._traverse(5, lambda s: F.append(s), sigma, p)
+            self._traverse(5, lambda s: F.append(self.s_type(s)), sigma, p)
         return F
 
     def simplices(self, p: int = None) -> Iterable[Collection]:
         """Returns the p-simplices in the complex."""
         F = []
         if p is None:
-            self._traverse(1, lambda s: F.append(s), [], 0)  # order, f, init, k
+            self._traverse(1, lambda s: F.append(self.s_type(s)), [], 0)  # order, f, init, k
         else:
             assert isinstance(int(p),int), f"Invalid argument type '{type(p)}', must be integral"
             if p >= 0:
-                self._traverse(6, lambda s: F.append(s), [], p)  # order, f, init, k
+                self._traverse(6, lambda s: F.append(self.s_type(s)), [], p)  # order, f, init, k
         return F
 
     ## TODO: fix to incorporate actual faces traversal
@@ -304,13 +338,13 @@ class SimplexTree(SimplexTreeCpp):
     def maximal(self) -> Iterable[Collection]:
         """Returns the maximal simplices in the complex."""
         F = []
-        self._traverse(7, lambda s: F.append(s), [], 0)
+        self._traverse(7, lambda s: F.append(self.s_type(s)), [], 0)
         return F
 
     def link(self, sigma: Collection = []) -> Iterable[Collection]:
         """Returns the simplices in the link of `sigma`."""
         F = []
-        self._traverse(8, lambda s: F.append(s), sigma, 0)
+        self._traverse(8, lambda s: F.append(self.s_type(s)), sigma, 0)
         return F
 
     def expand(self, k: int, f: Callable[[Collection], bool] = None) -> None:
@@ -352,7 +386,7 @@ class SimplexTree(SimplexTreeCpp):
     def __repr__(self) -> str:
         if len(self.n_simplices) == 0:
             return "< Empty simplex tree >"
-        return f"Simplex Tree with {tuple(self.n_simplices)} {tuple(range(0,self.dimension+1))}-simplices"
+        return f"Simplex Tree with {tuple(map(int, self.n_simplices))} {tuple(range(0,self.dimension+1))}-simplices"
 
     def __iter__(self) -> Iterator[Collection]:
         yield from self.simplices()

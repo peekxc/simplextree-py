@@ -148,7 +148,7 @@ def test_free_pair_collapse():
   from simplextree import SimplexTree
   PrincipalFaces = [[0,1],[0,3],[1,2],[1,4],[2,5],[4,7],[5,8],[7,8]]
   st = SimplexTree(PrincipalFaces)
-  assert st.collapse(sigma=[0,1], tau=[0]) == False, "Collapse should fail"
+  assert not st.collapse(sigma=[0,1], tau=[0]), "Collapse should fail"
   assert st.card() == (8,8), "Not supposed to collapse maximal simplices if tau has more than one coface"
   st.insert([[8,9]])
   assert len(st.cofaces([9])) == 2, "This should be a free pair"
@@ -157,6 +157,22 @@ def test_free_pair_collapse():
   assert st.collapse([8,9], [9]) == False
   assert st.card() == (8,8)
 
+def test_contract():
+  from simplextree import SimplexTree
+  st = SimplexTree([[0,1,2]]) 
+  assert st.contract([0,2]), "Contraction failed"
+  assert st.simplices() == [(0,), (1,), (0,1)]
+
+  ## Test picture from surface simplification 
+  st = SimplexTree([[1,3,5], [1,5,6], [1,2,3], [1,2,4], [1,6,7], [1,4,7], [2,3,8], [2,4,10], [2,8,9], [2,9,10]]) 
+  assert st.contract([1,2]), "Contraction failed"
+  assert st.simplices(2) == [(1, 3, 5),(1, 3, 8), (1, 4, 7), (1, 4, 10), (1, 5, 6), (1, 6, 7), (1, 8, 9), (1, 9, 10)]
+  assert not([2] in st), "Vertex in contraction not removed"
+
+  # ## Non-edge contraction
+  # st = SimplexTree([[1,2,3], [4,5,6]])
+  # st.contract([2,4])
+  # st.simplices(1)
 
   # t order, py::function f, simplex_t init = simplex_t(), const size_t k = 0
   # stree._traverse(0, lambda s: print(Simplex(s)), [], 0)

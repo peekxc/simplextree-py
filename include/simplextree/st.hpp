@@ -212,7 +212,8 @@ inline void SimplexTree::remove(node_ptr cn){
 
 template< typename Iter >
 inline auto SimplexTree::append_node(Iter pos, node_ptr cn, idx_t label, size_t depth) -> node_set_t::iterator {
-  auto new_it = cn->children.emplace_hint(pos, make_unique< node >(label, cn));
+  // auto new_it = cn->children.emplace_hint(pos, make_unique< node >(label, cn)); // set 
+  auto new_it = cn->children.emplace(pos, make_unique< node >(label, cn)); // vector
   add_cousin((*new_it).get(), depth);
   record_new_simplexes(depth-1, 1);
   return(new_it);
@@ -264,13 +265,22 @@ inline void SimplexTree::insert_it(Iter s, Iter e, node_ptr c_node, const idx_t 
     //   }
     //   record_new_simplexes(child_depth-1, 1);
     // } else {
-      auto it = std::find_if(begin(node_children(c_node)), end(node_children(c_node)), [label](const node_uptr& cn){
-        return(cn->label == label);
+      // original 
+      // auto it = std::find_if(begin(node_children(c_node)), end(node_children(c_node)), [label](const node_uptr& cn){
+      //   return(cn->label == label);
+      // });
+      auto it = std::lower_bound(begin(node_children(c_node)), end(node_children(c_node)), label, [](const node_uptr& cn, idx_t c_label){
+        return cn->label < c_label;
       });
-      if (it == end(c_node->children)){
-        auto new_it = c_node->children.emplace_hint(it, make_unique< node >(label, c_node));
+      if (it == end(c_node->children) || (*it)->label != label){
+        // auto new_it = c_node->children.emplace_hint(it, make_unique< node >(label, c_node)); // set 
+        // auto& new_it = c_node->children.emplace_back(make_unique< node >(label, c_node)); // vector
+        auto new_it = c_node->children.emplace(it, make_unique< node >(label, c_node)); // vector
+        
         if (child_depth > 1){ // keep track of nodes which share ids at the same depth
-          add_cousin((*new_it).get(), child_depth);
+          // add_cousin((*new_it).get(), child_depth); // set 
+          // add_cousin(new_it.get(), child_depth); // vector
+          add_cousin((*new_it).get(), child_depth); // vector emplace 
         }
         record_new_simplexes(child_depth-1, 1);
       }
@@ -439,8 +449,10 @@ inline void SimplexTree::print_simplex(OutputStream& os, node_ptr cn, bool newli
 
 // Performs the default expansion of order k, reconstructing the k-skeleton flag complex via an in-depth expansion of the 1-skeleton.
 inline void SimplexTree::expansion(const idx_t k){
-  expansion_f(k, [this](node_ptr parent, idx_t depth, idx_t label){
-    std::array< idx_t, 1 > int_label = { label };
+  std::array< idx_t, 1 > int_label = { 0 };
+  expansion_f(k, [this, &int_label](node_ptr parent, idx_t depth, idx_t label){
+    // std::array< idx_t, 1 > int_label = { label };
+    int_label[0] = label; 
     insert_it(begin(int_label), end(int_label), parent, depth);
   });
 }
@@ -448,9 +460,13 @@ inline void SimplexTree::expansion(const idx_t k){
 // Global expansion operation: calls expand_f on all children of the root node
 template < typename Lambda >
 inline void SimplexTree::expansion_f(const idx_t k, Lambda&& f){
+  SmallVector< node_ptr >::allocator_type::arena_type arena1;
+  SmallVector< node_ptr > intersection { arena1 };
+  SmallVector< node_ptr >::allocator_type::arena_type arena2;
+  SmallVector< node_ptr > sib_ptrs { arena2 } ;
   for (auto& cn: node_children(root)){ 
     if (!node_children(cn).empty()){ 
-			expand_f(cn->children, k-1, 2, f); 
+			expand_f(cn->children, k-1, 2, f, intersection, sib_ptrs); 
 		}
   }
 }
@@ -458,19 +474,26 @@ inline void SimplexTree::expansion_f(const idx_t k, Lambda&& f){
 // Local expand operation checks A \cap N^+(vj) \neq \emptyset
 // If they have a non-empty intersection, then the intersection is added as a child to the head node and expand is recursivey called. 
 template < typename Lambda >
-inline void SimplexTree::expand_f(node_set_t& c_set, const idx_t k, size_t depth, Lambda&& f){
+inline void SimplexTree::expand_f(
+  node_set_t& c_set, const idx_t k, size_t depth, 
+  Lambda&& f, 
+  SmallVector< node_ptr >& intersection, 
+  SmallVector< node_ptr >& sib_ptrs
+){
   if (k == 0 || c_set.empty()){ return; }
   // Traverse the children
   auto siblings = std::next(begin(c_set), 1);
-  SmallVector< node_ptr >::allocator_type::arena_type arena1;
-  SmallVector< node_ptr > intersection { arena1 };
+  // SmallVector< node_ptr >::allocator_type::arena_type arena1;
+  // SmallVector< node_ptr > intersection { arena1 };
+  intersection.clear();
   for (auto& cn: c_set){
     node_ptr top_v = find_by_id(root->children, cn->label);
     if (top_v != nullptr && (!top_v->children.empty())){
       
 			// Temporary 
-			SmallVector< node_ptr >::allocator_type::arena_type arena2;
-			SmallVector< node_ptr > sib_ptrs { arena2 } ;
+			// SmallVector< node_ptr >::allocator_type::arena_type arena2;
+			// SmallVector< node_ptr > sib_ptrs { arena2 } ;
+      sib_ptrs.clear();
 			std::transform(siblings, end(c_set), std::back_inserter(sib_ptrs), [](const node_uptr& n){
 				return (node_ptr) n.get();
 			});
@@ -492,7 +515,7 @@ inline void SimplexTree::expand_f(node_set_t& c_set, const idx_t k, size_t depth
             f((node_ptr) cn.get(), depth, int_node->label);
           }
         }
-        expand_f(cn->children, k-1, depth+1, f); // recurse
+        expand_f(cn->children, k-1, depth+1, f, intersection, sib_ptrs); // recurse
       }
     }
     if (siblings != end(c_set)){ ++siblings; }
@@ -684,7 +707,8 @@ inline vector< idx_t > SimplexTree::connected_components() const{
 }
 
 // Edge contraction 
-inline void SimplexTree::contract(vector< idx_t > edge){
+inline bool SimplexTree::contract(vector< idx_t > edge){
+  if (edge.size() != 2){ return false; }
   vector< simplex_t > to_remove;
   vector< simplex_t > to_insert; 
   traverse(st::preorder< true >(this, root.get()), [this, edge, &to_remove, &to_insert](node_ptr np, idx_t depth, simplex_t sigma){
@@ -707,11 +731,14 @@ inline void SimplexTree::contract(vector< idx_t > edge){
     return true; 
   });
   
-  // for (auto& edge: to_remove){ print_simplex(std::cout, edge, true); }
-  
   // Remove the simplices containing vb
-	for (auto& edge: to_remove){ remove(find(edge)); }
-	for (auto& edge: to_insert){ insert(edge); }
+  if (to_remove.size() > 0 || to_insert.size() > 0){
+    for (auto& edge: to_remove){ remove(find(edge)); }
+	  for (auto& edge: to_insert){ insert(edge); }
+    return true; 
+  } else {
+    return false;
+  }
 }
 
 template < typename Lambda > // Assume lambda is boolean return 
