@@ -42,7 +42,11 @@ void insert_(SimplexTree& st, const py::array_t< idx_t >& simplices){
   });
 }
 void insert_list(SimplexTree& st, std::list< simplex_t > L){
-  for (auto s: L){ st.insert(simplex_t(s)); }
+  for (auto s: L){ 
+    // st.insert(simplex_t(s)); 
+    st.insert(s);
+    // st.insert_it(s.begin(), root.get(), 0)
+  }
 }
 
 void remove_(SimplexTree& st, const py::array_t< idx_t >& simplices){

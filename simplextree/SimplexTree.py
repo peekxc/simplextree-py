@@ -58,8 +58,6 @@ class SimplexTree(SimplexTreeCpp):
 			st.insert([[0,1]])
 			print(st)
 			```
-
-			print(st)
 		"""
         if isinstance(simplices, np.ndarray):
             simplices = np.sort(simplices, axis=1).astype(np.uint16)

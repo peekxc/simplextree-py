@@ -37,6 +37,9 @@ endif
 #   cpp_std_args = ['/std:c++11']
 # endif 
 
+message('C++ version arguments: ')
+message(override_args)
+
 ## Extension modules
 py.extension_module(
   '_simplextree',
