@@ -388,7 +388,7 @@ class SimplexTree(SimplexTreeCpp):
     def __repr__(self) -> str:
         if len(self.n_simplices) == 0:
             return "< Empty simplex tree >"
-        return f"Simplex Tree with {tuple(self.n_simplices)} {tuple(range(0,self.dimension+1))}-simplices"
+        return f"Simplex Tree with {tuple(map(int, self.n_simplices))} {tuple(range(0,self.dimension+1))}-simplices"
 
     def __iter__(self) -> Iterator[Collection]:
         yield from self.simplices()
