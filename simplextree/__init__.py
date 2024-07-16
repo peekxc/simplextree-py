@@ -3,7 +3,8 @@
 # import sys
 # sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
-__version__ = '0.1.1'
+import importlib.metadata
+__version__ = importlib.metadata.version("simplextree")
 
 from .SimplexTree import SimplexTree
 from .UnionFind import UnionFind
