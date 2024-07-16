@@ -152,16 +152,23 @@ class SimplexTree(SimplexTreeCpp):
         success = self._collapse(tau, sigma)
         return success
 
-    def contract(self, edge: Collection) -> None:
-        """Performs an edge contraction. 
+    def contract(self, pair: Collection) -> None:
+        """Performs an pair contraction. 
 
-		This function performs an edge contraction: given an edge $(va, vb)$, vertex $vb$ is said to *contract*
+		This function performs an pair contraction: given a pair of vertices $(va, vb)$, vertex $vb$ is said to *contract*
         to $va$ if $vb$ is removed from the complex and the link of $va$ is augmented with the link of $vb$. 
 
-        Note here `edge` is **not** sorted like other simplex inputs: the second vertex is always contracted to the first, and this operation is not symmetric. 
+        Some notes about `pair` are in order: 
+            - `pair` is **not** sorted like other simplex inputs
+            - The second vertex is always contracted to the first
+            - `pair` need not be an existing simplex (edge) in the complex 
+            - Contraction is not symmetric. 
 
 		Parameters:
             edge: edge to contract
+		
+        Returns:
+			contracted (bool): whether the pair was contracted
 
 		Examples:
 
@@ -177,7 +184,7 @@ class SimplexTree(SimplexTreeCpp):
             # 0 1 0
             #     1
 		"""
-        success = self._contract(edge)
+        success = self._contract(pair)
         return success
 
     def vertex_collapse(self, u: int, v: int, w: int) -> bool:
@@ -305,6 +312,7 @@ class SimplexTree(SimplexTreeCpp):
 		Returns:
 			list: the simplices in the p-skeleton of `sigma`.
 		"""
+        p = self.dim() if p is None else p
         assert isinstance(int(p),int), f"Invalid argument type '{type(p)}', must be integral"
         F = []
         if p >= 0: 

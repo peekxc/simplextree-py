@@ -168,6 +168,12 @@ def test_contract():
   assert st.contract([1,2]), "Contraction failed"
   assert st.simplices(2) == [(1, 3, 5),(1, 3, 8), (1, 4, 7), (1, 4, 10), (1, 5, 6), (1, 6, 7), (1, 8, 9), (1, 9, 10)]
   assert not([2] in st), "Vertex in contraction not removed"
+
+  ## Non-edge contraction
+  st = SimplexTree([[1,2,3], [4,5,6]])
+  st.contract([2,4])
+  st.simplices(1)
+
   # t order, py::function f, simplex_t init = simplex_t(), const size_t k = 0
   # stree._traverse(0, lambda s: print(Simplex(s)), [], 0)
   # stree._traverse(1, lambda s: print(s), [], 0)
