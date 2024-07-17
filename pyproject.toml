@@ -47,6 +47,10 @@ dev = [
 [tool.meson-python.args]
 setup = ['--default-library=static']
 
+[tool.cibuildwheel]
+test-requires = ["pytest", "pytest-cov", "coverage"]
+test-command = "coverage run --source={package} -m pytest {package}/tests"
+
 [tool.black]
 line-length = 180
 include = '\.pyi?$'
