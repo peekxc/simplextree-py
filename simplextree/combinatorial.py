@@ -1,6 +1,5 @@
-from typing_extensions import Optional
 import numpy as np
-from typing import Generator, Iterator, Iterable, Union
+from typing import Generator, Iterator, Iterable, Optional, Union
 from numbers import Integral
 from math import floor, ceil, comb, factorial
 from more_itertools import collapse, spy, first_true
