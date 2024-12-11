@@ -4,30 +4,41 @@
     "href": "pages/reference/index.html",
     "title": "API Reference",
     "section": "",
-    "text": "SimplexTree\nSimplexTree provides lightweight wrapper around a Simplex Tree data structure.\n\n\n\n\n\n\n\n\n\nUnionFind\nUnion Find data structure"
+    "text": "SimplexTree\n\n\n\n\n\n\n\n\n\n\nUnionFind",
+    "crumbs": [
+      "simplextree",
+      "API Reference"
+    ]
   },
   {
     "objectID": "pages/reference/index.html#simplex-tree",
     "href": "pages/reference/index.html#simplex-tree",
     "title": "API Reference",
     "section": "",
-    "text": "SimplexTree\nSimplexTree provides lightweight wrapper around a Simplex Tree data structure."
+    "text": "SimplexTree",
+    "crumbs": [
+      "simplextree",
+      "API Reference"
+    ]
   },
   {
     "objectID": "pages/reference/index.html#union-find",
     "href": "pages/reference/index.html#union-find",
     "title": "API Reference",
     "section": "",
-    "text": "UnionFind\nUnion Find data structure"
+    "text": "UnionFind",
+    "crumbs": [
+      "simplextree",
+      "API Reference"
+    ]
   },
   {
     "objectID": "pages/reference/SimplexTree.html",
     "href": "pages/reference/SimplexTree.html",
     "title": "SimplexTree",
     "section": "",
-    "text": "SimplexTree(self, simplices=None)\nSimplexTree provides lightweight wrapper around a Simplex Tree data structure.\nThis class exposes a native extension module wrapping a simplex tree implemented with modern C++.\nThe Simplex Tree was originally introduced in the paper: &gt; Boissonnat, Jean-Daniel, and Clément Maria. “The simplex tree: An efficient data structure for general simplicial complexes.” Algorithmica 70.3 (2014): 406-427.",
+    "text": "SimplexTree\n\n\n\n\n\nName\nDescription\n\n\n\n\nSimplexTree.insert\nInserts simplices into the Simplex Tree.\n\n\nSimplexTree.remove\nRemoves simplices into the Simplex Tree.\n\n\nSimplexTree.find\nFinds whether simplices exist in Simplex Tree.\n\n\nSimplexTree.adjacent\nFinds adjacent vertices of a collection of vertices.\n\n\nSimplexTree.collapse\nPerforms an elementary collapse on two given simplices.\n\n\nSimplexTree.contract\nPerforms an pair contraction.\n\n\nSimplexTree.vertex_collapse\nMaps a pair of vertices into a single vertex.\n\n\nSimplexTree.degree\nComputes the degree of select vertices in the trie.\n\n\nSimplexTree.traverse\nTraverses the simplex tree in the specified order, calling f on each simplex encountered.\n\n\nSimplexTree.cofaces\nReturns the cofaces of sigma.\n\n\nSimplexTree.skeleton\nReturns the simplices in the p-skeleton of sigma.\n\n\nSimplexTree.simplices\nReturns the p-simplices in the complex.\n\n\nSimplexTree.faces\nReturns the p-faces of a given simplex.\n\n\nSimplexTree.maximal\nReturns the maximal simplices in the complex.\n\n\nSimplexTree.link\nReturns the simplices in the link of sigma.\n\n\nSimplexTree.expand\nPerforms a k-expansion of the complex.\n\n\nSimplexTree.reindex\nReindexes the vertex labels of the complex.\n\n\nSimplexTree.dim\n\n\n\nSimplexTree.card\nReturns the cardinality of various skeleta of the complex.\n\n\nSimplexTree.print\n\n\n\nSimplexTree.__iter__\n\n\n\nSimplexTree.__contains__\n\n\n\nSimplexTree.__len__",
     "crumbs": [
-      "simplextree",
       "API Reference",
       "Simplex Tree"
     ]
@@ -61,7 +72,7 @@
     "href": "pages/reference/SimplexTree.html#methods",
     "title": "SimplexTree",
     "section": "Methods",
-    "text": "Methods\n\n\n\nName\nDescription\n\n\n\n\nadjacent\nChecks for adjacencies between simplices.\n\n\ncard\nReturns the cardinality of various skeleta of the complex.\n\n\ncoface_roots\nReturns the roots whose subtrees span the cofaces of sigma.\n\n\ncofaces\nReturns the cofaces of sigma.\n\n\ncollapse\nPerforms an elementary collapse on two given simplices.\n\n\ndegree\nComputes the degree of select vertices in the trie.\n\n\nexpand\nPerforms a k-expansion of the complex.\n\n\nfaces\nWrapper for simplices function.\n\n\nfind\nFinds whether simplices exist in Simplex Tree.\n\n\ninsert\nInserts simplices into the Simplex Tree.\n\n\nlink\nReturns the simplices in the link of sigma.\n\n\nmaximal\nReturns the maximal simplices in the complex.\n\n\nreindex\nReindexes the vertex labels of the complex.\n\n\nremove\nRemoves simplices into the Simplex Tree.\n\n\nsimplices\nReturns the p-simplices in the complex.\n\n\nskeleton\nReturns the simplices in the p-skeleton of sigma.\n\n\ntraverse\nTraverses the simplex tree in the specified order, calling f on each simplex encountered.\n\n\nvertex_collapse\nMaps a pair of vertices into a single vertex.\n\n\n\n\nadjacent\nSimplexTree.adjacent(self, simplices)\nChecks for adjacencies between simplices.\n\n\ncard\nSimplexTree.card(self, p=None)\nReturns the cardinality of various skeleta of the complex.\n\nParameters\np :  int, optional (default=None)\n\ndimension parameter. Defaults to None.\n\n\n\nReturns\ncardinalities :  Union[int, tuple], \n\nif p is an integer, the number of p-simplices in the complex. Otherwise a tuple indicating the number of simplices of all dimensions.\n\n\n\n\ncoface_roots\nSimplexTree.coface_roots(self, sigma=\\[\\])\nReturns the roots whose subtrees span the cofaces of sigma.\nNote that sigma itself is included in the set of its cofaces.\n\nParameters\nsigma :  Collection, optional (default=[])\n\nthe simplex to obtain cofaces of. Defaults to the empty set (root node).\n\n\n\nReturns\ncoface_roots :  list[Collection], \n\nthe coface roots of sigma.\n\n\n\n\ncofaces\nSimplexTree.cofaces(self, sigma=\\[\\])\nReturns the cofaces of sigma.\nNote, by definition, sigma itself is considered as a coface.\n\nParameters\nsigma :  Collection, optional (default=[])\n\nthe simplex to obtain cofaces of.\n\n\n\nReturns\ncofaces :  list[Collection], \n\nthe cofaces of sigma.\n\n\n\n\ncollapse\nSimplexTree.collapse(self, tau, sigma)\nPerforms an elementary collapse on two given simplices.\nChecks whether its possible to collapse \\sigma through \\tau, and if so, both simplices are removed. A simplex \\sigma is said to be collapsible through one of its faces \\tau if \\sigma is the only coface of \\tau (excluding \\tau itself).\n\nParameters\nsigma :  Collection, required\n\nmaximal simplex to collapse\n\ntau :  Collection, required\n\nface of sigma to collapse\n\n\n\nReturns\ncollapsed :  bool, \n\nwhether the pair was collapsed\n\n\n\nExamples\nfrom splex import SimplexTree st = SimplexTree([[0,1,2]]) print(st)\nst.collapse([1,2], [0,1,2])\nprint(st)\n\n\n\ndegree\nSimplexTree.degree(self, vertices=None)\nComputes the degree of select vertices in the trie.\n\nParameters\nvertices :  ArrayLike, optional (default=None)\n\nRetrieves vertex degrees If no vertices are specified, all degrees are computed. Non-existing vertices by default have degree 0.\n\n\n\nReturns\ndegrees :  Union[ArrayLike, int], \n\ndegree of each vertex id given in ‘vertices’.\n\n\n\n\nexpand\nSimplexTree.expand(self, k, f=None)\nPerforms a k-expansion of the complex.\nThis function is particularly useful for expanding clique complexes beyond their 1-skeleton.\n\nParameters\nk :  int, required\n\nmaximum dimension to expand to.\n\nf :  Callable[[Collection], bool], optional (default=None)\n\nboolean predicate which returns whether a simplex should added to the complex (and further expanded).\n\n\n\nExamples\nfrom simplextree import SimplexTree from itertools import combinations st = SimplexTree(combinations(range(8), 2)) print(st)\nst.expand(k=2, lambda s: 2 in s) # Expand only triangles containing 2 as a vertex print(st)\nst.expand(k=2) # Expand all 2-cliques print(st)\n\n\n\nfaces\nSimplexTree.faces(self, p=None, sigma=\\[\\], **kwargs)\nWrapper for simplices function.\n\n\nfind\nSimplexTree.find(self, simplices)\nFinds whether simplices exist in Simplex Tree.\n\nParameters\nsimplices :  Iterable[Collection], required\n\nIterable of simplices to insert (each of which are SimplexLike)\n\n\n\nReturns\nfound :  np.ndarray, \n\nboolean array indicating whether each simplex was found in the complex\n\n\n\n\n\n\n\nNote\n\n\n\n    If the iterable is an 2-dim np.ndarray, then the p-simplex to find is given by each contiguous p+1 stride.\n    Otherwise, each element of the iterable to casted to a Simplex and then searched for in the tree. \n\n\n\n\n\ninsert\nSimplexTree.insert(self, simplices)\nInserts simplices into the Simplex Tree.\nBy definition, inserting a simplex also inserts all of its faces. If the simplex already exists in the complex, the tree is not modified.\n\nParameters\nsimplices :  Iterable[Collection], required\n\nIterable of simplices to insert (each of which are SimplexLike)\n\n\n\n\n\n\n\nNote\n\n\n\n    If the iterable is an 2-dim np.ndarray, then a p-simplex is inserted along each contiguous p+1 stride.\n    Otherwise, each element of the iterable to casted to a Simplex and then inserted into the tree. \n\n\n\n\nExamples\n\nfrom simplextree import SimplexTree\nst = SimplexTree([range(3)])\nprint(st)\n\nSimplex Tree with (3, 3, 1) (0, 1, 2)-simplices\n\n\n\nst.insert([[0,1]])\nprint(st)\n\nSimplex Tree with (3, 3, 1) (0, 1, 2)-simplices\n\n\nprint(st)\n\n\n\nlink\nSimplexTree.link(self, sigma=\\[\\])\nReturns the simplices in the link of sigma.\n\n\nmaximal\nSimplexTree.maximal(self)\nReturns the maximal simplices in the complex.\n\n\nreindex\nSimplexTree.reindex(self, labels=None)\nReindexes the vertex labels of the complex.\n\n\nremove\nSimplexTree.remove(self, simplices)\nRemoves simplices into the Simplex Tree.\nBy definition, removing a face also removes all of its cofaces. If the simplex does not exist in the complex, the tree is not modified.\n\nParameters\nsimplices :  Iterable[Collection], required\n\nIterable of simplices to insert (each of which are SimplexLike).\n\n\n\n\n\n\n\nNote\n\n\n\n    If the iterable is an 2-dim np.ndarray, then a p-simplex is removed along each contiguous p+1 stride.\n    Otherwise, each element of the iterable to casted to a Simplex and then removed from the tree. \n\n\n\n\nExamples\nst = SimplexTree([range(3)]) print(st) st.remove([[0,1]]) print(st)\n\n\n\nsimplices\nSimplexTree.simplices(self, p=None)\nReturns the p-simplices in the complex.\n\n\nskeleton\nSimplexTree.skeleton(self, p=None, sigma=\\[\\])\nReturns the simplices in the p-skeleton of sigma.\nNote that, when dim(sigma) &lt;= p, sigma is included in the skeleton.\n\nParameters\np :  int, optional (default=None)\n\nthe dimension of the skeleton.\n\nsigma :  Collection, optional (default=[])\n\nthe simplex to obtain cofaces of. Defaults to the empty set (root node).\n\n\n\nReturns\nlist :  Iterable[Collection], \n\nthe simplices in the p-skeleton of sigma.\n\n\n\n\ntraverse\nSimplexTree.traverse(self, order='preorder', f=print, sigma=\\[\\], p=0)\nTraverses the simplex tree in the specified order, calling f on each simplex encountered.\nSupported traversals include breadth-first / level order (“bfs”, “levelorder”), depth-first / prefix (“dfs”, “preorder”). faces, cofaces, coface roots (“coface_roots”), p-skeleton, p-simplices, maximal simplices (“maximal”), and link.\nWhere applicable, each traversal begins its traversal sigma, which defaults to the empty set (root node).\n\nParameters\norder :  str, optional (default=‘preorder’)\n\nthe type of traversal of the simplex tree to execute.\n\nf :  Callable, optional (default=print)\n\na function to evaluate on every simplex in the traversal. Defaults to print.\n\nsigma :  Collection, optional (default=[])\n\nsimplex to start the traversal at, where applicable. Defaults to the root node (empty set).\n\np :  int, optional (default=0)\n\ndimension of simplices to restrict to, where applicable. Defaults to 0.\n\n\n\n\nvertex_collapse\nSimplexTree.vertex_collapse(self, u, v, w)\nMaps a pair of vertices into a single vertex.\n\nParameters\nu :  int, required\n\nthe first vertex in the free pair.\n\nv :  int, required\n\nthe second vertex in the free pair.\n\nw :  int, required\n\nthe target vertex to collapse to.\n\n\n\nReturns\ncollapsed :  bool, \n\nwhether the collapse was performed.",
+    "text": "Methods\n\n\n\nName\nDescription\n\n\n\n\nadjacent\nChecks for adjacencies between simplices.\n\n\ncard\nReturns the cardinality of various skeleta of the complex.\n\n\ncoface_roots\nReturns the roots whose subtrees span the cofaces of sigma.\n\n\ncofaces\nReturns the cofaces of sigma.\n\n\ncollapse\nPerforms an elementary collapse on two given simplices.\n\n\ncontract\nPerforms an pair contraction.\n\n\ndegree\nComputes the degree of select vertices in the trie.\n\n\nexpand\nPerforms a k-expansion of the complex.\n\n\nfaces\nReturns the p-faces of a given simplex.\n\n\nfind\nFinds whether simplices exist in Simplex Tree.\n\n\ninsert\nInserts simplices into the Simplex Tree.\n\n\nlink\nReturns the simplices in the link of sigma.\n\n\nmaximal\nReturns the maximal simplices in the complex.\n\n\nreindex\nReindexes the vertex labels of the complex.\n\n\nremove\nRemoves simplices into the Simplex Tree.\n\n\nsimplices\nReturns the p-simplices in the complex.\n\n\nskeleton\nReturns the simplices in the p-skeleton of sigma.\n\n\ntraverse\nTraverses the simplex tree in the specified order, calling f on each simplex encountered.\n\n\nvertex_collapse\nMaps a pair of vertices into a single vertex.\n\n\n\n\nadjacent\nSimplexTree.adjacent(self, simplices)\nChecks for adjacencies between simplices.\n\n\ncard\nSimplexTree.card(self, p=None)\nReturns the cardinality of various skeleta of the complex.\nParameters: p: dimension parameter. Defaults to None.\nReturns: cardinalities: if p is an integer, the number of p-simplices in the complex. Otherwise a tuple indicating the number of simplices of all dimensions.\n\n\ncoface_roots\nSimplexTree.coface_roots(self, sigma=\\[\\])\nReturns the roots whose subtrees span the cofaces of sigma.\nNote that sigma itself is included in the set of its cofaces.\nParameters: sigma: the simplex to obtain cofaces of. Defaults to the empty set (root node).\nReturns: coface_roots: the coface roots of sigma.\n\n\ncofaces\nSimplexTree.cofaces(self, sigma=\\[\\])\nReturns the cofaces of sigma.\nNote, by definition, sigma is defined as a coface of itself.\nParameters: sigma: the simplex to obtain cofaces of.\nReturns: cofaces: the cofaces of sigma.\n\n\ncollapse\nSimplexTree.collapse(self, sigma, tau)\nPerforms an elementary collapse on two given simplices.\nChecks whether its possible to collapse \\\\sigma through \\\\tau, and if so, both simplices are removed. A simplex \\\\sigma is said to be collapsible through one of its faces \\\\tau if \\\\sigma is the only coface of \\\\tau (excluding \\\\tau itself).\nParameters: sigma: maximal simplex to collapse tau: face of sigma to collapse\nReturns: collapsed (bool): whether the pair was collapsed\nExamples:\n    from simplextree import SimplexTree\n    st = SimplexTree([[0,1,2]])\n    print(st)\n\n    st.collapse([0,1,2], [1,2])\n    print(st)\n\n\ncontract\nSimplexTree.contract(self, pair)\nPerforms an pair contraction.\nThis function performs an pair contraction: given a pair of vertices (va, vb), vertex vb is said to contract to va if vb is removed from the complex and the link of va is augmented with the link of vb.\nSome notes about pair are in order: - pair is not sorted like other simplex inputs - The second vertex is always contracted to the first - pair need not be an existing simplex (edge) in the complex - Contraction is not symmetric.\nParameters: edge: edge to contract\nReturns: contracted (bool): whether the pair was contracted\nExamples: from simplextree import SimplexTree st = SimplexTree([[0,1,2]]) st.print() # 0 1 2 0 0 1 0 # 1 2 2 1 # 2 st.contract([0,2]) # True st.print() # 0 1 0 # 1\n\n\ndegree\nSimplexTree.degree(self, vertices=None)\nComputes the degree of select vertices in the trie.\nParameters: vertices: If no vertices are specified, all degrees are computed. Non-existing vertices by default have degree 0.\nReturns: degree of each vertex id given in ‘vertices’.\n\n\nexpand\nSimplexTree.expand(self, k, f=None)\nPerforms a k-expansion of the complex.\nThis function is particularly useful for expanding clique complexes beyond their 1-skeleton.\nParameters: k: maximum dimension to expand to. f: boolean predicate which returns whether a simplex should added to the complex (and further expanded).\nExamples: from simplextree import SimplexTree from itertools import combinations st = SimplexTree(combinations(range(8), 2)) print(st)\n    st.expand(k=2, lambda s: 2 in s)  # Expand only triangles containing 2 as a vertex\n    print(st)\n\n    st.expand(k=2) # Expand all 2-cliques\n    print(st)\n\n\nfaces\nSimplexTree.faces(self, p=None, sigma=None)\nReturns the p-faces of a given simplex.\n\n\nfind\nSimplexTree.find(self, simplices)\nFinds whether simplices exist in Simplex Tree.\nParameters: simplices: Iterable of simplices to insert (each of which are SimplexLike)\nReturns: found: boolean array indicating whether each simplex was found in the complex\n\n\n\n\n\n\nNote\n\n\n\n    If the iterable is an 2-dim np.ndarray, then the p-simplex to find is given by each contiguous p+1 stride.\n    Otherwise, each element of the iterable to casted to a Simplex and then searched for in the tree.\n\n\n\n\ninsert\nSimplexTree.insert(self, simplices)\nInserts simplices into the Simplex Tree.\nBy definition, inserting a simplex also inserts all of its faces. If the simplex already exists in the complex, the tree is not modified.\nParameters: simplices: Iterable of simplices to insert (each of which are SimplexLike)\n\n\n\n\n\n\nNote\n\n\n\nIf the iterable is an 2-dim np.ndarray, then a p-simplex is inserted along each contiguous p+1 stride. Otherwise, each element of the iterable to casted to a Simplex and then inserted into the tree.\n\n\nExamples:\n    ::: {#9f6d8a90 .cell execution_count=1}\n    ``` {.python .cell-code}\n    from simplextree import SimplexTree\n    st = SimplexTree([range(3)])\n    print(st)\n    ```\n    \n    ::: {.cell-output .cell-output-stdout}\n    ```\n    Simplex Tree with (3, 3, 1) (0, 1, 2)-simplices\n    ```\n    :::\n    :::\n    \n    \n\n    ::: {#6bc965ac .cell execution_count=2}\n    ``` {.python .cell-code}\n    st.insert([[0,1]])\n    print(st)\n    ```\n    \n    ::: {.cell-output .cell-output-stdout}\n    ```\n    Simplex Tree with (3, 3, 1) (0, 1, 2)-simplices\n    ```\n    :::\n    :::\n    \n    \n\n\nlink\nSimplexTree.link(self, sigma=\\[\\])\nReturns the simplices in the link of sigma.\n\n\nmaximal\nSimplexTree.maximal(self)\nReturns the maximal simplices in the complex.\n\n\nreindex\nSimplexTree.reindex(self, labels=None)\nReindexes the vertex labels of the complex.\n\n\nremove\nSimplexTree.remove(self, simplices)\nRemoves simplices into the Simplex Tree.\nBy definition, removing a face also removes all of its cofaces. If the simplex does not exist in the complex, the tree is not modified.\nParameters: simplices: Iterable of simplices to insert (each of which are SimplexLike).\n\n\n\n\n\n\nNote\n\n\n\n    If the iterable is an 2-dim np.ndarray, then a p-simplex is removed along each contiguous p+1 stride.\n    Otherwise, each element of the iterable to casted to a Simplex and then removed from the tree.\n\n\nExamples: st = SimplexTree([range(3)]) print(st) st.remove([[0,1]]) print(st)\n\n\nsimplices\nSimplexTree.simplices(self, p=None)\nReturns the p-simplices in the complex.\n\n\nskeleton\nSimplexTree.skeleton(self, p=None, sigma=\\[\\])\nReturns the simplices in the p-skeleton of sigma.\nNote that, when dim(sigma) &lt;= p, sigma is included in the skeleton.\nParameters: p: the dimension of the skeleton. sigma: the simplex to obtain cofaces of. Defaults to the empty set (root node).\nReturns: list: the simplices in the p-skeleton of sigma.\n\n\ntraverse\nSimplexTree.traverse(self, order='preorder', f=print, sigma=\\[\\], p=0)\nTraverses the simplex tree in the specified order, calling f on each simplex encountered.\nSupported traversals include breadth-first / level order (“bfs”, “levelorder”), depth-first / prefix (“dfs”, “preorder”). faces, cofaces, coface roots (“coface_roots”), p-skeleton, p-simplices, maximal simplices (“maximal”), and link.\nWhere applicable, each traversal begins its traversal sigma, which defaults to the empty set (root node).\nParameters: order: the type of traversal of the simplex tree to execute. f: a function to evaluate on every simplex in the traversal. Defaults to print. sigma: simplex to start the traversal at, where applicable. Defaults to the root node (empty set). p: dimension of simplices to restrict to, where applicable. Defaults to 0.\n\n\nvertex_collapse\nSimplexTree.vertex_collapse(self, u, v, w)\nMaps a pair of vertices into a single vertex.\nParameters: u (int): the first vertex in the free pair. v (int): the second vertex in the free pair. w (int): the target vertex to collapse to.\nReturns: collapsed: whether the collapse was performed.",
     "crumbs": [
       "simplextree",
       "API Reference",
@@ -73,35 +84,35 @@
     "href": "pages/index.html",
     "title": "simplextree",
     "section": "",
-    "text": "simplextree is an Python package that simplifies computation for general simplicial complexes of any dimension by providing pybind11 bindings to a Simplex Tree data structure implemented in modern C++17.\nA Simplex Tree is an ordered, trie-like structure whose nodes are in bijection with the faces of the complex. Here’s a picture of a simplicial 3-complex (left) and its corresponding Simplex Tree (right):\nThe Simplex Tree was originally introduced in the following paper:\nThe SimplexTree class exported by the package includes support for many tree operations, e.g. insertions, removals, expansions, collapses, star/link enumerations, and other traversals."
+    "text": "simplextree is an Python package that simplifies computation for general simplicial complexes of any dimension by providing pybind11 bindings to a Simplex Tree data structure implemented in modern C++17.\nA Simplex Tree is an ordered, trie-like structure whose nodes are in bijection with the faces of the complex. Here’s a picture of a simplicial 3-complex (left) and its corresponding Simplex Tree (right):\n\n\n\nPicture taken from Boissonnat et al: “The simplex tree: An efficient data structure for general simplicial complexes”\n\n\nThe Simplex Tree was originally introduced in the following paper:\n\nBoissonnat, Jean-Daniel, and Clément Maria. “The simplex tree: An efficient data structure for general simplicial complexes.” Algorithmica 70.3 (2014): 406-427.\n\nThe SimplexTree class exported by the package includes support for many tree operations, e.g. insertions, removals, expansions, collapses, star/link enumerations, and other traversals.\n\n\nThe easiest way to install the package is via the platform-specific wheels on pypi.\npython -m pip install simplextree \nYou can also pip install the package manually by downloading the appropriate wheel (or sdist) from the releases.\nFor installation instructions for developers looking to extend the package, see Building & Developing.\n\n\n\nIf you would like to build the package yourself for development reasons, a typical workflow is to install the build-time dependencies first:\npython -m pip install meson-python ninja pybind11 numpy\nThen, build and install the package in editable mode (see also meson-python notes), optionally without build isolation for speed:\npython -m pip install --no-build-isolation --editable .\nUnit testing is handled with pytest. See the gh-workflows for platform-specific configuration.\n\n\n\nThe underlying C++ library is header-only and may be included as a dependency by extension modules in other Python packages.\nThus, to modify or extending the complex in C++, it is sufficient to add the package as a build-time dependency and append the include directory to the compilation target."
   },
   {
     "objectID": "pages/index.html#install",
     "href": "pages/index.html#install",
     "title": "simplextree",
-    "section": "Install",
-    "text": "Install\nThe easiest way to install the package is via the platform-specific wheels on pypi.\npython -m pip install simplextree \nYou can also pip install the package manually by downloading the appropriate wheel (or sdist) from the releases.\nFor installation instructions for developers looking to extend the package, see Building & Developing."
+    "section": "",
+    "text": "The easiest way to install the package is via the platform-specific wheels on pypi.\npython -m pip install simplextree \nYou can also pip install the package manually by downloading the appropriate wheel (or sdist) from the releases.\nFor installation instructions for developers looking to extend the package, see Building & Developing."
   },
   {
     "objectID": "pages/index.html#building-developing",
     "href": "pages/index.html#building-developing",
     "title": "simplextree",
-    "section": "Building & Developing",
-    "text": "Building & Developing\nIf you would like to build the package yourself for development reasons, a typical workflow is to install the build-time dependencies first:\npython -m pip install meson-python ninja pybind11 numpy\nThen, build and install the package in editable mode (see also meson-python notes), optionally without build isolation for speed:\npython -m pip install --no-build-isolation --editable .\nUnit testing is handled with pytest. See the gh-workflows for platform-specific configuration."
+    "section": "",
+    "text": "If you would like to build the package yourself for development reasons, a typical workflow is to install the build-time dependencies first:\npython -m pip install meson-python ninja pybind11 numpy\nThen, build and install the package in editable mode (see also meson-python notes), optionally without build isolation for speed:\npython -m pip install --no-build-isolation --editable .\nUnit testing is handled with pytest. See the gh-workflows for platform-specific configuration."
   },
   {
     "objectID": "pages/index.html#native-extensions",
     "href": "pages/index.html#native-extensions",
     "title": "simplextree",
-    "section": "Native Extensions",
-    "text": "Native Extensions\nThe underlying C++ library is header-only and may be included as a dependency by extension modules in other Python packages.\nThus, to modify or extending the complex in C++, it is sufficient to add the package as a build-time dependency and append the include directory to the compilation target."
+    "section": "",
+    "text": "The underlying C++ library is header-only and may be included as a dependency by extension modules in other Python packages.\nThus, to modify or extending the complex in C++, it is sufficient to add the package as a build-time dependency and append the include directory to the compilation target."
   },
   {
     "objectID": "pages/overview.html",
     "href": "pages/overview.html",
     "title": "Overview of the simplextree package",
     "section": "",
-    "text": "A simplicial complex S is a pair S = (V, \\Sigma) where V is a vertex set and \\Sigma a collection of simplices s \\in \\Sigma satisfying:\n\nIf v \\in V, then v \\in S\nIf \\tau \\subset \\sigma and \\sigma \\in S, then \\tau \\in S\n\nA simplicial complex is a natural generalization of a graph—any graph can also be represented by a simplicial complex (though the converse is not true!).\nLike graphs, there are many ways to represent simplicial complexes in memory. One such way is to use a Simplex Tree: an ordered, trie-like structure whose nodes are in bijection with the faces of the complex. Here’s a picture of a simplicial 3-complex (left) and its corresponding Simplex Tree (right):\n\n\n\nPicture taken from Boissonnat et al: “The simplex tree: An efficient data structure for general simplicial complexes”\n\n\nTo construct the complex above with a simplextree package, simply give the maximal simplices:\n\nfrom simplextree import SimplexTree\nst = SimplexTree([[1,2,3],[2,3,4,5],[6,7,9],[7,8],[10]]) # complex form the picture\nprint(st)\n\nSimplex Tree with (10, 12, 6, 1) (0, 1, 2, 3)-simplices\n\n\nTo look at the tree structure, use print_tree (see also: print_cousins)\n\nst.print_tree()\n\n1 (h = 2): .( 2 3 )..( 3 )\n2 (h = 3): .( 3 4 5 )..( 4 5 5 )...( 5 )\n3 (h = 2): .( 4 5 )..( 5 )\n4 (h = 1): .( 5 )\n5 (h = 0): \n6 (h = 2): .( 7 9 )..( 9 )\n7 (h = 1): .( 8 9 )\n8 (h = 0): \n9 (h = 0): \n10 (h = 0): \n\n\nTo maintain fast coface lookup and enumeration, extra links are added between nodes at the same level, which are shown by the dash-dotted lines in the figure above (only for the nodes with the label 5). To view these links with the SimplexTree class, use print_cousins():\n\nst.print_cousins()\n\n(last=2, depth=2): { 1 2 } \n(last=3, depth=2): { 1 3 } { 2 3 } \n(last=4, depth=2): { 2 4 } { 3 4 } \n(last=5, depth=2): { 2 5 } { 3 5 } { 4 5 } \n(last=7, depth=2): { 6 7 } \n(last=8, depth=2): { 7 8 } \n(last=9, depth=2): { 6 9 } { 7 9 } \n(last=3, depth=3): { 1 2 3 } \n(last=4, depth=3): { 2 3 4 } \n(last=5, depth=3): { 2 3 5 } { 2 4 5 } { 3 4 5 } \n(last=9, depth=3): { 6 7 9 } \n(last=5, depth=4): { 2 3 4 5 }",
+    "text": "Overview of the simplextree package\nA simplicial complex S is a pair S = (V, \\Sigma) where V is a vertex set and \\Sigma \\subseteq \\mathcal{P}(V) is a collection of simplices satisfying:\n\nIf v \\in V, then \\{v\\} \\in \\Sigma\nIf \\tau \\subset \\sigma for some \\sigma \\in \\Sigma, then \\tau \\in \\Sigma\n\nSimplicial complexes generalize graphs. Like graphs, there are many ways to represent simplicial complexes in memory. One such way is to use a Simplex Tree: an ordered, trie-like structure whose nodes are in bijection with the faces of the complex. Here’s a picture of a simplicial 3-complex (left) and its corresponding Simplex Tree (right):\n\n\n\nPicture taken from Boissonnat et al: “The simplex tree: An efficient data structure for general simplicial complexes”\n\n\nTo construct the complex above with a simplextree package, simply give the maximal simplices:\n\nfrom simplextree import SimplexTree\nst = SimplexTree([[1,2,3],[2,3,4,5],[6,7,9],[7,8],[10]]) # complex form the picture\nprint(st)\n\nSimplex Tree with (10, 12, 6, 1) (0, 1, 2, 3)-simplices\n\n\nTo look at the tree structure, use print_tree (see also: print_cousins)\n\nst.print_tree()\n\n1 (h = 2): .( 2 3 )..( 3 )\n2 (h = 3): .( 3 4 5 )..( 4 5 5 )...( 5 )\n3 (h = 2): .( 4 5 )..( 5 )\n4 (h = 1): .( 5 )\n5 (h = 0): \n6 (h = 2): .( 7 9 )..( 9 )\n7 (h = 1): .( 8 9 )\n8 (h = 0): \n9 (h = 0): \n10 (h = 0): \n\n\nTo maintain fast coface lookup and enumeration, extra links are added between nodes at the same level, which are shown by the dash-dotted lines in the figure above (only for the nodes with the label 5). To view these links with the SimplexTree class, use print_cousins():\n\nst.print_cousins()\n\n(last=2, depth=2): { 1 2 } \n(last=3, depth=2): { 1 3 } { 2 3 } \n(last=4, depth=2): { 2 4 } { 3 4 } \n(last=5, depth=2): { 2 5 } { 3 5 } { 4 5 } \n(last=7, depth=2): { 6 7 } \n(last=8, depth=2): { 7 8 } \n(last=9, depth=2): { 6 9 } { 7 9 } \n(last=3, depth=3): { 1 2 3 } \n(last=4, depth=3): { 2 3 4 } \n(last=5, depth=3): { 2 3 5 } { 2 4 5 } { 3 4 5 } \n(last=9, depth=3): { 6 7 9 } \n(last=5, depth=4): { 2 3 4 5 }",
     "crumbs": [
       "simplextree",
       "Overview"
@@ -112,6 +123,383 @@
     "href": "pages/reference/UnionFind.html",
     "title": "UnionFind",
     "section": "",
-    "text": "UnionFind\nUnionFind(n)\nUnion Find data structure"
+    "text": "UnionFind\n\n\n\n\n\nName\nDescription\n\n\n\n\nUnionFind\nUnion Find data structure\n\n\n\n\n\nUnionFind.UnionFind(n)\nUnion Find data structure",
+    "crumbs": [
+      "API Reference",
+      "Union Find"
+    ]
+  },
+  {
+    "objectID": "pages/quickstart.html",
+    "href": "pages/quickstart.html",
+    "title": "",
+    "section": "",
+    "text": "You can construct a SimplexTree by supplying simplices. Any collection of integer-valued Iterable’s will do, e.g. a list of lists:\n\nfrom simplextree import SimplexTree\nst = SimplexTree([[0,1,2], [0,1], [4,5]]) \nprint(st) \n\nSimplex Tree with (5, 4, 1) (0, 1, 2)-simplices\n\n\nBatch insertion, removal, and membership queries are supported\n\nst.insert([[1,4], [1,5], [6]])\nprint(st)\n\nSimplex Tree with (6, 6, 1) (0, 1, 2)-simplices\n\n\n\nst.remove([[6]])\nprint(st)\n\nSimplex Tree with (5, 6, 1) (0, 1, 2)-simplices\n\n\n\nprint(st.find([[6], [0,1]]))\n\n[False  True]\n\n\nCollections of simplices are returned as simple lists-of-tuples:\n\nprint(st.simplices())\n\n[(0,), (1,), (2,), (4,), (5,), (0, 1), (0, 2), (1, 2), (1, 4), (1, 5), (4, 5), (0, 1, 2)]\n\n\nYou can restrict to specific dimensions by supplying the argument p:\n\nprint(st.simplices(p=1)) \n\n[(0, 1), (0, 2), (1, 2), (1, 4), (1, 5), (4, 5)]\n\n\nFamiliar Pythonic Collection semantics are supported, including __contains__, __iter__ support, and __len__:\n\nprint([0,1,2] in st)\nprint([len(simplex) for simplex in st])\nprint(len(st))\n\nTrue\n[1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 3]\n12\n\n\nThe cofaces of any simplex can be listed with cofaces:\n\nprint(\"Cofaces([1]): \" + str(st.cofaces([1])))\n\nCofaces([1]): [(1,), (1, 2), (1, 4), (1, 5), (0, 1), (0, 1, 2)]\n\n\nThe maximal simplices can be listed with maximal:\n\nprint(\"Maximal: \" + str(st.maximal()))\n\nMaximal: [(0, 1, 2), (1, 4), (1, 5), (4, 5)]\n\n\nBasic properties are also available as attributes\n\nst.n_simplices, st.dimension, st.vertices, st.connected_components\n\n(array([5, 6, 1], dtype=uint64), 2, [0, 1, 2, 4, 5], [1, 1, 1, 1, 1])\n\n\nInteroperability with numpy is provided whenever possible\n\nimport numpy as np \nall(np.all(st.triangles == np.array(st.simplices(p=2)), axis=0))\n\nTrue\n\n\nOther complex-wide operations are supported, like k-expansions\n\nst.insert([[1,4]]) \nst.expand(2)       \nprint(st)\n\nSimplex Tree with (5, 6, 2) (0, 1, 2)-simplices\n\n\nThe trie-structure can also be inspected on the python side with print_tree:\n\nst.print_tree()\n\n0 (h = 2): .( 1 2 )..( 2 )\n1 (h = 2): .( 2 4 5 )..( 5 )\n2 (h = 0): \n4 (h = 1): .( 5 )\n5 (h = 0): \n\n\nAnother way to inspect the trie structure is to use a traversal, e.g. the depth-first manner (prefix-order):\n\nst.traverse(\"dfs\", f=print)\n\n(0,)\n(0, 1)\n(0, 1, 2)\n(0, 2)\n(1,)\n(1, 2)\n(1, 4)\n(1, 4, 5)\n(1, 5)\n(2,)\n(4,)\n(4, 5)\n(5,)\n\n\nSeveral traversal orderings are provided, e.g. breadth-first (or level-order) could be used as well:\n\nst.traverse(\"bfs\", f=print)\n\n(0,)\n(1,)\n(2,)\n(4,)\n(5,)\n(0, 1)\n(0, 2)\n(1, 2)\n(1, 4)\n(1, 5)\n(4, 5)\n(0, 1, 2)\n(1, 4, 5)\n\n\nIn fact, most operations on the Simplex tree are actually implemented using traversals. For example, you can traverse only the maximal faces like so:\n\nst.traverse(\"maximal\", f=print)\n\n(0, 1, 2)\n(1, 4, 5)\n\n\nYou can supply any Callable to f (the default is to print). For example, to extract the dimensions of the maximal simplices:\n\nmaximal_dims = []\nst.traverse(\"maximal\", f=lambda s: maximal_dims.append(len(s)-1))\nprint(maximal_dims)\n\n[2, 2]\n\n\nThe simplex type can be configured via the s_type attribute.\n\nst.s_type = list\nprint(st.maximal())\n\n[[0, 1, 2], [1, 4, 5]]\n\n\nThe default (and recommended) type is tuple. If the type is Hashable, simplex properties can be tracked easily external dictionary (a technique inspired by Boosts property maps):\n\nst.s_type = tuple\ncolors = [\"red\", \"orange\", \"yellow\", \"purple\"]\nsimplex_colors = { s : colors[len(s) - 1] for s in st }\nprint(simplex_colors)\n\n{(0,): 'red', (1,): 'red', (2,): 'red', (4,): 'red', (5,): 'red', (0, 1): 'orange', (0, 2): 'orange', (1, 2): 'orange', (1, 4): 'orange', (1, 5): 'orange', (4, 5): 'orange', (0, 1, 2): 'yellow', (1, 4, 5): 'yellow'}\n\n\nOn the other hand, if you work a lot with numpy, you may want the default simplex type to be an array:\n\nst.s_type = np.array\nedges = np.array(st.simplices(p=1))\nprint(edges)\n\n[[0 1]\n [0 2]\n [1 2]\n [1 4]\n [1 5]\n [4 5]]",
+    "crumbs": [
+      "Quick start"
+    ]
+  },
+  {
+    "objectID": "pages/quickstart.html#quick-start",
+    "href": "pages/quickstart.html#quick-start",
+    "title": "",
+    "section": "",
+    "text": "You can construct a SimplexTree by supplying simplices. Any collection of integer-valued Iterable’s will do, e.g. a list of lists:\n\nfrom simplextree import SimplexTree\nst = SimplexTree([[0,1,2], [0,1], [4,5]]) \nprint(st) \n\nSimplex Tree with (5, 4, 1) (0, 1, 2)-simplices\n\n\nBatch insertion, removal, and membership queries are supported\n\nst.insert([[1,4], [1,5], [6]])\nprint(st)\n\nSimplex Tree with (6, 6, 1) (0, 1, 2)-simplices\n\n\n\nst.remove([[6]])\nprint(st)\n\nSimplex Tree with (5, 6, 1) (0, 1, 2)-simplices\n\n\n\nprint(st.find([[6], [0,1]]))\n\n[False  True]\n\n\nCollections of simplices are returned as simple lists-of-tuples:\n\nprint(st.simplices())\n\n[(0,), (1,), (2,), (4,), (5,), (0, 1), (0, 2), (1, 2), (1, 4), (1, 5), (4, 5), (0, 1, 2)]\n\n\nYou can restrict to specific dimensions by supplying the argument p:\n\nprint(st.simplices(p=1)) \n\n[(0, 1), (0, 2), (1, 2), (1, 4), (1, 5), (4, 5)]\n\n\nFamiliar Pythonic Collection semantics are supported, including __contains__, __iter__ support, and __len__:\n\nprint([0,1,2] in st)\nprint([len(simplex) for simplex in st])\nprint(len(st))\n\nTrue\n[1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 3]\n12\n\n\nThe cofaces of any simplex can be listed with cofaces:\n\nprint(\"Cofaces([1]): \" + str(st.cofaces([1])))\n\nCofaces([1]): [(1,), (1, 2), (1, 4), (1, 5), (0, 1), (0, 1, 2)]\n\n\nThe maximal simplices can be listed with maximal:\n\nprint(\"Maximal: \" + str(st.maximal()))\n\nMaximal: [(0, 1, 2), (1, 4), (1, 5), (4, 5)]\n\n\nBasic properties are also available as attributes\n\nst.n_simplices, st.dimension, st.vertices, st.connected_components\n\n(array([5, 6, 1], dtype=uint64), 2, [0, 1, 2, 4, 5], [1, 1, 1, 1, 1])\n\n\nInteroperability with numpy is provided whenever possible\n\nimport numpy as np \nall(np.all(st.triangles == np.array(st.simplices(p=2)), axis=0))\n\nTrue\n\n\nOther complex-wide operations are supported, like k-expansions\n\nst.insert([[1,4]]) \nst.expand(2)       \nprint(st)\n\nSimplex Tree with (5, 6, 2) (0, 1, 2)-simplices\n\n\nThe trie-structure can also be inspected on the python side with print_tree:\n\nst.print_tree()\n\n0 (h = 2): .( 1 2 )..( 2 )\n1 (h = 2): .( 2 4 5 )..( 5 )\n2 (h = 0): \n4 (h = 1): .( 5 )\n5 (h = 0): \n\n\nAnother way to inspect the trie structure is to use a traversal, e.g. the depth-first manner (prefix-order):\n\nst.traverse(\"dfs\", f=print)\n\n(0,)\n(0, 1)\n(0, 1, 2)\n(0, 2)\n(1,)\n(1, 2)\n(1, 4)\n(1, 4, 5)\n(1, 5)\n(2,)\n(4,)\n(4, 5)\n(5,)\n\n\nSeveral traversal orderings are provided, e.g. breadth-first (or level-order) could be used as well:\n\nst.traverse(\"bfs\", f=print)\n\n(0,)\n(1,)\n(2,)\n(4,)\n(5,)\n(0, 1)\n(0, 2)\n(1, 2)\n(1, 4)\n(1, 5)\n(4, 5)\n(0, 1, 2)\n(1, 4, 5)\n\n\nIn fact, most operations on the Simplex tree are actually implemented using traversals. For example, you can traverse only the maximal faces like so:\n\nst.traverse(\"maximal\", f=print)\n\n(0, 1, 2)\n(1, 4, 5)\n\n\nYou can supply any Callable to f (the default is to print). For example, to extract the dimensions of the maximal simplices:\n\nmaximal_dims = []\nst.traverse(\"maximal\", f=lambda s: maximal_dims.append(len(s)-1))\nprint(maximal_dims)\n\n[2, 2]\n\n\nThe simplex type can be configured via the s_type attribute.\n\nst.s_type = list\nprint(st.maximal())\n\n[[0, 1, 2], [1, 4, 5]]\n\n\nThe default (and recommended) type is tuple. If the type is Hashable, simplex properties can be tracked easily external dictionary (a technique inspired by Boosts property maps):\n\nst.s_type = tuple\ncolors = [\"red\", \"orange\", \"yellow\", \"purple\"]\nsimplex_colors = { s : colors[len(s) - 1] for s in st }\nprint(simplex_colors)\n\n{(0,): 'red', (1,): 'red', (2,): 'red', (4,): 'red', (5,): 'red', (0, 1): 'orange', (0, 2): 'orange', (1, 2): 'orange', (1, 4): 'orange', (1, 5): 'orange', (4, 5): 'orange', (0, 1, 2): 'yellow', (1, 4, 5): 'yellow'}\n\n\nOn the other hand, if you work a lot with numpy, you may want the default simplex type to be an array:\n\nst.s_type = np.array\nedges = np.array(st.simplices(p=1))\nprint(edges)\n\n[[0 1]\n [0 2]\n [1 2]\n [1 4]\n [1 5]\n [4 5]]",
+    "crumbs": [
+      "Quick start"
+    ]
+  },
+  {
+    "objectID": "pages/reference/SimplexTree.html#classes",
+    "href": "pages/reference/SimplexTree.html#classes",
+    "title": "SimplexTree",
+    "section": "Classes",
+    "text": "Classes\n\n\n\nName\nDescription\n\n\n\n\nSimplexTree\nSimplexTree provides lightweight wrapper around a Simplex Tree data structure.\n\n\n\n\nSimplexTree\nSimplexTree.SimplexTree(self, simplices=None, s_type=tuple)\nSimplexTree provides lightweight wrapper around a Simplex Tree data structure.\nThis class exposes a native extension module wrapping a simplex tree implemented with modern C++.\nThe Simplex Tree was originally introduced in the paper: &gt; Boissonnat, Jean-Daniel, and Clément Maria. “The simplex tree: An efficient data structure for general simplicial complexes.” Algorithmica 70.3 (2014): 406-427.\n\nAttributes\n\n\n\nName\nType\nDescription\n\n\n\n\nn_simplices\nndarray\nnumber of simplices\n\n\ndimension\nint\nmaximal dimension of the complex\n\n\nid_policy\nstr\npolicy for generating new vertex ids\n\n\n\n\n\nProperties\n\n\n\nName\nType\nDescription\n\n\n\n\nvertices\nndarray\n0-simplices in the complex.\n\n\nedges\nndarray\n1-simplices in the complex.\n\n\ntriangles\nndarray\n2-simplices in the complex.\n\n\nquads\nndarray\n3-simplices in the complex.\n\n\nconnected_components\nndarray\nconnected component ids.\n\n\n\n\n\nMethods\n\n\n\nName\nDescription\n\n\n\n\nadjacent\nFinds adjacent vertices of a collection of vertices.\n\n\ncard\nReturns the cardinality of various skeleta of the complex.\n\n\ncoface_roots\nReturns the roots whose subtrees span the cofaces of sigma.\n\n\ncofaces\nReturns the cofaces of sigma.\n\n\ncollapse\nPerforms an elementary collapse on two given simplices.\n\n\ncontract\nPerforms an pair contraction.\n\n\ndegree\nComputes the degree of select vertices in the trie.\n\n\nexpand\nPerforms a k-expansion of the complex.\n\n\nfaces\nReturns the p-faces of a given simplex.\n\n\nfind\nFinds whether simplices exist in Simplex Tree.\n\n\ninsert\nInserts simplices into the Simplex Tree.\n\n\nlink\nReturns the simplices in the link of sigma.\n\n\nmaximal\nReturns the maximal simplices in the complex.\n\n\nreindex\nReindexes the vertex labels of the complex.\n\n\nremove\nRemoves simplices into the Simplex Tree.\n\n\nsimplices\nReturns the p-simplices in the complex.\n\n\nskeleton\nReturns the simplices in the p-skeleton of sigma.\n\n\ntraverse\nTraverses the simplex tree in the specified order, calling f on each simplex encountered.\n\n\nvertex_collapse\nMaps a pair of vertices into a single vertex.\n\n\n\n\nadjacent\nSimplexTree.SimplexTree.adjacent(vertices)\nFinds adjacent vertices of a collection of vertices.\n\n\ncard\nSimplexTree.SimplexTree.card(p=None)\nReturns the cardinality of various skeleta of the complex.\n\nParameters\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\np\nOptional[int]\ndimension parameter. Defaults to None.\nNone\n\n\n\n\n\nReturns\n\n\n\n\n\n\n\n\nName\nType\nDescription\n\n\n\n\ncardinalities\nUnion[int, tuple]\nif p is an integer, the number of p-simplices in the complex. Otherwise a tuple indicating the number of simplices of all dimensions.\n\n\n\n\n\n\ncoface_roots\nSimplexTree.SimplexTree.coface_roots(sigma=[])\nReturns the roots whose subtrees span the cofaces of sigma.\nNote that sigma itself is included in the set of its cofaces.\n\nParameters\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\nsigma\nCollection\nthe simplex to obtain cofaces of. Defaults to the empty set (root node).\n[]\n\n\n\n\n\nReturns\n\n\n\nName\nType\nDescription\n\n\n\n\ncoface_roots\nlist[Collection]\nthe coface roots of sigma.\n\n\n\n\n\n\ncofaces\nSimplexTree.SimplexTree.cofaces(sigma=[])\nReturns the cofaces of sigma.\nNote, by definition, sigma is defined as a coface of itself.\n\nParameters\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\nsigma\nCollection\nthe simplex to obtain cofaces of.\n[]\n\n\n\n\n\nReturns\n\n\n\nName\nType\nDescription\n\n\n\n\ncofaces\nlist[Collection]\nthe cofaces of sigma.\n\n\n\n\n\n\ncollapse\nSimplexTree.SimplexTree.collapse(sigma, tau)\nPerforms an elementary collapse on two given simplices.\nChecks whether its possible to collapse \\\\sigma through \\\\tau, and if so, both simplices are removed. A simplex \\\\sigma is said to be collapsible through one of its faces \\\\tau if \\\\sigma is the only coface of \\\\tau (excluding \\\\tau itself).\n\nParameters\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\nsigma\nCollection\nmaximal simplex to collapse\nrequired\n\n\ntau\nCollection\nface of sigma to collapse\nrequired\n\n\n\n\n\nReturns\n\n\n\nName\nType\nDescription\n\n\n\n\n\nbool\nwhether the pair was collapsed\n\n\n\nExamples:\n    from simplextree import SimplexTree\n    st = SimplexTree([[0,1,2]])\n    print(st)\n\n    st.collapse([0,1,2], [1,2])\n    print(st)\n\n\n\ncontract\nSimplexTree.SimplexTree.contract(pair)\nPerforms an pair contraction.\nThis function performs an pair contraction: given a pair of vertices (va, vb), vertex vb is said to contract to va if vb is removed from the complex and the link of va is augmented with the link of vb.\nSome notes about pair are in order: - pair is not sorted like other simplex inputs - The second vertex is always contracted to the first - pair need not be an existing simplex (edge) in the complex - Contraction is not symmetric.\n\nParameters\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\npair\nCollection\nedge to contract\nrequired\n\n\n\n\n\nReturns\n\n\n\nName\nType\nDescription\n\n\n\n\ncontracted\nbool\nwhether the pair was contracted\n\n\n\n\n\nExamples\nfrom simplextree import SimplexTree st = SimplexTree([[0,1,2]]) st.print() st.contract([0,2]) st.print()\n\n\n\ndegree\nSimplexTree.SimplexTree.degree(vertices=None)\nComputes the degree of select vertices in the trie.\n\nParameters\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\nvertices\nOptional[ArrayLike]\nIf no vertices are specified, all degrees are computed. Non-existing vertices by default have degree 0.\nNone\n\n\n\n\n\nReturns\n\n\n\n\n\n\n\n\nName\nType\nDescription\n\n\n\n\n\nUnion[ArrayLike, int]\ndegree of each vertex id given in ‘vertices’.\n\n\n\n\n\n\nexpand\nSimplexTree.SimplexTree.expand(k, f=None)\nPerforms a k-expansion of the complex.\nThis function is particularly useful for expanding clique complexes beyond their 1-skeleton.\n\nParameters\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\nk\nint\nmaximum dimension to expand to.\nrequired\n\n\nf\nOptional[Callable[[Collection], bool]]\nboolean predicate which returns whether a simplex should added to the complex (and further expanded).\nNone\n\n\n\n\n\nExamples\nfrom simplextree import SimplexTree from itertools import combinations st = SimplexTree(combinations(range(8), 2)) print(st)\nst.expand(k=2, lambda s: 2 in s) # Expand only triangles containing 2 as a vertex print(st)\nst.expand(k=2) # Expand all 2-cliques print(st)\n\n\n\nfaces\nSimplexTree.SimplexTree.faces(p=None, sigma=None)\nReturns the p-faces of a given simplex.\n\n\nfind\nSimplexTree.SimplexTree.find(simplices)\nFinds whether simplices exist in Simplex Tree.\n\nParameters\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\nsimplices\nIterable[Collection]\nIterable of simplices to insert (each of which are SimplexLike)\nrequired\n\n\n\n\n\nReturns\n\n\n\n\n\n\n\n\nName\nType\nDescription\n\n\n\n\nfound\nnp.ndarray\nboolean array indicating whether each simplex was found in the complex\n\n\n\n\n\n\n\n\n\nNote\n\n\n\n    If the iterable is an 2-dim np.ndarray, then the p-simplex to find is given by each contiguous p+1 stride.\n    Otherwise, each element of the iterable to casted to a Simplex and then searched for in the tree.\n\n\n\n\n\ninsert\nSimplexTree.SimplexTree.insert(simplices)\nInserts simplices into the Simplex Tree.\nBy definition, inserting a simplex also inserts all of its faces. If the simplex already exists in the complex, the tree is not modified.\n\nParameters\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\nsimplices\nIterable[Collection]\nIterable of simplices to insert (each of which are SimplexLike)\nrequired\n\n\n\n\n\n\n\n\n\nNote\n\n\n\nIf the iterable is an 2-dim np.ndarray, then a p-simplex is inserted along each contiguous p+1 stride. Otherwise, each element of the iterable to casted to a Simplex and then inserted into the tree.\n\n\n\n\nExamples\n\nfrom simplextree import SimplexTree\nst = SimplexTree([range(3)])\nprint(st)\n\nSimplex Tree with (3, 3, 1) (0, 1, 2)-simplices\n\n\n\nst.insert([[0,1]])\nprint(st)\n\nSimplex Tree with (3, 3, 1) (0, 1, 2)-simplices\n\n\n\n\n\nlink\nSimplexTree.SimplexTree.link(sigma=[])\nReturns the simplices in the link of sigma.\n\n\nmaximal\nSimplexTree.SimplexTree.maximal()\nReturns the maximal simplices in the complex.\n\n\nreindex\nSimplexTree.SimplexTree.reindex(labels=None)\nReindexes the vertex labels of the complex.\n\n\nremove\nSimplexTree.SimplexTree.remove(simplices)\nRemoves simplices into the Simplex Tree.\nBy definition, removing a face also removes all of its cofaces. If the simplex does not exist in the complex, the tree is not modified.\n\nParameters\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\nsimplices\nIterable[Collection]\nIterable of simplices to insert (each of which are SimplexLike).\nrequired\n\n\n\n\n\n\n\n\n\nNote\n\n\n\n    If the iterable is an 2-dim np.ndarray, then a p-simplex is removed along each contiguous p+1 stride.\n    Otherwise, each element of the iterable to casted to a Simplex and then removed from the tree.\n\n\n\n\nExamples\nst = SimplexTree([range(3)]) print(st) st.remove([[0,1]]) print(st)\n\n\n\nsimplices\nSimplexTree.SimplexTree.simplices(p=None)\nReturns the p-simplices in the complex.\n\n\nskeleton\nSimplexTree.SimplexTree.skeleton(p=None, sigma=[])\nReturns the simplices in the p-skeleton of sigma.\nNote that, when dim(sigma) &lt;= p, sigma is included in the skeleton.\n\nParameters\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\np\nOptional[int]\nthe dimension of the skeleton.\nNone\n\n\nsigma\nCollection\nthe simplex to obtain cofaces of. Defaults to the empty set (root node).\n[]\n\n\n\n\n\nReturns\n\n\n\n\n\n\n\n\nName\nType\nDescription\n\n\n\n\nlist\nIterable[Collection]\nthe simplices in the p-skeleton of sigma.\n\n\n\n\n\n\ntraverse\nSimplexTree.SimplexTree.traverse(\n    order='preorder',\n    f=builtins.print,\n    sigma=[],\n    p=0,\n)\nTraverses the simplex tree in the specified order, calling f on each simplex encountered.\nSupported traversals include breadth-first / level order (“bfs”, “levelorder”), depth-first / prefix (“dfs”, “preorder”). faces, cofaces, coface roots (“coface_roots”), p-skeleton, p-simplices, maximal simplices (“maximal”), and link.\nWhere applicable, each traversal begins its traversal sigma, which defaults to the empty set (root node).\n\nParameters\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\norder\nstr\nthe type of traversal of the simplex tree to execute.\n'preorder'\n\n\nf\nCallable\na function to evaluate on every simplex in the traversal. Defaults to print.\nbuiltins.print\n\n\nsigma\nCollection\nsimplex to start the traversal at, where applicable. Defaults to the root node (empty set).\n[]\n\n\np\nint\ndimension of simplices to restrict to, where applicable. Defaults to 0.\n0\n\n\n\n\n\n\nvertex_collapse\nSimplexTree.SimplexTree.vertex_collapse(u, v, w)\nMaps a pair of vertices into a single vertex.\n\nParameters\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\nu\nint\nthe first vertex in the free pair.\nrequired\n\n\nv\nint\nthe second vertex in the free pair.\nrequired\n\n\nw\nint\nthe target vertex to collapse to.\nrequired\n\n\n\n\n\nReturns\n\n\n\nName\nType\nDescription\n\n\n\n\ncollapsed\nbool\nwhether the collapse was performed.",
+    "crumbs": [
+      "simplextree",
+      "API Reference",
+      "Simplex Tree"
+    ]
+  },
+  {
+    "objectID": "pages/reference/UnionFind.html#classes",
+    "href": "pages/reference/UnionFind.html#classes",
+    "title": "UnionFind",
+    "section": "",
+    "text": "Name\nDescription\n\n\n\n\nUnionFind\nUnion Find data structure\n\n\n\n\n\nUnionFind.UnionFind(n)\nUnion Find data structure",
+    "crumbs": [
+      "API Reference",
+      "Union Find"
+    ]
+  },
+  {
+    "objectID": "pages/reference/index.qmd.html",
+    "href": "pages/reference/index.qmd.html",
+    "title": "Simplex Tree",
+    "section": "",
+    "text": "None"
+  },
+  {
+    "objectID": "pages/reference/index.qmd.html#simplextree.SimplexTree",
+    "href": "pages/reference/index.qmd.html#simplextree.SimplexTree",
+    "title": "Simplex Tree",
+    "section": "SimplexTree",
+    "text": "SimplexTree\nSimplexTree\n\nClasses\n\n\n\nName\nDescription\n\n\n\n\nSimplexTree\nSimplexTree provides lightweight wrapper around a Simplex Tree data structure.\n\n\n\n\nSimplexTree\nSimplexTree.SimplexTree(self, simplices=None, s_type=tuple)\nSimplexTree provides lightweight wrapper around a Simplex Tree data structure.\nThis class exposes a native extension module wrapping a simplex tree implemented with modern C++.\nThe Simplex Tree was originally introduced in the paper: &gt; Boissonnat, Jean-Daniel, and Clément Maria. “The simplex tree: An efficient data structure for general simplicial complexes.” Algorithmica 70.3 (2014): 406-427.\n\nAttributes\n\n\n\nName\nType\nDescription\n\n\n\n\nn_simplices\nndarray\nnumber of simplices\n\n\ndimension\nint\nmaximal dimension of the complex\n\n\nid_policy\nstr\npolicy for generating new vertex ids\n\n\n\n\n\nProperties\n\n\n\nName\nType\nDescription\n\n\n\n\nvertices\nndarray\n0-simplices in the complex.\n\n\nedges\nndarray\n1-simplices in the complex.\n\n\ntriangles\nndarray\n2-simplices in the complex.\n\n\nquads\nndarray\n3-simplices in the complex.\n\n\nconnected_components\nndarray\nconnected component ids.\n\n\n\n\n\nMethods\n\n\n\nName\nDescription\n\n\n\n\nadjacent\nFinds adjacent vertices of a collection of vertices.\n\n\ncard\nReturns the cardinality of various skeleta of the complex.\n\n\ncoface_roots\nReturns the roots whose subtrees span the cofaces of sigma.\n\n\ncofaces\nReturns the cofaces of sigma.\n\n\ncollapse\nPerforms an elementary collapse on two given simplices.\n\n\ncontract\nPerforms an pair contraction.\n\n\ndegree\nComputes the degree of select vertices in the trie.\n\n\nexpand\nPerforms a k-expansion of the complex.\n\n\nfaces\nReturns the p-faces of a given simplex.\n\n\nfind\nFinds whether simplices exist in Simplex Tree.\n\n\ninsert\nInserts simplices into the Simplex Tree.\n\n\nlink\nReturns the simplices in the link of sigma.\n\n\nmaximal\nReturns the maximal simplices in the complex.\n\n\nreindex\nReindexes the vertex labels of the complex.\n\n\nremove\nRemoves simplices into the Simplex Tree.\n\n\nsimplices\nReturns the p-simplices in the complex.\n\n\nskeleton\nReturns the simplices in the p-skeleton of sigma.\n\n\ntraverse\nTraverses the simplex tree in the specified order, calling f on each simplex encountered.\n\n\nvertex_collapse\nMaps a pair of vertices into a single vertex.\n\n\n\n\nadjacent\nSimplexTree.SimplexTree.adjacent(vertices)\nFinds adjacent vertices of a collection of vertices.\n\n\ncard\nSimplexTree.SimplexTree.card(p=None)\nReturns the cardinality of various skeleta of the complex.\n\nParameters\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\np\nOptional[int]\ndimension parameter. Defaults to None.\nNone\n\n\n\n\n\nReturns\n\n\n\n\n\n\n\n\nName\nType\nDescription\n\n\n\n\ncardinalities\nUnion[int, tuple]\nif p is an integer, the number of p-simplices in the complex. Otherwise a tuple indicating the number of simplices of all dimensions.\n\n\n\n\n\n\ncoface_roots\nSimplexTree.SimplexTree.coface_roots(sigma=[])\nReturns the roots whose subtrees span the cofaces of sigma.\nNote that sigma itself is included in the set of its cofaces.\n\nParameters\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\nsigma\nCollection\nthe simplex to obtain cofaces of. Defaults to the empty set (root node).\n[]\n\n\n\n\n\nReturns\n\n\n\nName\nType\nDescription\n\n\n\n\ncoface_roots\nlist[Collection]\nthe coface roots of sigma.\n\n\n\n\n\n\ncofaces\nSimplexTree.SimplexTree.cofaces(sigma=[])\nReturns the cofaces of sigma.\nNote, by definition, sigma is defined as a coface of itself.\n\nParameters\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\nsigma\nCollection\nthe simplex to obtain cofaces of.\n[]\n\n\n\n\n\nReturns\n\n\n\nName\nType\nDescription\n\n\n\n\ncofaces\nlist[Collection]\nthe cofaces of sigma.\n\n\n\n\n\n\ncollapse\nSimplexTree.SimplexTree.collapse(sigma, tau)\nPerforms an elementary collapse on two given simplices.\nChecks whether its possible to collapse \\\\sigma through \\\\tau, and if so, both simplices are removed. A simplex \\\\sigma is said to be collapsible through one of its faces \\\\tau if \\\\sigma is the only coface of \\\\tau (excluding \\\\tau itself).\n\nParameters\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\nsigma\nCollection\nmaximal simplex to collapse\nrequired\n\n\ntau\nCollection\nface of sigma to collapse\nrequired\n\n\n\n\n\nReturns\n\n\n\nName\nType\nDescription\n\n\n\n\n\nbool\nwhether the pair was collapsed\n\n\n\nExamples:\n    from simplextree import SimplexTree\n    st = SimplexTree([[0,1,2]])\n    print(st)\n\n    st.collapse([0,1,2], [1,2])\n    print(st)\n\n\n\ncontract\nSimplexTree.SimplexTree.contract(pair)\nPerforms an pair contraction.\nThis function performs an pair contraction: given a pair of vertices (va, vb), vertex vb is said to contract to va if vb is removed from the complex and the link of va is augmented with the link of vb.\nSome notes about pair are in order: - pair is not sorted like other simplex inputs - The second vertex is always contracted to the first - pair need not be an existing simplex (edge) in the complex - Contraction is not symmetric.\n\nParameters\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\npair\nCollection\nedge to contract\nrequired\n\n\n\n\n\nReturns\n\n\n\nName\nType\nDescription\n\n\n\n\ncontracted\nbool\nwhether the pair was contracted\n\n\n\n\n\nExamples\nfrom simplextree import SimplexTree st = SimplexTree([[0,1,2]]) st.print() st.contract([0,2]) st.print()\n\n\n\ndegree\nSimplexTree.SimplexTree.degree(vertices=None)\nComputes the degree of select vertices in the trie.\n\nParameters\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\nvertices\nOptional[ArrayLike]\nIf no vertices are specified, all degrees are computed. Non-existing vertices by default have degree 0.\nNone\n\n\n\n\n\nReturns\n\n\n\n\n\n\n\n\nName\nType\nDescription\n\n\n\n\n\nUnion[ArrayLike, int]\ndegree of each vertex id given in ‘vertices’.\n\n\n\n\n\n\nexpand\nSimplexTree.SimplexTree.expand(k, f=None)\nPerforms a k-expansion of the complex.\nThis function is particularly useful for expanding clique complexes beyond their 1-skeleton.\n\nParameters\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\nk\nint\nmaximum dimension to expand to.\nrequired\n\n\nf\nOptional[Callable[[Collection], bool]]\nboolean predicate which returns whether a simplex should added to the complex (and further expanded).\nNone\n\n\n\n\n\nExamples\nfrom simplextree import SimplexTree from itertools import combinations st = SimplexTree(combinations(range(8), 2)) print(st)\nst.expand(k=2, lambda s: 2 in s) # Expand only triangles containing 2 as a vertex print(st)\nst.expand(k=2) # Expand all 2-cliques print(st)\n\n\n\nfaces\nSimplexTree.SimplexTree.faces(p=None, sigma=None)\nReturns the p-faces of a given simplex.\n\n\nfind\nSimplexTree.SimplexTree.find(simplices)\nFinds whether simplices exist in Simplex Tree.\n\nParameters\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\nsimplices\nIterable[Collection]\nIterable of simplices to insert (each of which are SimplexLike)\nrequired\n\n\n\n\n\nReturns\n\n\n\n\n\n\n\n\nName\nType\nDescription\n\n\n\n\nfound\nnp.ndarray\nboolean array indicating whether each simplex was found in the complex\n\n\n\n\n\n\n\n\n\nNote\n\n\n\n    If the iterable is an 2-dim np.ndarray, then the p-simplex to find is given by each contiguous p+1 stride.\n    Otherwise, each element of the iterable to casted to a Simplex and then searched for in the tree.\n\n\n\n\n\ninsert\nSimplexTree.SimplexTree.insert(simplices)\nInserts simplices into the Simplex Tree.\nBy definition, inserting a simplex also inserts all of its faces. If the simplex already exists in the complex, the tree is not modified.\n\nParameters\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\nsimplices\nIterable[Collection]\nIterable of simplices to insert (each of which are SimplexLike)\nrequired\n\n\n\n\n\n\n\n\n\nNote\n\n\n\nIf the iterable is an 2-dim np.ndarray, then a p-simplex is inserted along each contiguous p+1 stride. Otherwise, each element of the iterable to casted to a Simplex and then inserted into the tree.\n\n\n\n\nExamples\n\nfrom simplextree import SimplexTree\nst = SimplexTree([range(3)])\nprint(st)\n\nSimplex Tree with (3, 3, 1) (0, 1, 2)-simplices\n\n\n\nst.insert([[0,1]])\nprint(st)\n\nSimplex Tree with (3, 3, 1) (0, 1, 2)-simplices\n\n\n\n\n\nlink\nSimplexTree.SimplexTree.link(sigma=[])\nReturns the simplices in the link of sigma.\n\n\nmaximal\nSimplexTree.SimplexTree.maximal()\nReturns the maximal simplices in the complex.\n\n\nreindex\nSimplexTree.SimplexTree.reindex(labels=None)\nReindexes the vertex labels of the complex.\n\n\nremove\nSimplexTree.SimplexTree.remove(simplices)\nRemoves simplices into the Simplex Tree.\nBy definition, removing a face also removes all of its cofaces. If the simplex does not exist in the complex, the tree is not modified.\n\nParameters\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\nsimplices\nIterable[Collection]\nIterable of simplices to insert (each of which are SimplexLike).\nrequired\n\n\n\n\n\n\n\n\n\nNote\n\n\n\n    If the iterable is an 2-dim np.ndarray, then a p-simplex is removed along each contiguous p+1 stride.\n    Otherwise, each element of the iterable to casted to a Simplex and then removed from the tree.\n\n\n\n\nExamples\nst = SimplexTree([range(3)]) print(st) st.remove([[0,1]]) print(st)\n\n\n\nsimplices\nSimplexTree.SimplexTree.simplices(p=None)\nReturns the p-simplices in the complex.\n\n\nskeleton\nSimplexTree.SimplexTree.skeleton(p=None, sigma=[])\nReturns the simplices in the p-skeleton of sigma.\nNote that, when dim(sigma) &lt;= p, sigma is included in the skeleton.\n\nParameters\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\np\nOptional[int]\nthe dimension of the skeleton.\nNone\n\n\nsigma\nCollection\nthe simplex to obtain cofaces of. Defaults to the empty set (root node).\n[]\n\n\n\n\n\nReturns\n\n\n\n\n\n\n\n\nName\nType\nDescription\n\n\n\n\nlist\nIterable[Collection]\nthe simplices in the p-skeleton of sigma.\n\n\n\n\n\n\ntraverse\nSimplexTree.SimplexTree.traverse(\n    order='preorder',\n    f=builtins.print,\n    sigma=[],\n    p=0,\n)\nTraverses the simplex tree in the specified order, calling f on each simplex encountered.\nSupported traversals include breadth-first / level order (“bfs”, “levelorder”), depth-first / prefix (“dfs”, “preorder”). faces, cofaces, coface roots (“coface_roots”), p-skeleton, p-simplices, maximal simplices (“maximal”), and link.\nWhere applicable, each traversal begins its traversal sigma, which defaults to the empty set (root node).\n\nParameters\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\norder\nstr\nthe type of traversal of the simplex tree to execute.\n'preorder'\n\n\nf\nCallable\na function to evaluate on every simplex in the traversal. Defaults to print.\nbuiltins.print\n\n\nsigma\nCollection\nsimplex to start the traversal at, where applicable. Defaults to the root node (empty set).\n[]\n\n\np\nint\ndimension of simplices to restrict to, where applicable. Defaults to 0.\n0\n\n\n\n\n\n\nvertex_collapse\nSimplexTree.SimplexTree.vertex_collapse(u, v, w)\nMaps a pair of vertices into a single vertex.\n\nParameters\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\nu\nint\nthe first vertex in the free pair.\nrequired\n\n\nv\nint\nthe second vertex in the free pair.\nrequired\n\n\nw\nint\nthe target vertex to collapse to.\nrequired\n\n\n\n\n\nReturns\n\n\n\nName\nType\nDescription\n\n\n\n\ncollapsed\nbool\nwhether the collapse was performed."
+  },
+  {
+    "objectID": "pages/reference/simplextree.SimplexTree.SimplexTree.degree.html",
+    "href": "pages/reference/simplextree.SimplexTree.SimplexTree.degree.html",
+    "title": "SimplexTree.degree",
+    "section": "",
+    "text": "SimplexTree.SimplexTree.degree(vertices=None)\nComputes the degree of select vertices in the trie.\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\nvertices\nOptional[ArrayLike]\nIf no vertices are specified, all degrees are computed. Non-existing vertices by default have degree 0.\nNone\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\n\n\n\n\n\nUnion[ArrayLike, int]\ndegree of each vertex id given in ‘vertices’."
+  },
+  {
+    "objectID": "pages/reference/simplextree.SimplexTree.SimplexTree.degree.html#parameters",
+    "href": "pages/reference/simplextree.SimplexTree.SimplexTree.degree.html#parameters",
+    "title": "SimplexTree.degree",
+    "section": "",
+    "text": "Name\nType\nDescription\nDefault\n\n\n\n\nvertices\nOptional[ArrayLike]\nIf no vertices are specified, all degrees are computed. Non-existing vertices by default have degree 0.\nNone"
+  },
+  {
+    "objectID": "pages/reference/simplextree.SimplexTree.SimplexTree.degree.html#returns",
+    "href": "pages/reference/simplextree.SimplexTree.SimplexTree.degree.html#returns",
+    "title": "SimplexTree.degree",
+    "section": "",
+    "text": "Name\nType\nDescription\n\n\n\n\n\nUnion[ArrayLike, int]\ndegree of each vertex id given in ‘vertices’."
+  },
+  {
+    "objectID": "pages/reference/simplextree.SimplexTree.SimplexTree.skeleton.html",
+    "href": "pages/reference/simplextree.SimplexTree.SimplexTree.skeleton.html",
+    "title": "SimplexTree.skeleton",
+    "section": "",
+    "text": "SimplexTree.SimplexTree.skeleton(p=None, sigma=[])\nReturns the simplices in the p-skeleton of sigma.\nNote that, when dim(sigma) &lt;= p, sigma is included in the skeleton.\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\np\nOptional[int]\nthe dimension of the skeleton.\nNone\n\n\nsigma\nCollection\nthe simplex to obtain cofaces of. Defaults to the empty set (root node).\n[]\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\n\n\n\n\nlist\nIterable[Collection]\nthe simplices in the p-skeleton of sigma."
+  },
+  {
+    "objectID": "pages/reference/simplextree.SimplexTree.SimplexTree.skeleton.html#parameters",
+    "href": "pages/reference/simplextree.SimplexTree.SimplexTree.skeleton.html#parameters",
+    "title": "SimplexTree.skeleton",
+    "section": "",
+    "text": "Name\nType\nDescription\nDefault\n\n\n\n\np\nOptional[int]\nthe dimension of the skeleton.\nNone\n\n\nsigma\nCollection\nthe simplex to obtain cofaces of. Defaults to the empty set (root node).\n[]"
+  },
+  {
+    "objectID": "pages/reference/simplextree.SimplexTree.SimplexTree.skeleton.html#returns",
+    "href": "pages/reference/simplextree.SimplexTree.SimplexTree.skeleton.html#returns",
+    "title": "SimplexTree.skeleton",
+    "section": "",
+    "text": "Name\nType\nDescription\n\n\n\n\nlist\nIterable[Collection]\nthe simplices in the p-skeleton of sigma."
+  },
+  {
+    "objectID": "pages/reference/simplextree.SimplexTree.SimplexTree.contract.html",
+    "href": "pages/reference/simplextree.SimplexTree.SimplexTree.contract.html",
+    "title": "SimplexTree.contract",
+    "section": "",
+    "text": "SimplexTree.SimplexTree.contract(pair)\nPerforms an pair contraction.\nThis function performs an pair contraction: given a pair of vertices (va, vb), vertex vb is said to contract to va if vb is removed from the complex and the link of va is augmented with the link of vb.\nSome notes about pair are in order: - pair is not sorted like other simplex inputs - The second vertex is always contracted to the first - pair need not be an existing simplex (edge) in the complex - Contraction is not symmetric."
+  },
+  {
+    "objectID": "pages/reference/simplextree.SimplexTree.SimplexTree.contract.html#parameters",
+    "href": "pages/reference/simplextree.SimplexTree.SimplexTree.contract.html#parameters",
+    "title": "SimplexTree.contract",
+    "section": "Parameters",
+    "text": "Parameters\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\npair\nCollection\npair to contract\nrequired"
+  },
+  {
+    "objectID": "pages/reference/simplextree.SimplexTree.SimplexTree.contract.html#returns",
+    "href": "pages/reference/simplextree.SimplexTree.SimplexTree.contract.html#returns",
+    "title": "SimplexTree.contract",
+    "section": "Returns",
+    "text": "Returns\n\n\n\nName\nType\nDescription\n\n\n\n\n\nNone\nwhether the pair was contracted"
+  },
+  {
+    "objectID": "pages/reference/simplextree.SimplexTree.SimplexTree.contract.html#examples",
+    "href": "pages/reference/simplextree.SimplexTree.SimplexTree.contract.html#examples",
+    "title": "SimplexTree.contract",
+    "section": "Examples",
+    "text": "Examples\n\nfrom simplextree import SimplexTree\nst = SimplexTree([[0,1,2]])\nst.print()\n\n0 1 2 0 0 1 0\n      1 2 2 1\n            2\n\n\n\nst.contract([0,2])\nst.print()\n\n0 1 0\n    1"
+  },
+  {
+    "objectID": "pages/reference/simplextree.SimplexTree.SimplexTree.cofaces.html",
+    "href": "pages/reference/simplextree.SimplexTree.SimplexTree.cofaces.html",
+    "title": "SimplexTree.cofaces",
+    "section": "",
+    "text": "SimplexTree.SimplexTree.cofaces(sigma=[])\nReturns the cofaces of sigma.\nNote, by definition, sigma is defined as a coface of itself.\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\nsigma\nCollection\nthe simplex to obtain cofaces of.\n[]\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\n\n\n\n\ncofaces\nlist[Collection]\nthe cofaces of sigma."
+  },
+  {
+    "objectID": "pages/reference/simplextree.SimplexTree.SimplexTree.cofaces.html#parameters",
+    "href": "pages/reference/simplextree.SimplexTree.SimplexTree.cofaces.html#parameters",
+    "title": "SimplexTree.cofaces",
+    "section": "",
+    "text": "Name\nType\nDescription\nDefault\n\n\n\n\nsigma\nCollection\nthe simplex to obtain cofaces of.\n[]"
+  },
+  {
+    "objectID": "pages/reference/simplextree.SimplexTree.SimplexTree.cofaces.html#returns",
+    "href": "pages/reference/simplextree.SimplexTree.SimplexTree.cofaces.html#returns",
+    "title": "SimplexTree.cofaces",
+    "section": "",
+    "text": "Name\nType\nDescription\n\n\n\n\ncofaces\nlist[Collection]\nthe cofaces of sigma."
+  },
+  {
+    "objectID": "pages/reference/simplextree.SimplexTree.SimplexTree.dim.html",
+    "href": "pages/reference/simplextree.SimplexTree.SimplexTree.dim.html",
+    "title": "SimplexTree.dim",
+    "section": "",
+    "text": "SimplexTree.dim\nSimplexTree.SimplexTree.dim()"
+  },
+  {
+    "objectID": "pages/reference/simplextree.SimplexTree.SimplexTree.adjacent.html",
+    "href": "pages/reference/simplextree.SimplexTree.SimplexTree.adjacent.html",
+    "title": "SimplexTree.adjacent",
+    "section": "",
+    "text": "SimplexTree.adjacent\nSimplexTree.SimplexTree.adjacent(vertices)\nFinds adjacent vertices of a collection of vertices."
+  },
+  {
+    "objectID": "pages/reference/simplextree.SimplexTree.SimplexTree.simplices.html",
+    "href": "pages/reference/simplextree.SimplexTree.SimplexTree.simplices.html",
+    "title": "SimplexTree.simplices",
+    "section": "",
+    "text": "SimplexTree.simplices\nSimplexTree.SimplexTree.simplices(p=None)\nReturns the p-simplices in the complex."
+  },
+  {
+    "objectID": "pages/reference/simplextree.SimplexTree.SimplexTree.maximal.html",
+    "href": "pages/reference/simplextree.SimplexTree.SimplexTree.maximal.html",
+    "title": "SimplexTree.maximal",
+    "section": "",
+    "text": "SimplexTree.maximal\nSimplexTree.SimplexTree.maximal()\nReturns the maximal simplices in the complex."
+  },
+  {
+    "objectID": "pages/reference/simplextree.SimplexTree.SimplexTree.remove.html",
+    "href": "pages/reference/simplextree.SimplexTree.SimplexTree.remove.html",
+    "title": "SimplexTree.remove",
+    "section": "",
+    "text": "SimplexTree.SimplexTree.remove(simplices)\nRemoves simplices into the Simplex Tree.\nBy definition, removing a face also removes all of its cofaces. If the simplex does not exist in the complex, the tree is not modified."
+  },
+  {
+    "objectID": "pages/reference/simplextree.SimplexTree.SimplexTree.remove.html#parameters",
+    "href": "pages/reference/simplextree.SimplexTree.SimplexTree.remove.html#parameters",
+    "title": "SimplexTree.remove",
+    "section": "Parameters",
+    "text": "Parameters\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\nsimplices\nIterable[Collection]\nIterable of simplices to insert (each of which are SimplexLike).\nrequired\n\n\n\n\n\n\n\n\n\nNote\n\n\n\n    If the iterable is an 2-dim np.ndarray, then a p-simplex is removed along each contiguous p+1 stride.\n    Otherwise, each element of the iterable to casted to a Simplex and then removed from the tree."
+  },
+  {
+    "objectID": "pages/reference/simplextree.SimplexTree.SimplexTree.remove.html#examples",
+    "href": "pages/reference/simplextree.SimplexTree.SimplexTree.remove.html#examples",
+    "title": "SimplexTree.remove",
+    "section": "Examples",
+    "text": "Examples\n\nfrom simplextree import SimplexTree\nst = SimplexTree([range(3)])\nprint(st)\n\nSimplex Tree with (3, 3, 1) (0, 1, 2)-simplices\n\n\n\nst.remove([[0,1]])\nprint(st)\n\nSimplex Tree with (3, 2) (0, 1)-simplices"
+  },
+  {
+    "objectID": "pages/reference/simplextree.SimplexTree.SimplexTree.find.html",
+    "href": "pages/reference/simplextree.SimplexTree.SimplexTree.find.html",
+    "title": "SimplexTree.find",
+    "section": "",
+    "text": "SimplexTree.SimplexTree.find(simplices)\nFinds whether simplices exist in Simplex Tree.\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\nsimplices\nIterable[Collection]\nIterable of simplices to insert (each of which are SimplexLike)\nrequired\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\n\n\n\n\nfound\nnp.ndarray\nboolean array indicating whether each simplex was found in the complex\n\n\n\n\n\n\n\n\n\nNote\n\n\n\n    If the iterable is an 2-dim np.ndarray, then the p-simplex to find is given by each contiguous p+1 stride.\n    Otherwise, each element of the iterable to casted to a Simplex and then searched for in the tree."
+  },
+  {
+    "objectID": "pages/reference/simplextree.SimplexTree.SimplexTree.find.html#parameters",
+    "href": "pages/reference/simplextree.SimplexTree.SimplexTree.find.html#parameters",
+    "title": "SimplexTree.find",
+    "section": "",
+    "text": "Name\nType\nDescription\nDefault\n\n\n\n\nsimplices\nIterable[Collection]\nIterable of simplices to insert (each of which are SimplexLike)\nrequired"
+  },
+  {
+    "objectID": "pages/reference/simplextree.SimplexTree.SimplexTree.find.html#returns",
+    "href": "pages/reference/simplextree.SimplexTree.SimplexTree.find.html#returns",
+    "title": "SimplexTree.find",
+    "section": "",
+    "text": "Name\nType\nDescription\n\n\n\n\nfound\nnp.ndarray\nboolean array indicating whether each simplex was found in the complex\n\n\n\n\n\n\n\n\n\nNote\n\n\n\n    If the iterable is an 2-dim np.ndarray, then the p-simplex to find is given by each contiguous p+1 stride.\n    Otherwise, each element of the iterable to casted to a Simplex and then searched for in the tree."
+  },
+  {
+    "objectID": "pages/reference/simplextree.SimplexTree.SimplexTree.vertex_collapse.html",
+    "href": "pages/reference/simplextree.SimplexTree.SimplexTree.vertex_collapse.html",
+    "title": "SimplexTree.vertex_collapse",
+    "section": "",
+    "text": "SimplexTree.SimplexTree.vertex_collapse(u, v, w)\nMaps a pair of vertices into a single vertex.\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\nu\nint\nthe first vertex in the free pair.\nrequired\n\n\nv\nint\nthe second vertex in the free pair.\nrequired\n\n\nw\nint\nthe target vertex to collapse to.\nrequired\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\n\n\n\n\ncollapsed\nbool\nwhether the collapse was performed."
+  },
+  {
+    "objectID": "pages/reference/simplextree.SimplexTree.SimplexTree.vertex_collapse.html#parameters",
+    "href": "pages/reference/simplextree.SimplexTree.SimplexTree.vertex_collapse.html#parameters",
+    "title": "SimplexTree.vertex_collapse",
+    "section": "",
+    "text": "Name\nType\nDescription\nDefault\n\n\n\n\nu\nint\nthe first vertex in the free pair.\nrequired\n\n\nv\nint\nthe second vertex in the free pair.\nrequired\n\n\nw\nint\nthe target vertex to collapse to.\nrequired"
+  },
+  {
+    "objectID": "pages/reference/simplextree.SimplexTree.SimplexTree.vertex_collapse.html#returns",
+    "href": "pages/reference/simplextree.SimplexTree.SimplexTree.vertex_collapse.html#returns",
+    "title": "SimplexTree.vertex_collapse",
+    "section": "",
+    "text": "Name\nType\nDescription\n\n\n\n\ncollapsed\nbool\nwhether the collapse was performed."
+  },
+  {
+    "objectID": "pages/reference/simplextree.SimplexTree.SimplexTree.expand.html",
+    "href": "pages/reference/simplextree.SimplexTree.SimplexTree.expand.html",
+    "title": "SimplexTree.expand",
+    "section": "",
+    "text": "SimplexTree.SimplexTree.expand(k, f=None)\nPerforms a k-expansion of the complex.\nThis function is particularly useful for expanding clique complexes beyond their 1-skeleton."
+  },
+  {
+    "objectID": "pages/reference/simplextree.SimplexTree.SimplexTree.expand.html#parameters",
+    "href": "pages/reference/simplextree.SimplexTree.SimplexTree.expand.html#parameters",
+    "title": "SimplexTree.expand",
+    "section": "Parameters",
+    "text": "Parameters\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\nk\nint\nmaximum dimension to expand to.\nrequired\n\n\nf\nOptional[Callable[[Collection], bool]]\nboolean predicate which returns whether a simplex should added to the complex (and further expanded).\nNone"
+  },
+  {
+    "objectID": "pages/reference/simplextree.SimplexTree.SimplexTree.expand.html#examples",
+    "href": "pages/reference/simplextree.SimplexTree.SimplexTree.expand.html#examples",
+    "title": "SimplexTree.expand",
+    "section": "Examples",
+    "text": "Examples\n\nfrom simplextree import SimplexTree\nfrom itertools import combinations\nst = SimplexTree(combinations(range(8), 2))\nprint(st)\n\nSimplex Tree with (8, 28) (0, 1)-simplices\n\n\n\nst.expand(2, lambda s: 2 in s)  # Expand only triangles containing 2 as a vertex\nprint(st)\n\nSimplex Tree with (8, 28, 21) (0, 1, 2)-simplices\n\n\n\nst.expand(2) # Expand all 2-cliques\nprint(st)\n\nSimplex Tree with (8, 28, 56) (0, 1, 2)-simplices"
+  },
+  {
+    "objectID": "pages/reference/simplextree.SimplexTree.SimplexTree.reindex.html",
+    "href": "pages/reference/simplextree.SimplexTree.SimplexTree.reindex.html",
+    "title": "SimplexTree.reindex",
+    "section": "",
+    "text": "SimplexTree.reindex\nSimplexTree.SimplexTree.reindex(labels=None)\nReindexes the vertex labels of the complex."
+  },
+  {
+    "objectID": "pages/reference/simplextree.SimplexTree.SimplexTree.traverse.html",
+    "href": "pages/reference/simplextree.SimplexTree.SimplexTree.traverse.html",
+    "title": "SimplexTree.traverse",
+    "section": "",
+    "text": "SimplexTree.SimplexTree.traverse(\n    order='preorder',\n    f=builtins.print,\n    sigma=[],\n    p=0,\n)\nTraverses the simplex tree in the specified order, calling f on each simplex encountered.\nSupported traversals include breadth-first / level order (“bfs”, “levelorder”), depth-first / prefix (“dfs”, “preorder”). faces, cofaces, coface roots (“coface_roots”), p-skeleton, p-simplices, maximal simplices (“maximal”), and link.\nWhere applicable, each traversal begins its traversal sigma, which defaults to the empty set (root node).\n\n\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\norder\nstr\nthe type of traversal of the simplex tree to execute.\n'preorder'\n\n\nf\nCallable\na function to evaluate on every simplex in the traversal. Defaults to print.\nbuiltins.print\n\n\nsigma\nCollection\nsimplex to start the traversal at, where applicable. Defaults to the root node (empty set).\n[]\n\n\np\nint\ndimension of simplices to restrict to, where applicable. Defaults to 0.\n0\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\n\n\n\n\n\nNone\nNone"
+  },
+  {
+    "objectID": "pages/reference/simplextree.SimplexTree.SimplexTree.traverse.html#parameters",
+    "href": "pages/reference/simplextree.SimplexTree.SimplexTree.traverse.html#parameters",
+    "title": "SimplexTree.traverse",
+    "section": "",
+    "text": "Name\nType\nDescription\nDefault\n\n\n\n\norder\nstr\nthe type of traversal of the simplex tree to execute.\n'preorder'\n\n\nf\nCallable\na function to evaluate on every simplex in the traversal. Defaults to print.\nbuiltins.print\n\n\nsigma\nCollection\nsimplex to start the traversal at, where applicable. Defaults to the root node (empty set).\n[]\n\n\np\nint\ndimension of simplices to restrict to, where applicable. Defaults to 0.\n0"
+  },
+  {
+    "objectID": "pages/reference/simplextree.SimplexTree.SimplexTree.traverse.html#returns",
+    "href": "pages/reference/simplextree.SimplexTree.SimplexTree.traverse.html#returns",
+    "title": "SimplexTree.traverse",
+    "section": "",
+    "text": "Name\nType\nDescription\n\n\n\n\n\nNone\nNone"
+  },
+  {
+    "objectID": "pages/reference/simplextree.SimplexTree.SimplexTree.insert.html",
+    "href": "pages/reference/simplextree.SimplexTree.SimplexTree.insert.html",
+    "title": "SimplexTree.insert",
+    "section": "",
+    "text": "SimplexTree.SimplexTree.insert(simplices)\nInserts simplices into the Simplex Tree.\nBy definition, inserting a simplex also inserts all of its faces. If the simplex already exists in the complex, the tree is not modified."
+  },
+  {
+    "objectID": "pages/reference/simplextree.SimplexTree.SimplexTree.insert.html#parameters",
+    "href": "pages/reference/simplextree.SimplexTree.SimplexTree.insert.html#parameters",
+    "title": "SimplexTree.insert",
+    "section": "Parameters",
+    "text": "Parameters\n\n\n\n\n\n\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\nsimplices\nIterable[Collection]\nIterable of simplices to insert (each of which are SimplexLike)\nrequired\n\n\n\n\n\n\n\n\n\nNote\n\n\n\nIf the iterable is an 2-dim np.ndarray, then a p-simplex is inserted along each contiguous p+1 stride. Otherwise, each element of the iterable to casted to a Simplex and then inserted into the tree."
+  },
+  {
+    "objectID": "pages/reference/simplextree.SimplexTree.SimplexTree.insert.html#examples",
+    "href": "pages/reference/simplextree.SimplexTree.SimplexTree.insert.html#examples",
+    "title": "SimplexTree.insert",
+    "section": "Examples",
+    "text": "Examples\n\nfrom simplextree import SimplexTree\nst = SimplexTree([range(3)])\nprint(st)\n\nSimplex Tree with (3, 3, 1) (0, 1, 2)-simplices\n\n\n\nst.insert([[0,1]])\nprint(st)\n\nSimplex Tree with (3, 3, 1) (0, 1, 2)-simplices"
+  },
+  {
+    "objectID": "pages/reference/SimplexTree.html#functions",
+    "href": "pages/reference/SimplexTree.html#functions",
+    "title": "SimplexTree",
+    "section": "",
+    "text": "Name\nDescription\n\n\n\n\nSimplexTree.insert\nInserts simplices into the Simplex Tree.\n\n\nSimplexTree.remove\nRemoves simplices into the Simplex Tree.\n\n\nSimplexTree.find\nFinds whether simplices exist in Simplex Tree.\n\n\nSimplexTree.adjacent\nFinds adjacent vertices of a collection of vertices.\n\n\nSimplexTree.collapse\nPerforms an elementary collapse on two given simplices.\n\n\nSimplexTree.contract\nPerforms an pair contraction.\n\n\nSimplexTree.vertex_collapse\nMaps a pair of vertices into a single vertex.\n\n\nSimplexTree.degree\nComputes the degree of select vertices in the trie.\n\n\nSimplexTree.traverse\nTraverses the simplex tree in the specified order, calling f on each simplex encountered.\n\n\nSimplexTree.cofaces\nReturns the cofaces of sigma.\n\n\nSimplexTree.skeleton\nReturns the simplices in the p-skeleton of sigma.\n\n\nSimplexTree.simplices\nReturns the p-simplices in the complex.\n\n\nSimplexTree.faces\nReturns the p-faces of a given simplex.\n\n\nSimplexTree.maximal\nReturns the maximal simplices in the complex.\n\n\nSimplexTree.link\nReturns the simplices in the link of sigma.\n\n\nSimplexTree.expand\nPerforms a k-expansion of the complex.\n\n\nSimplexTree.reindex\nReindexes the vertex labels of the complex.\n\n\nSimplexTree.dim\n\n\n\nSimplexTree.card\nReturns the cardinality of various skeleta of the complex.\n\n\nSimplexTree.print\n\n\n\nSimplexTree.__iter__\n\n\n\nSimplexTree.__contains__\n\n\n\nSimplexTree.__len__",
+    "crumbs": [
+      "API Reference",
+      "Simplex Tree"
+    ]
+  },
+  {
+    "objectID": "pages/reference/simplextree.SimplexTree.SimplexTree.collapse.html",
+    "href": "pages/reference/simplextree.SimplexTree.SimplexTree.collapse.html",
+    "title": "SimplexTree.collapse",
+    "section": "",
+    "text": "SimplexTree.SimplexTree.collapse(sigma, tau)\nPerforms an elementary collapse on two given simplices.\nChecks whether its possible to collapse \\sigma through \\tau, and if so, both simplices are removed. A simplex \\sigma is said to be collapsible through one of its faces \\tau if \\sigma is the only coface of \\tau (excluding \\tau itself)."
+  },
+  {
+    "objectID": "pages/reference/simplextree.SimplexTree.SimplexTree.collapse.html#parameters",
+    "href": "pages/reference/simplextree.SimplexTree.SimplexTree.collapse.html#parameters",
+    "title": "SimplexTree.collapse",
+    "section": "Parameters",
+    "text": "Parameters\n\n\n\nName\nType\nDescription\nDefault\n\n\n\n\nsigma\nCollection\nmaximal simplex to collapse\nrequired\n\n\ntau\nCollection\nface of sigma to collapse\nrequired"
+  },
+  {
+    "objectID": "pages/reference/simplextree.SimplexTree.SimplexTree.collapse.html#returns",
+    "href": "pages/reference/simplextree.SimplexTree.SimplexTree.collapse.html#returns",
+    "title": "SimplexTree.collapse",
+    "section": "Returns",
+    "text": "Returns\n\n\n\nName\nType\nDescription\n\n\n\n\n\nbool\nwhether the pair was collapsed"
+  },
+  {
+    "objectID": "pages/reference/simplextree.SimplexTree.SimplexTree.collapse.html#examples",
+    "href": "pages/reference/simplextree.SimplexTree.SimplexTree.collapse.html#examples",
+    "title": "SimplexTree.collapse",
+    "section": "Examples",
+    "text": "Examples\n\nfrom simplextree import SimplexTree\nst = SimplexTree([[0,1,2]])\nprint(st)\n\nSimplex Tree with (3, 3, 1) (0, 1, 2)-simplices\n\n\n\nst.collapse([0,1,2], [1,2])\nprint(st)\n\nSimplex Tree with (3, 2) (0, 1)-simplices"
+  },
+  {
+    "objectID": "pages/reference/simplextree.SimplexTree.SimplexTree.__iter__.html",
+    "href": "pages/reference/simplextree.SimplexTree.SimplexTree.__iter__.html",
+    "title": "SimplexTree.__iter__ { #simplextree.SimplexTree.SimplexTree.__iter__ }",
+    "section": "",
+    "text": "SimplexTree.__iter__ { #simplextree.SimplexTree.SimplexTree.__iter__ }\nSimplexTree.SimplexTree.__iter__()"
+  },
+  {
+    "objectID": "pages/reference/simplextree.SimplexTree.SimplexTree.__len__.html",
+    "href": "pages/reference/simplextree.SimplexTree.SimplexTree.__len__.html",
+    "title": "SimplexTree.__len__ { #simplextree.SimplexTree.SimplexTree.__len__ }",
+    "section": "",
+    "text": "SimplexTree.__len__ { #simplextree.SimplexTree.SimplexTree.__len__ }\nSimplexTree.SimplexTree.__len__()"
+  },
+  {
+    "objectID": "pages/reference/index.html#unionfind",
+    "href": "pages/reference/index.html#unionfind",
+    "title": "API Reference",
+    "section": "",
+    "text": "UnionFind",
+    "crumbs": [
+      "simplextree",
+      "API Reference"
+    ]
   }
 ]

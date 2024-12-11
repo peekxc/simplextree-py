@@ -1,0 +1,32 @@
+# SimplexTree.traverse { #simplextree.SimplexTree.SimplexTree.traverse }
+
+```python
+SimplexTree.SimplexTree.traverse(
+    order='preorder',
+    f=builtins.print,
+    sigma=[],
+    p=0,
+)
+```
+
+Traverses the simplex tree in the specified order, calling `f` on each simplex encountered.
+
+Supported traversals include breadth-first / level order ("bfs", "levelorder"), depth-first / prefix ("dfs", "preorder").
+faces, cofaces, coface roots ("coface_roots"), p-skeleton, p-simplices, maximal simplices ("maximal"), and link.
+
+Where applicable, each traversal begins its traversal `sigma`, which defaults to the empty set (root node).
+
+## Parameters {.doc-section .doc-section-parameters}
+
+| Name   | Type       | Description                                                                                 | Default          |
+|--------|------------|---------------------------------------------------------------------------------------------|------------------|
+| order  | str        | the type of traversal of the simplex tree to execute.                                       | `'preorder'`     |
+| f      | Callable   | a function to evaluate on every simplex in the traversal. Defaults to print.                | `builtins.print` |
+| sigma  | Collection | simplex to start the traversal at, where applicable. Defaults to the root node (empty set). | `[]`             |
+| p      | int        | dimension of simplices to restrict to, where applicable. Defaults to 0.                     | `0`              |
+
+## Returns {.doc-section .doc-section-returns}
+
+| Name   | Type   | Description   |
+|--------|--------|---------------|
+|        | None   | None          |

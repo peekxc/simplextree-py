@@ -1,0 +1,21 @@
+# SimplexTree.vertex_collapse { #simplextree.SimplexTree.SimplexTree.vertex_collapse }
+
+```python
+SimplexTree.SimplexTree.vertex_collapse(u, v, w)
+```
+
+Maps a pair of vertices into a single vertex.
+
+## Parameters {.doc-section .doc-section-parameters}
+
+| Name   | Type   | Description                         | Default    |
+|--------|--------|-------------------------------------|------------|
+| u      | int    | the first vertex in the free pair.  | _required_ |
+| v      | int    | the second vertex in the free pair. | _required_ |
+| w      | int    | the target vertex to collapse to.   | _required_ |
+
+## Returns {.doc-section .doc-section-returns}
+
+| Name      | Type   | Description                         |
+|-----------|--------|-------------------------------------|
+| collapsed | bool   | whether the collapse was performed. |

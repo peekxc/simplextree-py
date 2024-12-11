@@ -4,6 +4,8 @@ from simplextree.combinatorial import *
 from itertools import combinations
 from functools import partial
 
+
+
 def test_colex():
   n, k = 10, 3
   ranks = np.array([comb_rank_colex(c) for c in combinations(range(n), k)])

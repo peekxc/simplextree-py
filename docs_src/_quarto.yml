@@ -13,21 +13,49 @@ quartodoc:
   package: simplextree
   title: API Reference    # API only 
   dir: pages/reference    # API only 
-  style: pkgdown          # API only
+  style: pkgdown         # API only
   sidebar: _sidebar.yml 
   
-  renderer: 
-    style: _renderer.py
-    show_signature: true
-    show_signature_annotations: true
-    display_name: name 
-  
+  # renderer: 
+  #   style: _renderer.py
+  #   show_signature: true
+  #   show_signature_annotations: true
+  #   display_name: name 
+  parser: google
+
   ## NOTE: THIS IS NOT THE SIDEBAR 
   sections: 
     - title: Simplex Tree 
       contents: 
-        - SimplexTree
-    - title: Union Find
+        - name: SimplexTree
+          children: separate
+          include_empty: false
+          members:
+            - SimplexTree.insert
+            - SimplexTree.remove
+            - SimplexTree.find
+            - SimplexTree.adjacent
+            - SimplexTree.collapse
+            - SimplexTree.contract
+            - SimplexTree.vertex_collapse
+            - SimplexTree.degree
+            - SimplexTree.traverse
+            - SimplexTree.cofaces
+            # - Simplextree.coface_root
+            - SimplexTree.skeleton
+            - SimplexTree.simplices
+            - SimplexTree.faces
+            - SimplexTree.maximal
+            - SimplexTree.link
+            - SimplexTree.expand
+            - SimplexTree.reindex
+            - SimplexTree.dim
+            - SimplexTree.card
+            - SimplexTree.print
+            - SimplexTree.__iter__
+            - SimplexTree.__contains__
+            - SimplexTree.__len__     
+    - title: UnionFind
       contents: 
         - UnionFind
 
@@ -36,10 +64,10 @@ website:
     location: sidebar
     type: textbox
   navbar:
+    background: light
     left: 
       - text: simplextree
-        href: pages/index.html
-    background: light
+        href: pages/index.qmd
     right: 
       - icon: github
         href: https://github.com/peekxc/simplextree-py
@@ -53,10 +81,10 @@ website:
     border: true 
     collapse-level: 2
     contents: 
-      - text: Quick start 
-        href: pages/quickstart.qmd
       - text: Overview 
         href: pages/overview.qmd
+      - text: Quick start 
+        href: pages/quickstart.qmd
       - section: API Reference
         href: pages/reference/index.qmd
         contents:
@@ -70,7 +98,7 @@ website:
   page-navigation: true
   reader-mode: true
   page-footer: 
-    center: "Copyright 2023, Matthew Piekenbrock" 
+    center: "Copyright 2024, Matthew Piekenbrock" 
     border: true
   body-footer: |
     <script data-goatcounter="https://peekxc.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>

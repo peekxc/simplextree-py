@@ -1,0 +1,6 @@
+# SimplexTree.dim { #simplextree.SimplexTree.SimplexTree.dim }
+
+```python
+SimplexTree.SimplexTree.dim()
+```
+

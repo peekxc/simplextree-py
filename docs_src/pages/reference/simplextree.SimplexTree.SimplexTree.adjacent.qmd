@@ -1,0 +1,7 @@
+# SimplexTree.adjacent { #simplextree.SimplexTree.SimplexTree.adjacent }
+
+```python
+SimplexTree.SimplexTree.adjacent(vertices)
+```
+
+Finds adjacent vertices of a collection of vertices.

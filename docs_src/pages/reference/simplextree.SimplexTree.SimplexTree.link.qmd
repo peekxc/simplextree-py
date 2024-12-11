@@ -1,0 +1,7 @@
+# SimplexTree.link { #simplextree.SimplexTree.SimplexTree.link }
+
+```python
+SimplexTree.SimplexTree.link(sigma=[])
+```
+
+Returns the simplices in the link of `sigma`.

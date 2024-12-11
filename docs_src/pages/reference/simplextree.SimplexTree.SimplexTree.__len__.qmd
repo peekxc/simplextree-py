@@ -1,0 +1,6 @@
+# SimplexTree.__len__ { #simplextree.SimplexTree.SimplexTree.__len__ }
+
+```python
+SimplexTree.SimplexTree.__len__()
+```
+

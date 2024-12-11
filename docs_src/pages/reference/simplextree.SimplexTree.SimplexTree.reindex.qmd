@@ -1,0 +1,7 @@
+# SimplexTree.reindex { #simplextree.SimplexTree.SimplexTree.reindex }
+
+```python
+SimplexTree.SimplexTree.reindex(labels=None)
+```
+
+Reindexes the vertex labels of the complex.

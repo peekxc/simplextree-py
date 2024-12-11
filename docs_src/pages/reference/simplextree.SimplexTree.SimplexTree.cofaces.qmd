@@ -1,0 +1,21 @@
+# SimplexTree.cofaces { #simplextree.SimplexTree.SimplexTree.cofaces }
+
+```python
+SimplexTree.SimplexTree.cofaces(sigma=[])
+```
+
+Returns the cofaces of `sigma`.
+
+Note, by definition, `sigma` is defined as a coface of itself.
+
+## Parameters {.doc-section .doc-section-parameters}
+
+| Name   | Type       | Description                       | Default   |
+|--------|------------|-----------------------------------|-----------|
+| sigma  | Collection | the simplex to obtain cofaces of. | `[]`      |
+
+## Returns {.doc-section .doc-section-returns}
+
+| Name    | Type               | Description             |
+|---------|--------------------|-------------------------|
+| cofaces | list\[Collection\] | the cofaces of `sigma`. |

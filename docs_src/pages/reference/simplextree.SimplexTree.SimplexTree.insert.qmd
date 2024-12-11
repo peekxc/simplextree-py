@@ -1,0 +1,32 @@
+# SimplexTree.insert { #simplextree.SimplexTree.SimplexTree.insert }
+
+```python
+SimplexTree.SimplexTree.insert(simplices)
+```
+
+Inserts simplices into the Simplex Tree.
+
+By definition, inserting a simplex also inserts all of its faces. If the simplex already exists in the complex, the tree is not modified.
+
+## Parameters {.doc-section .doc-section-parameters}
+
+| Name      | Type                   | Description                                                     | Default    |
+|-----------|------------------------|-----------------------------------------------------------------|------------|
+| simplices | Iterable\[Collection\] | Iterable of simplices to insert (each of which are SimplexLike) | _required_ |
+
+::: {.callout-note}
+  If the iterable is an 2-dim np.ndarray, then a p-simplex is inserted along each contiguous p+1 stride.
+        Otherwise, each element of the iterable to casted to a Simplex and then inserted into the tree.
+:::
+
+## Examples {.doc-section .doc-section-examples}
+
+```{python}
+from simplextree import SimplexTree
+st = SimplexTree([range(3)])
+print(st)
+```
+```{python}
+st.insert([[0,1]])
+print(st)
+```

@@ -1,0 +1,35 @@
+# SimplexTree.collapse { #simplextree.SimplexTree.SimplexTree.collapse }
+
+```python
+SimplexTree.SimplexTree.collapse(sigma, tau)
+```
+
+Performs an elementary collapse on two given simplices.
+
+Checks whether its possible to collapse $\sigma$ through $\tau$, and if so, both simplices are removed.
+A simplex $\sigma$ is said to be collapsible through one of its faces $\tau$ if $\sigma$ is the only coface of $\tau$ (excluding $\tau$ itself).
+
+## Parameters {.doc-section .doc-section-parameters}
+
+| Name   | Type       | Description                 | Default    |
+|--------|------------|-----------------------------|------------|
+| sigma  | Collection | maximal simplex to collapse | _required_ |
+| tau    | Collection | face of sigma to collapse   | _required_ |
+
+## Returns {.doc-section .doc-section-returns}
+
+| Name   | Type   | Description                    |
+|--------|--------|--------------------------------|
+|        | bool   | whether the pair was collapsed |
+
+## Examples {.doc-section .doc-section-examples}
+
+```{python}
+from simplextree import SimplexTree
+st = SimplexTree([[0,1,2]])
+print(st)
+```
+```{python}
+st.collapse([0,1,2], [1,2])
+print(st)
+```

@@ -1,11 +1,11 @@
 import numpy as np 
-from typing import *
+from typing import Iterable, Any
 from numpy.typing import ArrayLike 
 from .combinatorial import inverse_choose
 
 def is_repeatable(x: Iterable) -> bool:
 	"""Checks whether _x_ is Iterable and repeateable as an Iterable (generators fail this test)."""
-	return not(iter(x) is x)
+	return iter(x) is not x
 
 def is_array_convertible(x: Any) -> bool:
 	return hasattr(x, "__array__")
@@ -19,7 +19,8 @@ def is_distance_matrix(x: ArrayLike) -> bool:
 def is_pairwise_distances(x: ArrayLike) -> bool:
 	"""Checks whether 'x' is a 1-d array of pairwise distances."""
 	x = np.array(x, copy=False) # don't use asanyarray here
-	if x.ndim > 1: return(False)
+	if x.ndim > 1: 
+		return(False)
 	n = inverse_choose(len(x), 2)
 	return(x.ndim == 1 and n == int(n))
 

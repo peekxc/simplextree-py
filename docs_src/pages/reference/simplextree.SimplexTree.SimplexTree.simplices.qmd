@@ -1,0 +1,7 @@
+# SimplexTree.simplices { #simplextree.SimplexTree.SimplexTree.simplices }
+
+```python
+SimplexTree.SimplexTree.simplices(p=None)
+```
+
+Returns the p-simplices in the complex.

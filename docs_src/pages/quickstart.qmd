@@ -6,7 +6,7 @@ jupyter: python3
 execute: 
   freeze: auto
   enabled: true
-draft: true
+draft: false
 ---
 
 ## Quick Start 
@@ -41,7 +41,7 @@ print(st)
 print(st.find([[6], [0,1]]))
 ```
 
-Collections of simplices are returned as simple lists-of-lists:
+Collections of simplices are returned as simple lists-of-tuples:
 ```{python}
 #| echo: true
 #| output: true
@@ -49,7 +49,7 @@ Collections of simplices are returned as simple lists-of-lists:
 print(st.simplices())
 ```
 
-Various parameters can be given to restrict a given subset to certain subsets or orders: 
+You can restrict to specific dimensions by supplying the argument `p`:
 ```{python}
 #| echo: true
 #| output: true
@@ -99,17 +99,54 @@ The trie-structure can also be inspected on the python side with `print_tree`:
 st.print_tree()
 ```
 
-Yet another way is to _traverse_ the complex in a depth-first manner (prefix-order), printing every simplex as it appears in the traversal:
+Another way to inspect the trie structure is to use a _traversal_, e.g. the depth-first manner (prefix-order):
 ```{python}
 st.traverse("dfs", f=print)
 ```
 
-Several traversal orderings are provided, e.g. breadth-first could be used as well (level-order):
+Several traversal orderings are provided, e.g. breadth-first (or level-order) could be used as well:
 
 ```{python}
 st.traverse("bfs", f=print)
 ```
 
-In fact, most operations on the Simplex tree are actually _implemented_ using traversals. For example, 
+In fact, most operations on the Simplex tree are actually _implemented_ using traversals. For example, you can traverse only the maximal faces like so: 
 
+```{python}
 st.traverse("maximal", f=print)
+```
+
+You can supply any `Callable` to `f` (the default is to print). For example, to extract the dimensions of the maximal simplices:
+
+```{python}
+maximal_dims = []
+st.traverse("maximal", f=lambda s: maximal_dims.append(len(s)-1))
+print(maximal_dims)
+```
+
+The simplex type can be configured via the `s_type` attribute. 
+
+```{python}
+st.s_type = list
+print(st.maximal())
+```
+
+The default (and recommended) type is `tuple`. If the type is `Hashable`, simplex properties can be tracked easily external dictionary (a technique inspired by Boosts [property maps](https://www.boost.org/doc/libs/1_86_0/libs/property_map/doc/property_map.html)):
+
+```{python}
+st.s_type = tuple
+colors = ["red", "orange", "yellow", "purple"]
+simplex_colors = { s : colors[len(s) - 1] for s in st }
+print(simplex_colors)
+```
+
+On the other hand, if you work a lot with numpy, you may want the default simplex type to be an array:
+
+```{python}
+st.s_type = np.array
+edges = np.array(st.simplices(p=1))
+print(edges)
+```
+
+
+

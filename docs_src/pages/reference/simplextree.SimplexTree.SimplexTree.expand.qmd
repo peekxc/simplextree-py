@@ -1,0 +1,33 @@
+# SimplexTree.expand { #simplextree.SimplexTree.SimplexTree.expand }
+
+```python
+SimplexTree.SimplexTree.expand(k, f=None)
+```
+
+Performs a k-expansion of the complex.
+
+This function is particularly useful for expanding clique complexes beyond their 1-skeleton.
+
+## Parameters {.doc-section .doc-section-parameters}
+
+| Name   | Type                                         | Description                                                                                           | Default    |
+|--------|----------------------------------------------|-------------------------------------------------------------------------------------------------------|------------|
+| k      | int                                          | maximum dimension to expand to.                                                                       | _required_ |
+| f      | Optional\[Callable\[\[Collection\], bool\]\] | boolean predicate which returns whether a simplex should added to the complex (and further expanded). | `None`     |
+
+## Examples {.doc-section .doc-section-examples}
+
+```{python}
+from simplextree import SimplexTree
+from itertools import combinations
+st = SimplexTree(combinations(range(8), 2))
+print(st)
+```
+```{python}
+st.expand(2, lambda s: 2 in s)  # Expand only triangles containing 2 as a vertex
+print(st)
+```
+```{python}
+st.expand(2) # Expand all 2-cliques
+print(st)
+```

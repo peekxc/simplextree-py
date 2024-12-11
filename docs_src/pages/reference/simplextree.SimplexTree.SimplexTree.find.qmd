@@ -1,0 +1,24 @@
+# SimplexTree.find { #simplextree.SimplexTree.SimplexTree.find }
+
+```python
+SimplexTree.SimplexTree.find(simplices)
+```
+
+Finds whether simplices exist in Simplex Tree.
+
+## Parameters {.doc-section .doc-section-parameters}
+
+| Name      | Type                   | Description                                                     | Default    |
+|-----------|------------------------|-----------------------------------------------------------------|------------|
+| simplices | Iterable\[Collection\] | Iterable of simplices to insert (each of which are SimplexLike) | _required_ |
+
+## Returns {.doc-section .doc-section-returns}
+
+| Name   | Type       | Description                                                            |
+|--------|------------|------------------------------------------------------------------------|
+| found  | np.ndarray | boolean array indicating whether each simplex was found in the complex |
+
+::: {.callout-note}
+        If the iterable is an 2-dim np.ndarray, then the p-simplex to find is given by each contiguous p+1 stride.
+        Otherwise, each element of the iterable to casted to a Simplex and then searched for in the tree.
+:::

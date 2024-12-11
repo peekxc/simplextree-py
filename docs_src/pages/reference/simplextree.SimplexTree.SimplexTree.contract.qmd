@@ -1,0 +1,40 @@
+# SimplexTree.contract { #simplextree.SimplexTree.SimplexTree.contract }
+
+```python
+SimplexTree.SimplexTree.contract(pair)
+```
+
+Performs an pair contraction.
+
+This function performs an pair contraction: given a pair of vertices $(va, vb)$, vertex $vb$ is said to *contract*
+to $va$ if $vb$ is removed from the complex and the link of $va$ is augmented with the link of $vb$.
+
+Some notes about `pair` are in order:
+        - `pair` is **not** sorted like other simplex inputs
+        - The second vertex is always contracted to the first
+        - `pair` need not be an existing simplex (edge) in the complex
+        - Contraction is not symmetric.
+
+## Parameters {.doc-section .doc-section-parameters}
+
+| Name   | Type       | Description      | Default    |
+|--------|------------|------------------|------------|
+| pair   | Collection | pair to contract | _required_ |
+
+## Returns {.doc-section .doc-section-returns}
+
+| Name   | Type   | Description                     |
+|--------|--------|---------------------------------|
+|        | None   | whether the pair was contracted |
+
+## Examples {.doc-section .doc-section-examples}
+
+```{python}
+from simplextree import SimplexTree
+st = SimplexTree([[0,1,2]])
+st.print()
+```
+```{python}
+st.contract([0,2])
+st.print()
+```

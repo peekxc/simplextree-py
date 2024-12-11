@@ -6,7 +6,7 @@ namespace py = pybind11;
 using namespace pybind11::literals;
 
 #include "simplextree.h"
-using simplex_t = SimplexTree::simplex_t; 
+using simplex_t = SimplexTree::simplex_t;
 
 // Generic function to handle various vector types
 template < typename Lambda >
@@ -14,8 +14,8 @@ void vector_handler(SimplexTree& st, const py::array_t< idx_t >& simplices, Lamb
   py::buffer_info s_buffer = simplices.request();
   if (s_buffer.ndim == 1){
     // py::print(s_buffer.shape[0]);
-    const size_t n = s_buffer.shape[0]; 
-    idx_t* s = static_cast< idx_t* >(s_buffer.ptr); 
+    const size_t n = s_buffer.shape[0];
+    idx_t* s = static_cast< idx_t* >(s_buffer.ptr);
     for (size_t i = 0; i < n; ++i){
       f(s+i, s+i+1);
     }
@@ -25,7 +25,7 @@ void vector_handler(SimplexTree& st, const py::array_t< idx_t >& simplices, Lamb
     if (s_buffer.strides[0] <= 0){ return; }
     const size_t d = static_cast< size_t >(s_buffer.shape[1]);
     const size_t n =  static_cast< size_t >(s_buffer.shape[0]);
-    idx_t* s = static_cast< idx_t* >(s_buffer.ptr); 
+    idx_t* s = static_cast< idx_t* >(s_buffer.ptr);
     // py::print("Strides: ", s_buffer.strides[0], s_buffer.strides[1], ", ", "size: ", s_buffer.size, ", shape: (", s_buffer.shape[0], s_buffer.shape[1], ")");
     for (size_t i = 0; i < n; ++i){
       f(s+(d*i), s+d*(i+1));
@@ -42,25 +42,25 @@ void insert_(SimplexTree& st, const py::array_t< idx_t >& simplices){
   });
 }
 void insert_list(SimplexTree& st, std::list< simplex_t > L){
-  for (auto s: L){ 
-    // st.insert(simplex_t(s)); 
+  for (auto s: L){
+    // st.insert(simplex_t(s));
     st.insert(s);
     // st.insert_it(s.begin(), root.get(), 0)
   }
 }
 
 void remove_(SimplexTree& st, const py::array_t< idx_t >& simplices){
-  vector_handler(st, simplices, [&st](idx_t* b, idx_t* e){ 
-    st.remove(st.find(simplex_t(b, e))); 
+  vector_handler(st, simplices, [&st](idx_t* b, idx_t* e){
+    st.remove(st.find(simplex_t(b, e)));
   });
 }
 void remove_list(SimplexTree& st, std::list< simplex_t > L){
-  for (auto s: L){ 
-    st.remove(st.find(simplex_t(s))); 
+  for (auto s: L){
+    st.remove(st.find(simplex_t(s)));
   }
 }
 
-// Vectorized find 
+// Vectorized find
 [[nodiscard]]
 auto find_(SimplexTree& st, const py::array_t< idx_t >& simplices) noexcept -> py::array_t< bool > {
   std::vector< bool > v;
@@ -74,8 +74,8 @@ auto find_(SimplexTree& st, const py::array_t< idx_t >& simplices) noexcept -> p
 [[nodiscard]]
 auto find_list(SimplexTree& st, std::list< simplex_t > L) -> py::array_t< bool > {
   std::vector< bool > v;
-  for (auto s: L){ 
-    v.push_back(st.find(simplex_t(s))); 
+  for (auto s: L){
+    v.push_back(st.find(simplex_t(s)));
   }
   return py::cast(v);
 }
@@ -88,12 +88,12 @@ bool collapse_(SimplexTree& st, const vector< idx_t >& tau, const vector< idx_t 
 auto get_k_simplices(SimplexTree& st, const size_t k) -> py::array_t< idx_t > {
   vector< idx_t > res;
   if (st.n_simplexes.size() <= k){ return py::cast(res); }
-  const size_t ns = st.n_simplexes.at(k); 
+  const size_t ns = st.n_simplexes.at(k);
   res.reserve(ns*(k+1));
   auto tr = st::k_simplices< true >(&st, st.root.get(), k);
   traverse(tr, [&res](node_ptr cn, idx_t depth, simplex_t sigma){
     res.insert(res.end(), sigma.begin(), sigma.end());
-    return true; 
+    return true;
   });
   py::array_t< idx_t > out = py::cast(res);
   std::array< size_t, 2 > shape = { ns, k+1 };
@@ -105,8 +105,8 @@ vector< idx_t > get_vertices(const SimplexTree& st) {
   if (st.n_simplexes.size() == 0){ return vector< idx_t >(); } //IntegerVector(); }
   vector< idx_t > v;
   v.reserve(st.n_simplexes.at(0));
-  for (auto& cn: st.root->children){ 
-    v.push_back(cn->label); 
+  for (auto& cn: st.root->children){
+    v.push_back(cn->label);
   }
   return(v);
 }
@@ -115,26 +115,27 @@ auto get_triangles(SimplexTree& st) -> py::array_t< idx_t > { return get_k_simpl
 auto get_quads(SimplexTree& st) -> py::array_t< idx_t > { return get_k_simplices(st, 3); }
 
 
-// Exports the 1-skeleton as an adjacency matrix 
-// auto as_adjacency_matrix(SimplexTree& stp, int p = 0) -> py::array_t< idx_t > {
-//   const auto& vertices = st.root->children; 
-//   const size_t n = vertices.size();
-//   res  = ..
+// Exports the 1-skeleton as an adjacency matrix
+auto as_adjacency_matrix(SimplexTree& st, int p = 0) -> py::array_t< idx_t > {
+  const auto& vertices = st.root->children;
+  const size_t n = vertices.size();
+  py::array_t< idx_t > res({n, n});
+  auto res_write = res.mutable_unchecked< 2 >();
 
-//   // Fill in the adjacency matrix
-//   size_t i = 0; 
-//   for (auto& vi: vertices){
-//     for (auto& vj: vi->children){
-//       auto it = std::lower_bound(begin(vertices), end(vertices), vj->label, [](const node_uptr& cn, const idx_t label){
-//         return cn->label < label; 
-//       });
-//       const size_t j = std::distance(begin(vertices), it); 
-//       res.at(i, j) = res.at(j, i) = 1;
-//     }
-//     ++i;
-//   }
-//   return(res);
-// }
+  // Fill in the adjacency matrix
+  size_t i = 0;
+  for (auto& vi: vertices){
+    for (auto& vj: vi->children){
+      auto it = std::lower_bound(begin(vertices), end(vertices), vj->label, [](const node_uptr& cn, const idx_t label){
+        return cn->label < label;
+      });
+      const size_t j = std::distance(begin(vertices), it);
+      res_write(i, j) = res_write(j, i) = 1;
+    }
+    ++i;
+  }
+  return(res);
+}
 
 
 auto degree_(SimplexTree& st, vector< idx_t > ids) -> py::array_t< idx_t > {
@@ -159,23 +160,23 @@ py::list adjacent_(const SimplexTree& st, vector< idx_t > ids = vector< idx_t >(
 }
 
 
-void print_tree(const SimplexTree& st){ 
+void print_tree(const SimplexTree& st){
   py::scoped_ostream_redirect stream(
     std::cout,                               // std::ostream&
     py::module_::import("sys").attr("stdout") // Python output
   );
-  st.print_tree(std::cout); 
+  st.print_tree(std::cout);
 }
-void print_cousins(const SimplexTree& st){ 
+void print_cousins(const SimplexTree& st){
   py::scoped_ostream_redirect stream(
     std::cout,                               // std::ostream&
     py::module_::import("sys").attr("stdout") // Python output
   );
-  st.print_cousins(std::cout); 
+  st.print_cousins(std::cout);
 }
 
 auto simplex_counts(const SimplexTree& st) -> py::array_t< size_t >  {
-  auto zero_it = std::find(st.n_simplexes.begin(), st.n_simplexes.end(), 0); 
+  auto zero_it = std::find(st.n_simplexes.begin(), st.n_simplexes.end(), 0);
   auto ne = std::vector< size_t >(st.n_simplexes.begin(), zero_it);
   return(py::cast(ne));
 }
@@ -199,21 +200,21 @@ auto simplex_counts(const SimplexTree& st) -> py::array_t< size_t >  {
 //       auto idx2 = std::distance(begin(v), std::lower_bound(begin(v), end(v), v2));
 //       auto dist_idx = to_natural_2(idx1, idx2, v.size());
 //       weights.push_back(D[dist_idx]);
-//       return true; 
+//       return true;
 //     });
 //     st->flag_filtration(weights, false);
 //   } else {
 //     throw std::invalid_argument("Flag filtrations require a vector of distances for each edge or a 'dist' object");
 //   }
 // }
-// 
+//
 // void test_filtration(Filtration* st, const size_t i){
 //   auto ind = st->simplex_idx(i);
 //   for (auto idx: ind){ Rcout << idx << ", "; }
 //   Rcout << std::endl;
 //   auto sigma = st->expand_simplex(begin(ind), end(ind));
 //   for (auto& label: sigma){ Rcout << label << ", "; }
-//   Rcout << std::endl; 
+//   Rcout << std::endl;
 // }
 
 
@@ -277,7 +278,7 @@ auto simplex_counts(const SimplexTree& st) -> py::array_t< size_t >  {
 //   timer.step("start");
 //   st_ptr->expansion(2);
 //   timer.step("expansion");
-  
+
 //   NumericVector res(timer);
 //   const size_t n = 1000;
 //   for (size_t i=0; i < size_t(res.size()); ++i) { res[i] = res[i] / n; }
@@ -286,15 +287,15 @@ auto simplex_counts(const SimplexTree& st) -> py::array_t< size_t >  {
 
 
 // bool contains_arg(vector< std::string > v, std::string arg_name){
-//   return(std::any_of(v.begin(), v.end(), [&arg_name](const std::string arg){ 
+//   return(std::any_of(v.begin(), v.end(), [&arg_name](const std::string arg){
 //       return arg == arg_name;
 //   }));
 // };
 
 // // From: https://stackoverflow.com/questions/56465550/how-to-concatenate-lists-in-rcpp
 // List cLists(List x, List y) {
-//   int nsize = x.size(); 
-//   int msize = y.size(); 
+//   int nsize = x.size();
+//   int msize = y.size();
 //   List out(nsize + msize);
 
 //   CharacterVector xnames = x.names();
@@ -313,10 +314,10 @@ auto simplex_counts(const SimplexTree& st) -> py::array_t< size_t >  {
 // }
 
 // The types of traversal supported
-enum TRAVERSAL_TYPE { 
-  PREORDER = 0, LEVEL_ORDER = 1, FACES = 2, COFACES = 3, COFACE_ROOTS = 4, K_SKELETON = 5, 
+enum TRAVERSAL_TYPE {
+  PREORDER = 0, LEVEL_ORDER = 1, FACES = 2, COFACES = 3, COFACE_ROOTS = 4, K_SKELETON = 5,
   K_SIMPLICES = 6, MAXIMAL = 7, LINK = 8
-}; 
+};
 // const size_t N_TRAVERSALS = 9;
 
 // Exports a list with the parameters for a preorder traversal
@@ -338,8 +339,8 @@ enum TRAVERSAL_TYPE {
 
 using param_pack = typename std::tuple< SimplexTree*, node_ptr, TRAVERSAL_TYPE >;
 
-// Traverse some aspect of the simplex tree, given parameters 
-// template < class Lambda > 
+// Traverse some aspect of the simplex tree, given parameters
+// template < class Lambda >
 // void traverse_switch(SimplexTree& st, param_pack&& pp, List args, Lambda&& f){
 //   auto args_str = as< vector< std::string > >(args.names());
 //   SimplexTree* st = get< 0 >(pp);
@@ -349,82 +350,82 @@ using param_pack = typename std::tuple< SimplexTree*, node_ptr, TRAVERSAL_TYPE >
 //     case PREORDER: {
 //       auto tr = st::preorder< true >(st, init);
 //       traverse(tr, f);
-//       break; 
+//       break;
 //     }
 //     case LEVEL_ORDER: {
 //       auto tr = st::level_order< true >(st, init);
 //       traverse(tr, f);
-//       break; 
+//       break;
 //     }
 //     case FACES: {
 //       auto tr = st::faces< true >(st, init);
 //       traverse(tr, f);
-//       break; 
+//       break;
 //     }
 //     case COFACES: {
 //       auto tr = st::cofaces< true >(st, init);
 //       traverse(tr, f);
-//       break; 
+//       break;
 //     }
 //     case COFACE_ROOTS: {
 //       auto tr = st::coface_roots< true >(st, init);
 //       traverse(tr, f);
-//       break; 
+//       break;
 //     }
 //     case K_SKELETON: {
 //       if (!contains_arg(args_str, "k")){ stop("Expecting dimension 'k' to be passed."); }
 //       idx_t k = args["k"];
 //       auto tr = st::k_skeleton< true >(st, init, k);
 //       traverse(tr, f);
-//       break; 
+//       break;
 //     }
 //     case K_SIMPLICES: {
 //       if (!contains_arg(args_str, "k")){ stop("Expecting dimension 'k' to be passed."); }
 //       idx_t k = args["k"];
 //       auto tr = st::k_simplices< true >(st, init, k);
 //       traverse(tr, f);
-//       break; 
+//       break;
 //     }
 //     case MAXIMAL: {
 //       auto tr = st::maximal< true >(st, init);
 //       traverse(tr, f);
-//       break; 
+//       break;
 //     }
 //     case LINK: {
 //       auto tr = st::link< true >(st, init);
 //       traverse(tr, f);
-//       break; 
+//       break;
 //     }
 //   }
 // }
 
 // // To validate the traversal parameters
 // param_pack validate_params(List args){
-//   // Extract parameters 
+//   // Extract parameters
 //   auto args_str = as< vector< std::string > >(args.names());
-  
+
 //   // Extract tree
 //   if (!contains_arg(args_str, ".ptr")){ stop("Simplex tree pointer missing."); }
-//   SEXP xptr = args[".ptr"]; 
+//   SEXP xptr = args[".ptr"];
 //   if (TYPEOF(xptr) != EXTPTRSXP || R_ExternalPtrAddr(xptr) == NULL){
 //     stop("Invalid pointer to simplex tree.");
 //   }
 //   XPtr< SimplexTree > st(xptr); // Unwrap XPtr
-  
+
 //   // Extract initial simplex
-//   node_ptr init = nullptr; 
+//   node_ptr init = nullptr;
 //   if (!contains_arg(args_str, "sigma")){ init = st->root.get(); }
 //   else {
 //     IntegerVector sigma = args["sigma"];
-//     init = st->find(sigma); 
+//     init = st->find(sigma);
 //     if (init == nullptr){ init = st->root.get(); }
 //   }
 //   if (init == nullptr){ stop("Invalid starting simplex"); }
-  
-//   // Extract traversal type 
+
+//   // Extract traversal type
 //   size_t tt = (size_t) args["traversal_type"];
 //   if (tt < 0 || tt >= N_TRAVERSALS){ stop("Unknown traversal type."); }
-  
+
 //   return(std::make_tuple(static_cast< SimplexTree* >(st), init, static_cast< TRAVERSAL_TYPE >(tt)));
 // }
 
@@ -434,60 +435,60 @@ void traverse_(SimplexTree& stree, const size_t order, py::function f, simplex_t
   const auto apply_f = [&f](node_ptr cn, idx_t depth, const simplex_t s){
     // f(py::cast(s));
     f(py::tuple(py::cast(s)));
-    return true; 
+    return true;
   };
   switch(order){
     case PREORDER: {
       auto tr = st::preorder< true >(&stree, base);
       traverse(tr, apply_f);
-      break; 
+      break;
     }
     case LEVEL_ORDER: {
       auto tr = st::level_order< true >(&stree, base);
       traverse(tr, apply_f);
-      break; 
+      break;
     }
     case FACES: {
       auto tr = st::faces< true >(&stree, base);
       traverse(tr, apply_f);
-      break; 
+      break;
     }
     case COFACES: {
       auto tr = st::cofaces< true >(&stree, base);
       traverse(tr, apply_f);
-      break; 
+      break;
     }
     case COFACE_ROOTS: {
       auto tr = st::coface_roots< true >(&stree, base);
       traverse(tr, apply_f);
-      break; 
+      break;
     }
     case K_SKELETON: {
       auto tr = st::k_skeleton< true >(&stree, base, k);
       traverse(tr, apply_f);
-      break; 
+      break;
     }
     case K_SIMPLICES: {
       auto tr = st::k_simplices< true >(&stree, base, k);
       traverse(tr, apply_f);
-      break; 
+      break;
     }
     case MAXIMAL: {
       auto tr = st::maximal< true >(&stree, base);
       traverse(tr, apply_f);
-      break; 
+      break;
     }
     case LINK: {
       auto tr = st::link< true >(&stree, base);
       traverse(tr, apply_f);
-      break; 
+      break;
     }
   }
 }
 
 // // [[Rcpp::export]]
 // List ltraverse_R(List args, Function f){
-//   List res = List(); 
+//   List res = List();
 //   auto run_Rf = [&f, &res](node_ptr cn, idx_t d, simplex_t tau){
 //     res.push_back(f(wrap(tau)));
 //     return(true);
@@ -501,13 +502,13 @@ void traverse_(SimplexTree& stree, const size_t order, py::function f, simplex_t
 #include <random>
 
 // void expand_f_bernoulli(SimplexTree& stx, const size_t k, const double p){
-//   SimplexTree& st = *(Rcpp::XPtr< SimplexTree >(stx));  
-  
+//   SimplexTree& st = *(Rcpp::XPtr< SimplexTree >(stx));
+
 //   // Random number generator
 //   std::random_device random_device;
 //   std::mt19937 random_engine(random_device());
 //   std::uniform_real_distribution< double > bernoulli(0.0, 1.0);
-  
+
 //   // Perform Bernoulli trials for given k, with success probability p
 //   st.expansion_f(k, [&](node_ptr parent, idx_t depth, idx_t label){
 //     double q = bernoulli(random_engine);
@@ -537,9 +538,9 @@ void expansion_f(SimplexTree& st, const size_t k, py::function f){
 
 
 // pip install --no-deps --no-build-isolation --editable .
-// clang -Wall -fPIC -c src/simplicial/simplextree_module.cpp -std=c++17 -I/Users/mpiekenbrock/pbsig/extern/pybind11/include -I/Users/mpiekenbrock/simplicial/src/simplicial/include -I/Users/mpiekenbrock/opt/miniconda3/envs/pbsig/include/python3.9 
+// clang -Wall -fPIC -c src/simplicial/simplextree_module.cpp -std=c++17 -I/Users/mpiekenbrock/pbsig/extern/pybind11/include -I/Users/mpiekenbrock/simplicial/src/simplicial/include -I/Users/mpiekenbrock/opt/miniconda3/envs/pbsig/include/python3.9
 PYBIND11_MODULE(_simplextree, m) {
-  
+
   py::class_<SimplexTree>(m, "SimplexTree", py::module_local())
     .def(py::init<>())
     .def_property_readonly("n_simplices", &simplex_counts)
@@ -573,6 +574,6 @@ PYBIND11_MODULE(_simplextree, m) {
     .def( "_contract", &SimplexTree::contract)
     .def( "is_tree", &SimplexTree::is_tree)
     .def( "_traverse", &traverse_)
-    // .def( "as_adjacency_matrix", &as_adjacency_matrix)
+    .def( "as_adjacency_matrix", &as_adjacency_matrix)
     ;
 }

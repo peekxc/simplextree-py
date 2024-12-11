@@ -1,0 +1,22 @@
+# SimplexTree.skeleton { #simplextree.SimplexTree.SimplexTree.skeleton }
+
+```python
+SimplexTree.SimplexTree.skeleton(p=None, sigma=[])
+```
+
+Returns the simplices in the p-skeleton of `sigma`.
+
+Note that, when dim(`sigma`) <= `p`, `sigma` is included in the skeleton.
+
+## Parameters {.doc-section .doc-section-parameters}
+
+| Name   | Type            | Description                                                              | Default   |
+|--------|-----------------|--------------------------------------------------------------------------|-----------|
+| p      | Optional\[int\] | the dimension of the skeleton.                                           | `None`    |
+| sigma  | Collection      | the simplex to obtain cofaces of. Defaults to the empty set (root node). | `[]`      |
+
+## Returns {.doc-section .doc-section-returns}
+
+| Name   | Type                   | Description                                 |
+|--------|------------------------|---------------------------------------------|
+| list   | Iterable\[Collection\] | the simplices in the p-skeleton of `sigma`. |

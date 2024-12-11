@@ -1,0 +1,6 @@
+# SimplexTree.__iter__ { #simplextree.SimplexTree.SimplexTree.__iter__ }
+
+```python
+SimplexTree.SimplexTree.__iter__()
+```
+

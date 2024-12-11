@@ -1,0 +1,6 @@
+# SimplexTree.print { #simplextree.SimplexTree.SimplexTree.print }
+
+```python
+SimplexTree.SimplexTree.print(**kwargs)
+```
+

@@ -1,0 +1,19 @@
+# SimplexTree.card { #simplextree.SimplexTree.SimplexTree.card }
+
+```python
+SimplexTree.SimplexTree.card(p=None)
+```
+
+Returns the cardinality of various skeleta of the complex.
+
+## Parameters {.doc-section .doc-section-parameters}
+
+| Name   | Type            | Description                            | Default   |
+|--------|-----------------|----------------------------------------|-----------|
+| p      | Optional\[int\] | dimension parameter. Defaults to None. | `None`    |
+
+## Returns {.doc-section .doc-section-returns}
+
+| Name          | Type                | Description                                                                                                                           |
+|---------------|---------------------|---------------------------------------------------------------------------------------------------------------------------------------|
+| cardinalities | Union\[int, tuple\] | if p is an integer, the number of p-simplices in the complex. Otherwise a tuple indicating the number of simplices of all dimensions. |

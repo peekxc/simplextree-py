@@ -1,0 +1,6 @@
+# SimplexTree.__contains__ { #simplextree.SimplexTree.SimplexTree.__contains__ }
+
+```python
+SimplexTree.SimplexTree.__contains__(s)
+```
+

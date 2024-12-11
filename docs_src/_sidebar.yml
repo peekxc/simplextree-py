@@ -7,6 +7,6 @@ website:
       section: Simplex Tree
     - contents:
       - pages/reference/UnionFind.qmd
-      section: Union Find
+      section: UnionFind
     id: pages/reference
   - id: dummy-sidebar

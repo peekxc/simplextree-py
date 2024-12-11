@@ -1,0 +1,7 @@
+# SimplexTree.faces { #simplextree.SimplexTree.SimplexTree.faces }
+
+```python
+SimplexTree.SimplexTree.faces(p=None, sigma=None)
+```
+
+Returns the p-faces of a given simplex.

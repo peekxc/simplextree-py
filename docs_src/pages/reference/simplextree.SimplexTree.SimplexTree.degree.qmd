@@ -1,0 +1,19 @@
+# SimplexTree.degree { #simplextree.SimplexTree.SimplexTree.degree }
+
+```python
+SimplexTree.SimplexTree.degree(vertices=None)
+```
+
+Computes the degree of select vertices in the trie.
+
+## Parameters {.doc-section .doc-section-parameters}
+
+| Name     | Type                  | Description                                                                                             | Default   |
+|----------|-----------------------|---------------------------------------------------------------------------------------------------------|-----------|
+| vertices | Optional\[ArrayLike\] | If no vertices are specified, all degrees are computed. Non-existing vertices by default have degree 0. | `None`    |
+
+## Returns {.doc-section .doc-section-returns}
+
+| Name   | Type                    | Description                                   |
+|--------|-------------------------|-----------------------------------------------|
+|        | Union\[ArrayLike, int\] | degree of each vertex id given in 'vertices'. |

@@ -14,14 +14,12 @@ execute:
 
 # Overview of the `simplextree` package
 
-A _simplicial complex_ $S$ is a pair $S = (V, \Sigma)$ where $V$ is a vertex set and $\Sigma$ a collection of _simplices_ $s \in \Sigma$ satisfying: 
+A _simplicial complex_ $S$ is a pair $S = (V, \Sigma)$ where $V$ is a vertex set and $\Sigma \subseteq \mathcal{P}(V)$ is a collection of _simplices_ satisfying: 
 
-1. If $v \in V$, then $v \in S$
-2. If $\tau \subset \sigma$ and $\sigma \in S$, then $\tau \in S$
+1. If $v \in V$, then $\{v\} \in \Sigma$
+2. If $\tau \subset \sigma$ for some $\sigma \in \Sigma$, then $\tau \in \Sigma$
 
-A simplicial complex is a natural generalization of a [graph](https://en.wikipedia.org/wiki/Graph_(discrete_mathematics))---any graph can also be represented by a simplicial complex (though the converse is not true!). 
-
-Like graphs, there are many ways to represent simplicial complexes in memory. One such way is to use a _Simplex Tree_: an ordered, [trie](https://en.wikipedia.org/wiki/Trie)-like structure whose nodes are in bijection with the faces of the complex. Here's a picture of a simplicial 3-complex (left) and its corresponding Simplex Tree (right):
+Simplicial complexes generalize [graphs](https://en.wikipedia.org/wiki/Graph_(discrete_mathematics)). Like graphs, there are many ways to represent simplicial complexes in memory. One such way is to use a _Simplex Tree_: an ordered, [trie](https://en.wikipedia.org/wiki/Trie)-like structure whose nodes are in bijection with the faces of the complex. Here's a picture of a simplicial 3-complex (left) and its corresponding Simplex Tree (right):
 
 ![Picture taken from Boissonnat et al: "The simplex tree: An efficient data structure for general simplicial complexes"](../static/simplextree.png){.preview-image}
 

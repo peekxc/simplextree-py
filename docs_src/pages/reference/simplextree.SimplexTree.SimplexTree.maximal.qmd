@@ -1,0 +1,7 @@
+# SimplexTree.maximal { #simplextree.SimplexTree.SimplexTree.maximal }
+
+```python
+SimplexTree.SimplexTree.maximal()
+```
+
+Returns the maximal simplices in the complex.

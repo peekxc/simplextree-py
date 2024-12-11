@@ -1,5 +1,19 @@
 # UnionFind { #simplextree.UnionFind }
 
-`UnionFind(n)`
+`UnionFind`
+
+
+
+## Classes
+
+| Name | Description |
+| --- | --- |
+| [UnionFind](#simplextree.UnionFind.UnionFind) | Union Find data structure |
+
+### UnionFind { #simplextree.UnionFind.UnionFind }
+
+```python
+UnionFind.UnionFind(n)
+```
 
 Union Find data structure
